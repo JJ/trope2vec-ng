@@ -66,7 +66,7 @@
     latest release file. For example:
     https://github.com/jcarpio/tropes2vec/releases/download/v0.0.1/tropes2vec.tgz
     
-    Check latest releases.
+    Plese, check latest releases, to obtain more recent files.
 
 ### som
     Scripts to create som graphics
