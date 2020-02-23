@@ -7,6 +7,7 @@
    * [iccc20](#iccc20)
    * [images](#images)
    * [scripts](#scripts)
+   * [output](#output)
    * [som](#som)
    * [word2vec](*#word2vec)
 
@@ -58,6 +59,14 @@
 
 ### scripts
     Several scripts to generate ngrams, vectors files, etc.
+    
+### output
+    Output files from scripts like ngram files, bin files models created by work2vec.
+    Size of this files are too big to include in repo. Yow can see this files downloading
+    latest release file. For example:
+    https://github.com/jcarpio/tropes2vec/releases/download/v0.0.1/tropes2vec.tgz
+    
+    Check latest releases.
 
 ### som
     Scripts to create som graphics
