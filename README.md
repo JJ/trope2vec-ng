@@ -7,6 +7,7 @@
    * [iccc20](#iccc20)
    * [images](#images)
    * [scripts](#scripts)
+   * [output](#output)
    * [som](#som)
    * [word2vec](*#word2vec)
 
@@ -15,7 +16,7 @@
    TV Tropes and Word2vec experiments. 
    In order to execute experiments following packages are required:
    * som_pack 3. 1
-     Original package from http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml 
+     Original package from http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml
      To download original package http://www.cis.hut.fi/research/som_pak/
      Original package have an error and it not possible to compile directly. You can use
      https://github.com/jcarpio/som_pak repository with error 
@@ -58,6 +59,14 @@
 
 ### scripts
     Several scripts to generate ngrams, vectors files, etc.
+    
+### output
+    Output files from scripts like ngram files, bin files models created by work2vec.
+    Size of this files are too big to include in repo. Yow can see this files downloading
+    latest release file. For example:
+    https://github.com/jcarpio/tropes2vec/releases/download/v0.0.1/tropes2vec.tgz
+    
+    Plese, check latest releases, to obtain more recent files.
 
 ### som
     Scripts to create som graphics
