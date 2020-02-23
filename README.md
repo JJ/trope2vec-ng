@@ -1,4 +1,4 @@
-# tv-tropes-word2vec
+# tropes2vec
 
 
 * [Overview](#overview)
