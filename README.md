@@ -16,10 +16,10 @@
    TV Tropes and Word2vec experiments. 
    In order to execute experiments following packages are required:
    * som_pack 3. 1
-     Original package from [a link](http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml) 
-     To download original package [a link](http://www.cis.hut.fi/research/som_pak/)
+     Original package from http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml
+     To download original package http://www.cis.hut.fi/research/som_pak/
      Original package have an error and it not possible to compile directly. You can use
-     [a link](https://github.com/jcarpio/som_pak) repository with error 
+     https://github.com/jcarpio/som_pak repository with error 
 
   * word2vec
     Original package from https://github.com/tmikolov/word2vec
@@ -64,7 +64,7 @@
     Output files from scripts like ngram files, bin files models created by work2vec.
     Size of this files are too big to include in repo. Yow can see this files downloading
     latest release file. For example:
-    [a link](https://github.com/jcarpio/tropes2vec/releases/download/v0.0.1/tropes2vec.tgz)
+    https://github.com/jcarpio/tropes2vec/releases/download/v0.0.1/tropes2vec.tgz
     
     Check latest releases.
 
