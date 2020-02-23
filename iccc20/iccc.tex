@@ -328,7 +328,7 @@
 	
 	Below first lines of corpus generated file:\\
 	\texttt{    
-		ChuckCunninghamSyndrome AccidentalMisnaming EpicFail CassandraTruth BeeAfraid AgonyOfTheFeet Fainting BandageMummy Fingore. EpicFail AccidentalMisnaming CassandraTruth BandageMummy BeeAfraid ChuckCunninghamSyndrome Fainting AgonyOfTheFeet Invisibility. PopTheTires EpicFail Fainting BandageMummy AccidentalMisnaming AgonyOfTheFeet ChuckCunninghamSyndrome CassandraTruth BeeAfraid. AccidentalMisnaming ScreamsLikeALittleGirl AgonyOfTheFeet CassandraTruth BeeAfraid Fainting ChuckCunninghamSyndrome EpicFail BandageMummy.}\\
+		hiredguns annoyingarrows naughtynuns attemptedrape nonindicativename badhabits characterdevelopment automatonhorses cigarfuselighting    cigarfuselighting hiredguns badhabits annoyingarrows nuntooholy characterdevelopment naughtynuns automatonhorses attemptedrape    onlyinitforthemoney attemptedrape cigarfuselighting badhabits annoyingarrows characterdevelopment automatonhorses }\\
 	
 	%       % This kind of thing does not belong in a paper 
 	%     Following line represent word2vec train parameters:\\
@@ -386,7 +386,29 @@
 	   In order to verify that the model built with word2vec fulfills its purpose, we need to perform different checks. On the one hand, 
 	   we must verify that the relations established between tropes of the model correspond to reality. 
 	   Visualizing relationships between tropes in generated model can help us to verify the goodness of the model.
-	   Therefore, the next task will be to generate a file with the numerical vector associated with each trope. To generate this file we have used a script that Gensim uses to obtain the vectors of each trope.
+	   Therefore, the next task will be to generate a file with the numerical vector associated with each trope. 
+	   To generate this file we have used a script that Gensim uses to obtain the vectors of each trope.
+	   Table \ref{tab:200dims-vectors-associated-to-tropes} shows the results in the number of tropes associated with vectors depending 
+	   on the MIN\_COUNT parameter (1, 3 or 5). We can observe that for the value of MIN\_COUNT = 1 we obtain a vector associated with each trope, 
+	   however for values of MIN\_COUNT 3 or 5 the vectors obtained are reduced. 
+	   	\begin{table}[t]
+	   	\centering
+	   	\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+	   		\hline
+	   		\textbf{(MaxTrop, NgramSize, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
+	   		\hline
+	   		\hline
+	   		Tropes with vector&7383  & 6196 & 6172 \\
+	   		\hline
+	   		Tropes without vector& 0 & 1187 & 1211 \\
+	   		\hline
+	   		Total tropes&7383&7383&7383\\
+	   		\hline
+	   		
+	   	\end{tabular}
+	   	\caption{200 dims vectors associated to tropes}
+	   	\label{tab:200dims-vectors-associated-to-tropes}
+	   \end{table}	
 	   
 	6. Create a Vector for each film as the sumatory of all tropes vectors. \\
 	
