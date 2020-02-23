@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2020-02-23 19:54
+
+### Created
+  - New files set (bin, ngram, film subset, tropes subset) 
+    for different (MAX_TROPES, NGRAM_SIZE): (16,9), (15,9) and (12,7) are
+    included in output dir. To check this file download tgz file in release files V0.0.2
+  - New files set (bin, ngram, film subset, tropes subset) for different 
+    (MAX_TROPES, NGRAM_SIZE, MIN_COUNT): (15,9,5), (15,9,3) and (15,9,1)
+    MIN_COUNT parameter let to word2vec program remove words less than the
+    indicated number.
+  - Three files in output/max_tropes_15_ngrams_9_inc_film_name_0/ created using 
+    scripts/tv-tropes-word2vec.py with 200 dim vectors using bin files created with 
+    1, 3 and 5 min_count value.
+    In case of min_count=1 all tropes have a vector
+    In case of min_count=3 1787 have no associated vector
+    In case of min_count=5 1211 have no associated vector 
+  
+### Modified 
+  - iccc.tex to include a table with information about created files
+
 ## [Unreleased] - 2020-02-23 0:08
 
 ### Changed 
@@ -26,4 +46,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-=======
