@@ -16,7 +16,7 @@
    TV Tropes and Word2vec experiments. 
    In order to execute experiments following packages are required:
    * som_pack 3. 1
-     Original package from http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml 
+     Original package from http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml
      To download original package http://www.cis.hut.fi/research/som_pak/
      Original package have an error and it not possible to compile directly. You can use
      https://github.com/jcarpio/som_pak repository with error 
@@ -66,7 +66,7 @@
     latest release file. For example:
     https://github.com/jcarpio/tropes2vec/releases/download/v0.0.1/tropes2vec.tgz
     
-    Check latest releases.
+    Plese, check latest releases, to obtain more recent files.
 
 ### som
     Scripts to create som graphics
