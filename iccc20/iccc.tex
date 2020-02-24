@@ -387,7 +387,8 @@
 	   we must verify that the relations established between tropes of the model correspond to reality. 
 	   Visualizing relationships between tropes in generated model can help us to verify the goodness of the model.
 	   Therefore, the next task will be to generate a file with the numerical vector associated with each trope. 
-	   To generate this file we have used a script that Gensim uses to obtain the vectors of each trope.
+	   To generate this file we have used a script that uses Gensim, an Open Source python library that include functions to manipulate
+	   word2vec bin files.
 	   Table \ref{tab:200dims-vectors-associated-to-tropes} shows the results in the number of tropes associated with vectors depending 
 	   on the MIN\_COUNT parameter (1, 3 or 5). We can observe that for the value of MIN\_COUNT = 1 we obtain a vector associated with each trope, 
 	   however for values of MIN\_COUNT 3 or 5 the vectors obtained are reduced. 
