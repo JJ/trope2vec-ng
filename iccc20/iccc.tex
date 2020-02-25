@@ -448,24 +448,32 @@
 	 well-known phrases that relate four concepts. This method is used in word2vec package \cite{mikolov2013} as a method to verify the accuracy in 
 	 the proposed sample datasets.The following lines show some of these phrases. Here we can observe, for example, that Albuquerque is to Albuquerque Journal
 	  as Boston is to Boston Globe. It is possible that there are other newspapers in the city of Boston, however, it is possible that the Boston Globe is of similar importance to the Albuquerque Journal newspaper of Albuquerque. Somehow they should be the reference newspapers in the city. Algorithm word2vec finds these relationships because the concepts (city, Boston, newspaper, Boston\_Globe) and (city, Albulquerque, newspaper, Albulquerque\_Journal) often appear together.\\ 
-	  
-\texttt{	
-: newspapers
-Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun
-Albuquerque Albuquerque\_Journal Boston Boston\_Globe
+
+\begin{table*}[ht]
+	\centering
+	\begin{tabular}{|p{0.9\linewidth}|}
+		\hline	  
+	
+: newspapers\\
+Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun\\
+Albuquerque Albuquerque\_Journal Boston Boston\_Globe\\
 Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer\\
 ...\\
-Baltimore Baltimore\_Sun Boston Boston\_Globe
-Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer
-Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer
+Baltimore Baltimore\_Sun Boston Boston\_Globe\\
+Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer\\
+Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer\\
 Baltimore Baltimore\_Sun Charleston Charleston\_Gazette\\
 ...\\
-Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer
-Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer
-Boston Boston\_Globe Charleston Charleston\_Gazette
-Boston Boston\_Globe Chicago Chicago\_Tribune
-}
-    
+Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer\\
+Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer\\
+Boston Boston\_Globe Charleston Charleston\_Gazette\\
+Boston Boston\_Globe Chicago Chicago\_Tribune\\
+
+  \hline
+  	   	\end{tabular}
+\caption{Word2vec phrases to check model accuracy}
+\label{tab:k-means-clusters}
+\end{table*}	
 	
 	
 	   	\begin{table*}[ht]
