@@ -30,7 +30,7 @@
     
 
 ## Folders
-   See README.md inside folder for more information.
+   See README.md inside folders for more information.
 
 ### data
     * bin
