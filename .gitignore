@@ -1,5 +1,5 @@
 data/
-data/
+!data/csv/*
 output/
 data/json/*.json
 *.bin
