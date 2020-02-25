@@ -5,10 +5,6 @@
   The script create an error file with tropes that are not in vocabulary
   In standart output print trope name followed by space separate components of 200 dim vector
 
-- tvtropes_create_files_only.pl  
-
-- tvtropes_num_tropes_script.pl   
-
 - convert_tropes_file.pl  
 
 - tvtropes.pl
@@ -30,8 +26,6 @@
 
    - tropes_set_<max_tropes>_taken_<ngram_size>.txt
     tropes from films with number of tropes between <max_tropes> and 2
-
-- tvtropes_num_tropes.pl         
 
 - tvtropes_pairs_tropes_films.pl  
 
