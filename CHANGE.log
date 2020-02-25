@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2020-02-24 7:46
 ### Created
   - New release including files with 200 dimensions vectors associated to tropes
-    To obtain this file, download tropes2vec.tgz from release v0.0.3 assets
+    To obtain this file, download tropes2vec.tgz (225MB) from release v0.0.3 assets
     and access to folder output/max_tropes_15_ngrams_9_inc_film_name_0/
     to see file vectors in format <trope_name> <200 dims vector>
     - tropes_200_dim_vectors_15_taken_9_min-count_1.txt

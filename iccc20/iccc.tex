@@ -297,9 +297,7 @@
 \end{table}
 	
 	
-	
 	This filtering process generates a reduced set of tropes. Table \ref{tab:corpusSize} shows characteristics of different sets of films, tropes and generated corpus. Full set of tropes have 25405 different tropes. Figure \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 threshold will include more than 25000 tropes. 
-	
 	
 	In case of subset of films with number of tropes between 15 and 2 tropes has only 6524 different tropes. 
     It is important to check if our subset of tropes is relevant within the total set of tropes. To do so, we order the tropes by number of times it appears in a movie. In case of subset of tropes from films between 15 and 2 tropes, our subset cover the 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset. 
@@ -347,6 +345,37 @@
 	
 	
 	4. Build word2vec model. After that we will have a numerical vector for each trope. \\
+	
+	  %	\begin{table}[t]
+	  %	\centering
+	  %		\hline
+	  %		 & \textbf{Argument}\\
+	  %		\hline
+	  %		\hline
+	  %		\textbf{min-count}& 1 \\
+	  %		\hline
+	  %		\textbf{cbow}& 1 \\
+	  %		\textbf{Vector dimension}& 200 \\
+	  %		\hline
+	  %		\textbf{Window}& 8 \\
+	  %		\hline
+	  %		\textbf{Negative}& 25 \\
+	  %		\hline
+	  %		\textbf{hs}& 0 \\
+	  %		\hline
+	  %		\textbf{sample}& 1e-4 \\
+	  %		\hline
+	  %	    \textbf{threads}& 20\\
+      %  	\hline  
+      %  	\textbf{binary}& 1 \\
+      %  	\hline
+      %  	\textbf{iter}& 15\\
+      %  	\hline  	
+      %  	
+	  %	\end{tabular}
+	  %	\caption{arguments used in word2vec execution}	
+	  %	\label{tab:word2vec-parameters}
+	  % \end{table}	
 	   
 	   Once we have obtained the file with the corpus for training, using the word2vec package https://github.com/tmikolov/word2vec created by
 	   \cite{mikolov2013} we run word2vec program to obtain trained model. This model will help us to obtain a embedding vector associated to each trope.
@@ -407,11 +436,62 @@
 	   		\hline
 	   		
 	   	\end{tabular}
-	   	\caption{200 dims vectors associated to tropes}
+	   	\caption{200 dims vectors associated to tropes with different MIN\_COUNT values}
 	   	\label{tab:200dims-vectors-associated-to-tropes}
 	   \end{table}	
 	   
 	6. Create a Vector for each film as the sumatory of all tropes vectors. \\
+	
+	7. How to check that the built model works?
+	
+	 One way to check the quality of the embeeding vectors model is to create a set of 
+	 well-known phrases that relate four concepts. This method is used in word2vec package \cite{mikolov2013} as a method to verify the accuracy in 
+	 the proposed sample datasets.The following lines show some of these phrases. Here we can observe, for example, that Albuquerque is to Albuquerque Journal
+	  as Boston is to Boston Globe. It is possible that there are other newspapers in the city of Boston, however, it is possible that the Boston Globe is of similar importance to the Albuquerque Journal newspaper of Albuquerque. Somehow they should be the reference newspapers in the city. Algorithm word2vec finds these relationships because the concepts (city, Boston, newspaper, Boston\_Globe) and (city, Albulquerque, newspaper, Albulquerque\_Journal) often appear together.\\ 
+	  
+\texttt{	
+: newspapers
+Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun
+Albuquerque Albuquerque\_Journal Boston Boston\_Globe
+Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer\\
+...\\
+Baltimore Baltimore\_Sun Boston Boston\_Globe
+Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer
+Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer
+Baltimore Baltimore\_Sun Charleston Charleston\_Gazette\\
+...\\
+Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer
+Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer
+Boston Boston\_Globe Charleston Charleston\_Gazette
+Boston Boston\_Globe Chicago Chicago\_Tribune
+}
+    
+	
+	
+	   	\begin{table*}[ht]
+	   	\centering
+	   	\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+	   		\hline
+	   		\textbf{Num Clusters}& \textbf{500} & \textbf{250} & \textbf{125} & \textbf{64} & \textbf{32} & \textbf{8}\\
+	   		\hline
+	   		\hline
+	   		Vocab Size& 7384 & 7384 & 7384 & 7384 & 7384 & 7384\\
+	   		\hline
+	   		Words in train file& 17387907 & 17387907 & 17387907 & 17387907 & 17387907 & 17387907\\
+	   		\hline
+	   		Time real&63m8.938s&70m38.958s&82m35.287s & 64m27.252s & 63m15.409s &  63m8.774s\\
+	   		\hline
+	   		Time user&183m18.900s&204m58.230s&239m54.910s&  187m14.450s & 183m50.430s& 183m40.190s\\
+	   		\hline
+	   		Time sys&3m19.330s&3m55.550s&4m57.510s& 3m36.940s& 3m30.490s & 3m25.750s\\
+	   		\hline
+	   		
+	   	\end{tabular}
+	   	\caption{k-means cluster generation for tropes vectors.MaxTrop=15, NgramSize=9, MinCount=1 Execution time for i7 5500u 2.40 Ghz 16GB RAM}
+	   	\label{tab:k-means-clusters}
+	   \end{table*}	
+	  
+	    
 	
 	\section{Results}
 	\label{sec:res}
