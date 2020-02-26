@@ -2,6 +2,8 @@
 #
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
+# This script create a file with all pairs <film_name> <trope_name> included in input file tvtropes.json
+
 use strict;
 use warnings;
 
@@ -42,17 +44,14 @@ my %tropes;
 my $film_data;
 my $film_name = "";
 
-open my $fh_films, ">", "$output_dir/pairs_tropes_films.txt";
+open my $fh_films, ">", "$pairs_tropes_films.txt";
 
 foreach $key (keys %{$data}) { # foreach film name
   $film_name = $key;
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
   
-  # print $fh_films "$key num_tropes: $num_tropes\n"; # create all films file
-
   foreach my $value (@{$film_data}) { # creating tropes set
-        # $tropes{$value}= "";
         print $fh_films "$film_name $value\n";
   }
 }
