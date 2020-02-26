@@ -14,5 +14,6 @@ data/json/*.json
 *.synctex*
 *.save
 auto/
+text8.gz
 
 *~
