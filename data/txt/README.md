@@ -1,8 +1,6 @@
 # all_films.txt  
   all films name with number of tropes. 
 
-# all_films_frequency.txt  
-
 # num_tropes_distribution.txt  
 
 # pairs_tropes_films.txt  
