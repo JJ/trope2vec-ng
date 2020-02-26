@@ -384,7 +384,7 @@
 	   shows different details of the model and its creation process by varying the argument mentioned above.
 	   We have detected that the same trope can be written in different ways. The way to separate the words that appear in the name of the trope is to write
 	    the first letter in uppercase. We have found that sometimes for the same trope the sequence of cartoons in upper and lower case is not the same. 
-	   In order to prevent the same trope from being taken as a different word, we have made a filter to convert troop names to lowercase.
+	   In order to prevent the same trope from being taken as a different word, we have made a filter to convert trope names to lowercase.
 	   
 	   
 	\begin{table}[t]
@@ -445,40 +445,137 @@
 	7. How to check that the built model works?
 	
 	 One way to check the quality of the embeeding vectors model is to create a set of 
-	 well-known phrases that relate four concepts. This method is used in word2vec package \cite{mikolov2013} as a method to verify the accuracy in 
-	 the proposed sample datasets.The following lines show some of these phrases. Here we can observe, for example, that Albuquerque is to Albuquerque Journal
-	  as Boston is to Boston Globe. It is possible that there are other newspapers in the city of Boston, however, it is possible that the Boston Globe is of similar importance to the Albuquerque Journal newspaper of Albuquerque. Somehow they should be the reference newspapers in the city. Algorithm word2vec finds these relationships because the concepts (city, Boston, newspaper, Boston\_Globe) and (city, Albulquerque, newspaper, Albulquerque\_Journal) often appear together.\\ 
-      In order to obtain top 100 films we use IMDB.com ranking, we register and modify account settings and Content Settings menu the options Title display country/region: United States and Title display language to English.
+	 well-known phrases that relate four concepts \ref{tab:phrases-check-accuracy}. This method is used in word2vec package \cite{mikolov2013} as a method to verify 
+	 embedding vectors accuracy. We can observe, for example, that Albuquerque is to Albuquerque Journal
+	  as Boston is to Boston Globe. It is possible that there are more newspapers in the city of Boston, however, it is possible that the Boston Globe has similar importance to the Albuquerque Journal newspaper of Albuquerque. Somehow they should be the reference newspapers in the city. Algorithm word2vec finds these relationships because the concepts (city, Boston, newspaper, Boston\_Globe) and (city, Albulquerque, newspaper, Albulquerque\_Journal) often appear together. 
+	  In the case of movies and tropes, the idea would be to associate a film with its most popular trope. A movie will have a single most popular trope. 
+	  Then we will associate the film1 with film-1-top-trope and film2 with film-2-top-trope. Table tab:proposed-films-tropes-phrases-check-accuracy shows combination examples of some film and trope values.It is possible to find other ways to build accuracy checklists for this problem, which can be explored in future work,
+	   but it seems to us that it can serve its purpose.\\
+	  
+	  In order to create this accuracy checklist for films and tropes we follow next steps:\\
+	  1. Obtain the list of fil-trope pairs from the tvtropes database\\
+	  2. From the list of film-trope pairs, count how many times each trope appears associated with a film.\\ This will give us a ranking of most used tropes\\
+	  3. Obtain a list of most  popular films.\\ 
+      In order to obtain top 250 films we use IMDB.com ranking. Usually IMDB show titles in local language, to obtain english titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. We will use popular films as example, with
+      the idea that a most popular film have to apear more times in corpus. Same idea can be used to build the artificial corpus in future works.\\
+      4. Obtain for each film its most popular tropes associated.\\
+      5. Create accuracy check list creating combinations of films and film-top-trope in same way original word2vec package do (table \ref{tab:phrases-check-accuracy}) and we propose in table \ref{tab:proposed-films-tropes-phrases-check-accuracy}\\ 
       
-      Please select your preferences. Learn more about Site Preferences.
-      Title pages
-      Title display country/region:
-      Title display language
+      In case of word2vec package test files size questions-phrases.txt has 3223 examples and questions-words.txt has 19558 examples.\\
+      In case of question words check l
+
+
+
+	\begin{table*}[ht]
+	\centering
+	\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+		\hline
+		\textbf{Accuracy list group}& \textbf{Question words}  & \textbf{(\#ok/\#total)}& \textbf{Semantic} & \textbf{Syntactic}\\
+		\hline
+		\hline
+		capital-common-countries& 81.62 \% & (413 / 506) & 81.62 \% & -nan\\
+		\hline
+		capital-world& 61.29 \% & (890 / 1452) & 61.29 \% & -nan\\
+		\hline
+		currency& 27.99 \% & (75 / 268) & 27.99 \% & -nan\\
+		\hline
+		city-in-state& 48.12 \% & (756 / 1571)& 48.12 \% & -nan\\
+		\hline
+		family&77.45 \% & (237 / 306)& 77.45 \% &  -nan \\
+		\hline
+		gram1-adjective-to-adverb& 17.72 \% &  (134 / 756)& -nan & 17.72 \% \\
+		\hline
+	    gram2-opposite& 20.59 \% & (63 / 306)& -nan & 20.59 \% \\
+		\hline
+		gram3-comparative&62.54 \% & (788 / 1260)& -nan & 62.54 \% \\
+		\hline
+		gram4-superlative&41.70 \% &  (211 / 506)& -nan & 41.70 \% \\
+		\hline
+		gram5-present-participle& 38.00 \% & (377 / 992)& -nan &  38.00 \% \\
+		\hline
+		gram6-nationality-adjective&85.56 \% &  (1173 / 1371)& -nan & 85.56 \% \\
+		\hline
+		gram7-past-tense& 38.66 \% & (515 / 1332) & -nan & 38.66 \% \\
+		\hline
+		gram8-plural& 65.62 \% & (651 / 992) & -nan & 65.62 \% \\
+		\hline
+		gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
+		\hline
+		\hline
+		\textbf{Total}& \textbf{53.27 \% }&  & \textbf{57.79 \% }&  \textbf{51.00 \% }\\
+		\hline
+		
+	\end{tabular}
+	\caption{Original word2vec package example accuracy results for words and phrases}
+	\label{tab:original-accuracy-results}
+\end{table*}	
+
+
+
+     \begin{table*}[ht]
+	   \centering
+	    \begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
+		\hline	      
+      film-1 film-1-top-trope film-2 film-2-top-trope\\
+      film-1 film-1-top-trope film-3 film-3-top-trope\\
+      film-1 film-1-top-trope film-4 film-4-top-trope\\
+      film-1 film-1-top-trope film-5 film-5-top-trope\\
+      \\
+      film-2 film-2-top-trope film-1 film-1-top-trope\\
+      film-2 film-2-top-trope film-3 film-3-top-trope\\
+      film-2 film-2-top-trope film-4 film-4-top-trope\\
+      film-2 film-2-top-trope film-5 film-5-top-trope\\
+      \\
+      film-3 film-3-top-trope film-1 film-1-top-trope\\
+      film-3 film-3-top-trope film-2 film-2-top-trope\\
+      film-3 film-3-top-trope film-4 film-4-top-trope\\
+      film-3 film-3-top-trope film-5 film-5-top-trope\\
+      \\
+      film-4 film-4-top-trope film-1 film-1-top-trope\\
+      film-4 film-4-top-trope film-2 film-2-top-trope\\
+      film-4 film-4-top-trope film-3 film-3-top-trope\\
+      film-4 film-4-top-trope film-5 film-5-top-trope\\
+      \\
+      film-5 film-5-top-trope film-1 film-1-top-trope\\
+      film-5 film-5-top-trope film-2 film-2-top-trope\\
+      film-5 film-5-top-trope film-3 film-3-top-trope\\
+      film-5 film-5-top-trope film-4 film-4-top-trope\\
+  \hline
+\end{tabular}
+\caption{Proposed films and tropes Word2vec phrases to check model accuracy}
+\label{tab:proposed-films-tropes-phrases-check-accuracy}
+\end{table*}     
+      
+      
       
 \begin{table*}[ht]
 	\centering
-	\begin{tabular}{|p{0.9\linewidth}|}
+	\begin{tabular}{|p{0.65\linewidth}|p{0.35\linewidth}|}
+		\hline
+		Phrases examples & Words examples\\
 		\hline	  
-	
+	    \hline
 : newspapers\\
-Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun\\
-Albuquerque Albuquerque\_Journal Boston Boston\_Globe\\
-Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer\\
-...\\
-Baltimore Baltimore\_Sun Boston Boston\_Globe\\
-Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer\\
-Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer\\
-Baltimore Baltimore\_Sun Charleston Charleston\_Gazette\\
-...\\
-Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer\\
-Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer\\
-Boston Boston\_Globe Charleston Charleston\_Gazette\\
-Boston Boston\_Globe Chicago Chicago\_Tribune\\
+\hline
+Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun & he she his her\\
+Albuquerque Albuquerque\_Journal Boston Boston\_Globe & he she husband wife\\
+Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer & he she king queen\\
+Albuquerque Albuquerque\_Journal Cleveland Cleveland\_Plain\_Dealer & he she man woman\\
+\hline
+Baltimore Baltimore\_Sun Boston Boston\_Globe& his her husband wife\\
+Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer & his her king queen\\
+Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer & his her man woman\\
+Baltimore Baltimore\_Sun Charleston Charleston\_Gazette & his her nephew niece\\
+\hline
+Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer & husband wife king queen	\\
+Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer & husband wife man woman\\
+Boston Boston\_Globe Charleston Charleston\_Gazette & husband wife nephew niece\\
+Boston Boston\_Globe Chicago Chicago\_Tribune & husband wife policeman policewoman\\
 
   \hline
   	   	\end{tabular}
 \caption{Word2vec phrases to check model accuracy}
-\label{tab:k-means-clusters}
+\label{tab:phrases-check-accuracy}
 \end{table*}	
 	
 	
@@ -512,6 +609,11 @@ Boston Boston\_Globe Chicago Chicago\_Tribune\\
 	
 	\section{Conclusions, discussion and future work}
 	
+	% It is possible to create artificial corpus better than natural ones?
+	
+	% find other ways to build accuracy checklists 
+	% Popular films will appear more times in corpus. This idea can be used to build the artificial corpus in future works.
+	% Check if embedding vectors clusters can be used to obtain better accuracy check lists 
 	\section{Acknowledgments}
 	
 	\bibliographystyle{iccc}
