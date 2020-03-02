@@ -455,9 +455,13 @@
 	  In order to create this accuracy checklist for films and tropes we follow next steps:\\
 	  1. Obtain the list of fil-trope pairs from the tvtropes database\\
 	  2. From the list of film-trope pairs, count how many times each trope appears associated with a film.\\ This will give us a ranking of most used tropes\\
-	  3. Obtain a list of most  popular films.\\ 
-      In order to obtain top 250 films we use IMDB.com ranking. Usually IMDB show titles in local language, to obtain english titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. We will use popular films as example, with
-      the idea that a most popular film have to apear more times in corpus. Same idea can be used to build the artificial corpus in future works.\\
+	  3. Obtain a list of most  popular films.
+	     In order to obtain top 100 films we use IMDB.com ranking. IMDB is a very popular Internet Movie Database with 6.5 million titles, 10.4 million personalities and 83 million registered users. IMDB shows titles in local language, to obtain english titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. we have to look for the 
+	     equivalences of movie names in IMDB and the names of tv tropes. Sometimes these names do not match, as in the 
+	     case of the movie 1917 (2019) that on tv tropes is called NineteenSeventeen. In addition to this, those that fall into categories other than films on TVtropes have been leaked from the list, such as The King Lion, which would be in the category of animated films.
+	     
+	     
+	     We will use popular films as example, with the idea that a most popular film have to apear more times in corpus. Same idea can be used to build the artificial corpus in future works.\\
       4. Obtain for each film its most popular tropes associated.\\
       5. Create accuracy check list creating combinations of films and film-top-trope in same way original word2vec package do (table \ref{tab:phrases-check-accuracy}) and we propose in table \ref{tab:proposed-films-tropes-phrases-check-accuracy}\\ 
       
@@ -506,7 +510,7 @@
 		\hline
 		
 	\end{tabular}
-	\caption{Original word2vec package example accuracy results for words and phrases}
+	\caption{Word2vec package Text8 example accuracy results for words and phrases. Text from  http://mattmahoney.net/dc/text8.zip}
 	\label{tab:original-accuracy-results}
 \end{table*}	
 
