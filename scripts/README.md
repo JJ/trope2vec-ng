@@ -1,13 +1,23 @@
-- tv-tropes-word2vec.py  
+## scripts
+
+# tv-tropes-word2vec.py  
   Script to generate pairs of trope_name and 200_dim_associated_vector  
   This script use two files: bin model file and sub set tropes file
   
   The script create an error file with tropes that are not in vocabulary
   In standart output print trope name followed by space separate components of 200 dim vector
 
-- convert_tropes_file.pl  
+# convert_tropes_file.pl  
 
-- tvtropes.pl
+# create-subset-15-ranking.pl
+  The script take two files, first one files with all tropes with ranking and a second file with a subset of tropes without ranking.
+  The subset of tropes are in ranking order because was created in excel with and advanced filter selecting only sub set tropes from
+  all tropes ranked list. The output is a file with a subset of tropes and the ranking taked from all tropes ranking.
+
+# tv-tropes-word2vec.py
+  Script to generate pairs of trope_name and 200_dim_associated_vector
+
+# tvtropes.pl
   take downloaded json file from tvtropes and generate this files:
   - films.txt
     all films names with trope number for each film
@@ -27,9 +37,11 @@
    - tropes_set_<max_tropes>_taken_<ngram_size>.txt
     tropes from films with number of tropes between <max_tropes> and 2
 
-- tvtropes_pairs_tropes_films.pl  
+# tvtropes_pairs_tropes_films.pl  
+  This script create a file with all pairs <film_name> <trope_name> included in input file tvtropes.json
+  the result don't filter repeated pairs. 
 
-- word2vec-words.pl
+# word2vec-words.pl
   execute word2vec algorithm
   word2vec-word.pl <max_tropes> <ngram_size> <inc_film_name>
   launch word2vec for a certain ngram file with max_tropes ngram_size and inc_film_name
