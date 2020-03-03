@@ -451,12 +451,31 @@
 	  In the case of movies and tropes, the idea would be to associate a film with its most popular trope. A movie will have a single most popular trope. 
 	  Then we will associate the film1 with film-1-top-trope and film2 with film-2-top-trope. Table tab:proposed-films-tropes-phrases-check-accuracy shows combination examples of some film and trope values.It is possible to find other ways to build accuracy checklists for this problem, which can be explored in future work,
 	   but it seems to us that it can serve its purpose.\\
+	   
+	   The idea here is create a list to check accuracy in embedding vectors models.
+	   Similar to this one:
+	   Boston Boston\_Globe New\_York New\_Work\_Times
+	   
+	   Most times that apear Boston and newspaper related infomation in text corpus have to appear Boston\_Globe newspaper, and probably more important Boston\_Globe only appear in contexts associated to Boston and newspaper an not in other contexts.
+	   
+	   It is possible to obtain something similar with tropes?
+	   
+	   Problably if we modify trope name to include film name we will obtain the same. And then a way to associate trope name with his new trope-film name.
+	   
+	   film1 is a film1\_trope1 as film2 is a film2\_trope2
+	   trope1 is film1\_trope1 as trope2 is a film2\_trope2
+	   
+	   in this way we can create a relationship between film and film\_trope and other association between
+	   trope and film\_trope name \\
+	   
+	   In a text created by humans probably do no have sense to talk about Boston_Globe newspaper if we are talking about Granada (probably one extrange case yes, but usually not). But with an artificial created corupus we have to paid special atention about where we are writing some terms. Otherwise, we can create artificial relationships that have no sense. Frecuency of terms writed together are also crucial, stronger relationships have to be writed more times to obtain a good model. For this reason I think will be interesting have a ranking of tropes, and most populars have to appear more times than less popular ones. \\
+	   
 	  
 	  In order to create this accuracy checklist for films and tropes we follow next steps:\\
 	  1. Obtain the list of fil-trope pairs from the tvtropes database\\
 	  2. From the list of film-trope pairs, count how many times each trope appears associated with a film.\\ This will give us a ranking of most used tropes\\
 	  3. Obtain a list of most  popular films.
-	     In order to obtain top 100 films we use IMDB.com ranking. IMDB is a very popular Internet Movie Database with 6.5 million titles, 10.4 million personalities and 83 million registered users. IMDB shows titles in local language, to obtain english titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. we have to look for the 
+	     In order to obtain top 100 films we use IMDB.com ranking. IMDB is a very popular Internet Movie Database with 6.5 million titles, 10.4 million personalities and 83 million registered users. IMDB shows titles in local language, to obtain english titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. We have to look for the 
 	     equivalences of movie names in IMDB and the names of tv tropes. Sometimes these names do not match, as in the 
 	     case of the movie 1917 (2019) that on tv tropes is called NineteenSeventeen. In addition to this, those that fall into categories other than films on TVtropes have been leaked from the list, such as The King Lion, which would be in the category of animated films.
 	     
