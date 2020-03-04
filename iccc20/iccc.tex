@@ -51,11 +51,38 @@
 	
 	\section{Introduction}
 	
+	% Some help from: https://www.nature.com/scitable/topicpage/scientific-papers-13815490/
+	
+	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
+
+    Word2vec has proven to be a very useful tool when obtaining a vector representation of concepts including their context. 
+    
+     However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus. Some examples of these frequently used corpus are Wikipedia or google news dumps.
+    
+    	
+	   % I don't know why this works starts and why. Please J, you know antecedents, please, write this fist part. 
+	
+	% Second, state the need for your work, as an opposition between what the scientific community currently has and what it wants.
+	
+	   % Same as previous point, I do not have information about the need of this work. J, please, if possible write this part too. 
+	   
+	% Third, indicate what you have done in an effort to address the need (this is the task).
+	
+	
+	
+	
+	% Finally, preview the remainder of the paper to mentally prepare readers for its structure, in the object of the document.
+	
+	
+	
 	% Motivation: we need to have a representation that is
 	% * That includes the context of the trope
 	% * relatively compact
 	% * capable of doing arithmetic
 	% * uniform for tropes and movies.
+	
+	
+	
 	
 	This work aims to find a knowledge representation and a new
 	methodology to apply machine learning techniques to entities without a
@@ -222,11 +249,23 @@
 	\section{Methodology}
 	\label{sec:met}
 	
-	1. Download TvTropes dataset \\
-	2. Select films with number of tropes less than a certain number of tropes. The idea is to create a corpus with sentences constructed by permutations of sub-sets of tropes. \\
-	3. Build the corpus with permutations of tropes in each film \\
+	\begin{enumerate}
+		\item Download film information from tvtropes.org 336.
+		33and their associated tropes
+		\item Select films with number of tropes less than a certain thresold
+		\item After this, we create phrases from permutations of the tropes associated with each movie
+
+
+	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
+	% We need a parameter that let us reinforce more real relationships between elements that are stronger. For example, in case of films,
+	% we can use a value of film popularity to write more times in corpus information about a blockbuster film. We have to do the same with 
+	% es like tropes. More relevant tropes will be them who appear more times in films, so these tropes have to appear more times in 
+	% corpus. Ideal situation will be that artificial corpus emulate real conextions faithfully.\\
+	% Let's use imdb blockbuster films sort by votes. Votes will be the number to reinforce more in corpus films that have more votes.	 
+	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
+	% for next paper version
 	
-	To represent tropes we decided to use embedding vectors for
+	In order to represent tropes, we decided to use embedding vectors for
 	each trope. This representation should allow us to perform
 	concept arithmetic. This property will be very interesting
 	since our goal is to determine, for example, which group of
@@ -254,6 +293,7 @@
 	it should produce some embedding vectors with the capacity to
 	offer us a correct arithmetic of concepts.
 	
+		\end{enumerate}
 	To obtain this artificial corpus, we place together entities
 	that are connected. In the example of tvtropes, we will
 	generate the artificial corpus generating phrases that put
@@ -263,48 +303,48 @@
 	without repetitions of 15 elements taken in groups of n
 	elements. his method can give us enough size corpus to train
 	the model using word2vec algorithm.
-	In order to generate the artificial corpus, we have followed this procedure. We have selected those films that have a maximum of MAX\_TROPES tropes and eliminating those that have zero or 1 trope.  
-
-\begin{table}[t]
-	\centering
-	\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-		\hline
-		\textbf{(MaxTrop, NgramSize)}& \textbf{(16,9)} & \textbf{(15, 9)} & \textbf{(12,7)}\\
-		\hline
-		\hline
-		Tropes Subset Size&8125&7383& 5500\\
-		\hline
-		Film Subset Size&2686&2380& 1674\\
-		\hline
-		Corpus File Size (MB)&747&264& 32\\
-		\hline
-	    Word2vec Model file Size(MB)&5.6&4.9&4.9\\
-		\hline
-		Vocab Size& 7078 & 6173 & 4653\\
-		\hline
-		Words in train file& 48893099 &17386514&2056372\\
-		\hline
-		Time real&179m53.655s&61m8.348s&6m49.522s\\
-        \hline
-		Time user&524m50.420s&177m48.830s&19m53.780s\\
-		\hline
-	    Time sys&8m51.080s&3m10.870s&0m19.780s\\
-		\hline
-		
-	\end{tabular}
-	\caption{Characteristics of different corpus sizes and word2vec models created by varying MAX\_TROPES and NGRAM\_SIZE (word2vec argument min-count = 5). Execution time for i7 5500u 2.40 Ghz 16GB RAM}
-	\label{tab:corpusSize}
-\end{table}
+	In order to generate the artificial corpus, we have followed this procedure. We have selected those films that have a maximum of MAX\_TROPES and eliminating those that have zero or 1 trope.  
+	
+	\begin{table}[t]
+		\centering
+		\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+			\hline
+			\textbf{(MaxTrop, NgramSize)}& \textbf{(16,9)} & \textbf{(15, 9)} & \textbf{(12,7)}\\
+			\hline
+			\hline
+			Tropes Subset Size&8125&7383& 5500\\
+			\hline
+			Film Subset Size&2686&2380& 1674\\
+			\hline
+			Corpus File Size (MB)&747&264& 32\\
+			\hline
+			Word2vec Model file Size(MB)&5.6&4.9&4.9\\
+			\hline
+			Vocab Size& 7078 & 6173 & 4653\\
+			\hline
+			Words in train file& 48893099 &17386514&2056372\\
+			\hline
+			Time real&179m53.655s&61m8.348s&6m49.522s\\
+			\hline
+			Time user&524m50.420s&177m48.830s&19m53.780s\\
+			\hline
+			Time sys&8m51.080s&3m10.870s&0m19.780s\\
+			\hline
+			
+		\end{tabular}
+		\caption{Characteristics of different corpus sizes and word2vec models created by varying MAX\_TROPES and NGRAM\_SIZE (word2vec argument min-count = 5). Execution time for i7 5500u 2.40 Ghz 16GB RAM}
+		\label{tab:corpusSize}
+	\end{table}
 	
 	
 	This filtering process generates a reduced set of tropes. Table \ref{tab:corpusSize} shows characteristics of different sets of films, tropes and generated corpus. Full set of tropes have 25405 different tropes. Figure \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 threshold will include more than 25000 tropes. 
 	
 	In case of subset of films with number of tropes between 15 and 2 tropes has only 6524 different tropes. 
-    It is important to check if our subset of tropes is relevant within the total set of tropes. To do so, we order the tropes by number of times it appears in a movie. In case of subset of tropes from films between 15 and 2 tropes, our subset cover the 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset. 
+	It is important to check if our subset of tropes is relevant within the total set of tropes. To do so, we order the tropes by number of times it appears in a movie. In case of subset of tropes from films between 15 and 2 tropes, our subset covers the 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset. 
 	
 	
 	Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embedding vectors will be created. The embedding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
-	To obtain this artificial corpus, we place together entities that are connected. In the example of tvtropes, we create the artificial corpus generating phrases that put together tropes used in a film. In order to generate the corpus, we will select films that have MAX\_TROPES tropes. We take this initial limit since we will generate all the variations without repetitions of MAX\_TROPES elements taken in groups of NGRAM\_SIZE elements. This method can give us a corpus with hundred of Mega Bytes to train the model using word2vec algorithm. \\
+	To obtain this artificial corpus, we place together entities that are connected. In the example of tvtropes, we create the artificial corpus generating phrases that put together tropes used in a film. In order to generate the corpus, we will select films that have MAX\_TROPES tropes. We take this initial limit since we will generate all the variations without repetitions of MAX\_TROPES elements taken in groups of NGRAM\_SIZE elements. This method can give us a corpus with hundreds of Mega Bytes to train the model using word2vec algorithm. \\
 	
 	\begin{figure}
 		\centering
@@ -346,47 +386,47 @@
 	
 	4. Build word2vec model. After that we will have a numerical vector for each trope. \\
 	
-	  %	\begin{table}[t]
-	  %	\centering
-	  %		\hline
-	  %		 & \textbf{Argument}\\
-	  %		\hline
-	  %		\hline
-	  %		\textbf{min-count}& 1 \\
-	  %		\hline
-	  %		\textbf{cbow}& 1 \\
-	  %		\textbf{Vector dimension}& 200 \\
-	  %		\hline
-	  %		\textbf{Window}& 8 \\
-	  %		\hline
-	  %		\textbf{Negative}& 25 \\
-	  %		\hline
-	  %		\textbf{hs}& 0 \\
-	  %		\hline
-	  %		\textbf{sample}& 1e-4 \\
-	  %		\hline
-	  %	    \textbf{threads}& 20\\
-      %  	\hline  
-      %  	\textbf{binary}& 1 \\
-      %  	\hline
-      %  	\textbf{iter}& 15\\
-      %  	\hline  	
-      %  	
-	  %	\end{tabular}
-	  %	\caption{arguments used in word2vec execution}	
-	  %	\label{tab:word2vec-parameters}
-	  % \end{table}	
-	   
-	   Once we have obtained the file with the corpus for training, using the word2vec package https://github.com/tmikolov/word2vec created by
-	   \cite{mikolov2013} we run word2vec program to obtain trained model. This model will help us to obtain a embedding vector associated to each trope.
-	   In our case, the corpus does not contain stop-words and other words lacking information. For this reason we have performed different tests with
-	   word2vec by modifying the MIN\_COUNT parameter that eliminates words that appear less than MIN\_COUNT times. Table \ref{tab:variations-with-min-count-argument-15-9}
-	   shows different details of the model and its creation process by varying the argument mentioned above.
-	   We have detected that the same trope can be written in different ways. The way to separate the words that appear in the name of the trope is to write
-	    the first letter in uppercase. We have found that sometimes for the same trope the sequence of cartoons in upper and lower case is not the same. 
-	   In order to prevent the same trope from being taken as a different word, we have made a filter to convert trope names to lowercase.
-	   
-	   
+	%	\begin{table}[t]
+	%	\centering
+	%		\hline
+	%		 & \textbf{Argument}\\
+	%		\hline
+	%		\hline
+	%		\textbf{min-count}& 1 \\
+	%		\hline
+	%		\textbf{cbow}& 1 \\
+	%		\textbf{Vector dimension}& 200 \\
+	%		\hline
+	%		\textbf{Window}& 8 \\
+	%		\hline
+	%		\textbf{Negative}& 25 \\
+	%		\hline
+	%		\textbf{hs}& 0 \\
+	%		\hline
+	%		\textbf{sample}& 1e-4 \\
+	%		\hline
+	%	    \textbf{threads}& 20\\
+	%  	\hline  
+	%  	\textbf{binary}& 1 \\
+	%  	\hline
+	%  	\textbf{iter}& 15\\
+	%  	\hline  	
+	%  	
+	%	\end{tabular}
+	%	\caption{arguments used in word2vec execution}	
+	%	\label{tab:word2vec-parameters}
+	% \end{table}	
+	
+	Once we have obtained the file with the corpus for training, using the word2vec package https://github.com/tmikolov/word2vec created by
+	\cite{mikolov2013} we run word2vec program to obtain trained model. This model will help us to obtain a embedding vector associated to each trope.
+	In our case, the corpus does not contain stop-words and other words lacking information. For this reason, we have performed different tests with
+	word2vec by modifying the MIN\_COUNT parameter that eliminates words that appear less than MIN\_COUNT times. Table \ref{tab:variations-with-min-count-argument-15-9}
+	shows different details of the model and its creation process by varying the argument mentioned above.
+	We have detected that the same trope can be written in different ways. The way to separate the words that appear in the name of the trope is to write
+	the first letter in uppercase. We have found that sometimes for the same trope the sequence of cartoons in upper and lower case is not the same. 
+	In order to prevent the same trope from being taken as a different word, we have made a filter to convert trope names to lowercase.
+	
+	
 	\begin{table}[t]
 		\centering
 		\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
@@ -412,220 +452,220 @@
 	
 	
 	5. Visualize tropes vector space in order to detect clusters and possible data organization. \\
-	   In order to verify that the model built with word2vec fulfills its purpose, we need to perform different checks. On the one hand, 
-	   we must verify that the relations established between tropes of the model correspond to reality. 
-	   Visualizing relationships between tropes in generated model can help us to verify the goodness of the model.
-	   Therefore, the next task will be to generate a file with the numerical vector associated with each trope. 
-	   To generate this file we have used a script that uses Gensim, an Open Source python library that include functions to manipulate
-	   word2vec bin files.
-	   Table \ref{tab:200dims-vectors-associated-to-tropes} shows the results in the number of tropes associated with vectors depending 
-	   on the MIN\_COUNT parameter (1, 3 or 5). We can observe that for the value of MIN\_COUNT = 1 we obtain a vector associated with each trope, 
-	   however for values of MIN\_COUNT 3 or 5 the vectors obtained are reduced. 
-	   	\begin{table}[t]
-	   	\centering
-	   	\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-	   		\hline
-	   		\textbf{(MaxTrop, NgramSize, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
-	   		\hline
-	   		\hline
-	   		Tropes with vector&7383  & 6196 & 6172 \\
-	   		\hline
-	   		Tropes without vector& 0 & 1187 & 1211 \\
-	   		\hline
-	   		Total tropes&7383&7383&7383\\
-	   		\hline
-	   		
-	   	\end{tabular}
-	   	\caption{200 dims vectors associated to tropes with different MIN\_COUNT values}
-	   	\label{tab:200dims-vectors-associated-to-tropes}
-	   \end{table}	
-	   
+	In order to verify that the model built with word2vec fulfills its purpose, we need to perform different checks. On the one hand, 
+	we must verify that the relations established between tropes of the model correspond to reality. 
+	Visualizing relationships between tropes in generated model can help us to verify the goodness of the model.
+	Therefore, the next task will be to generate a file with the numerical vector associated with each trope. 
+	To generate this file, we have used a script that uses Gensim, an Open Source python library that include functions to manipulate
+	word2vec bin files.
+	Table \ref{tab:200dims-vectors-associated-to-tropes} shows the results in the number of tropes associated with vectors depending 
+	on the MIN\_COUNT parameter (1, 3 or 5). We can observe that for the value of MIN\_COUNT = 1 we obtain a vector associated with each trope, 
+	however for values of MIN\_COUNT 3 or 5 the vectors obtained are reduced. 
+	\begin{table}[t]
+		\centering
+		\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+			\hline
+			\textbf{(MaxTrop, NgramSize, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
+			\hline
+			\hline
+			Tropes with vector&7383  & 6196 & 6172 \\
+			\hline
+			Tropes without vector& 0 & 1187 & 1211 \\
+			\hline
+			Total tropes&7383&7383&7383\\
+			\hline
+			
+		\end{tabular}
+		\caption{200 dims vectors associated to tropes with different MIN\_COUNT values}
+		\label{tab:200dims-vectors-associated-to-tropes}
+	\end{table}	
+	
 	6. Create a Vector for each film as the sumatory of all tropes vectors. \\
 	
 	7. How to check that the built model works?
 	
-	 One way to check the quality of the embeeding vectors model is to create a set of 
-	 well-known phrases that relate four concepts \ref{tab:phrases-check-accuracy}. This method is used in word2vec package \cite{mikolov2013} as a method to verify 
-	 embedding vectors accuracy. We can observe, for example, that Albuquerque is to Albuquerque Journal
-	  as Boston is to Boston Globe. It is possible that there are more newspapers in the city of Boston, however, it is possible that the Boston Globe has similar importance to the Albuquerque Journal newspaper of Albuquerque. Somehow they should be the reference newspapers in the city. Algorithm word2vec finds these relationships because the concepts (city, Boston, newspaper, Boston\_Globe) and (city, Albulquerque, newspaper, Albulquerque\_Journal) often appear together. 
-	  In the case of movies and tropes, the idea would be to associate a film with its most popular trope. A movie will have a single most popular trope. 
-	  Then we will associate the film1 with film-1-top-trope and film2 with film-2-top-trope. Table tab:proposed-films-tropes-phrases-check-accuracy shows combination examples of some film and trope values.It is possible to find other ways to build accuracy checklists for this problem, which can be explored in future work,
-	   but it seems to us that it can serve its purpose.\\
-	   
-	   The idea here is create a list to check accuracy in embedding vectors models.
-	   Similar to this one:
-	   Boston Boston\_Globe New\_York New\_Work\_Times
-	   
-	   Most times that apear Boston and newspaper related infomation in text corpus have to appear Boston\_Globe newspaper, and probably more important Boston\_Globe only appear in contexts associated to Boston and newspaper an not in other contexts.
-	   
-	   It is possible to obtain something similar with tropes?
-	   
-	   Problably if we modify trope name to include film name we will obtain the same. And then a way to associate trope name with his new trope-film name.
-	   
-	   film1 is a film1\_trope1 as film2 is a film2\_trope2
-	   trope1 is film1\_trope1 as trope2 is a film2\_trope2
-	   
-	   in this way we can create a relationship between film and film\_trope and other association between
-	   trope and film\_trope name \\
-	   
-	   In a text created by humans probably do no have sense to talk about Boston\_Globe newspaper if we are talking about Granada (probably one extrange case yes, but usually not). But with an artificial created corupus we have to paid special atention about where we are writing some terms. Otherwise, we can create artificial relationships that have no sense. Frecuency of terms writed together are also crucial, stronger relationships have to be writed more times to obtain a good model. For this reason I think will be interesting have a ranking of tropes, and most populars have to appear more times than less popular ones. \\
-	   
-	  
-	  In order to create this accuracy checklist for films and tropes we follow next steps:\\
-	  1. Obtain the list of fil-trope pairs from the tvtropes database\\
-	  2. From the list of film-trope pairs, count how many times each trope appears associated with a film.\\ This will give us a ranking of most used tropes\\
-	  3. Obtain a list of most  popular films.
-	     In order to obtain top 100 films we use IMDB.com ranking. IMDB is a very popular Internet Movie Database with 6.5 million titles, 10.4 million personalities and 83 million registered users. IMDB shows titles in local language, to obtain english titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. We have to look for the 
-	     equivalences of movie names in IMDB and the names of tv tropes. Sometimes these names do not match, as in the 
-	     case of the movie 1917 (2019) that on tv tropes is called NineteenSeventeen. In addition to this, those that fall into categories other than films on TVtropes have been leaked from the list, such as The King Lion, which would be in the category of animated films.
-	     
-	     
-	     We will use popular films as example, with the idea that a most popular film have to apear more times in corpus. Same idea can be used to build the artificial corpus in future works.\\
-      4. Obtain for each film its most popular tropes associated.\\
-      5. Create accuracy check list creating combinations of films and film-top-trope in same way original word2vec package do (table \ref{tab:phrases-check-accuracy}) and we propose in table \ref{tab:proposed-films-tropes-phrases-check-accuracy}\\ 
-      
-      In case of word2vec package test files size questions-phrases.txt has 3223 examples and questions-words.txt has 19558 examples.\\
-      In case of question words check l
-
-
-
+	One way to check the quality of the embedding vectors model is to create a set of 
+	well-known phrases that relate four concepts \ref{tab:phrases-check-accuracy}. This method is used in word2vec package \cite{mikolov2013} as a method to verify 
+	embedding vectors accuracy. We can observe, for example, that Albuquerque is to Albuquerque Journal
+	as Boston is to Boston Globe. It is possible that there are more newspapers in the city of Boston, however, it is possible that the Boston Globe has similar importance to the Albuquerque Journal newspaper of Albuquerque. Somehow they should be the reference newspapers in the city. Algorithm word2vec finds these relationships because the concepts (city, Boston, newspaper, Boston\_Globe) and (city, Albulquerque, newspaper, Albulquerque\_Journal) often appear together. 
+	In the case of movies and tropes, the idea would be to associate a film with its most popular trope. A movie will have a single most popular trope. 
+	Then we will associate the film1 with film-1-top-trope and film2 with film-2-top-trope. Table tab:proposed-films-tropes-phrases-check-accuracy shows combination examples of some film and trope values. It is possible to find other ways to build accuracy checklists for this problem, which can be explored in future work,
+	but it seems to us that it can serve its purpose.\\
+	
+	The idea here is creating a list to check accuracy in embedding vectors models.
+	Similar to this one:
+	Boston Boston\_Globe New\_York New\_Work\_Times
+	
+	Most times that apear Boston and newspaper related infomation in text corpus have to appear Boston\_Globe newspaper, and probably more important Boston\_Globe only appear in contexts associated to Boston and newspaper and not in other contexts.
+	
+	It is possible to obtain something similar with tropes?
+	
+	Problably if we modify trope name to include film name we will obtain the same. And then a way to associate trope name with his new trope-film name.
+	
+	film1 is a film1\_trope1 as film2 is a film2\_trope2
+	trope1 is film1\_trope1 as trope2 is a film2\_trope2
+	
+	in this way we can create a relationship between film and film\_trope and other association between
+	trope and film\_trope name \\
+	
+	In a text created by humans probably do not have sense to talk about Boston\_Globe newspaper if we are talking about Granada (probably one estrange case yes, but usually not). But with an artificial created corpus we have to paid special attention about where we are writing some terms. Otherwise, we can create artificial relationships that have no sense. Frequency of terms write together are also crucial, stronger relationships have to be write more times to obtain a good model. For this reason, I think will be interesting have a ranking of tropes, and most popular have to appear more times than less popular ones. \\
+	
+	
+	In order to create this accuracy checklist for films and tropes we follow next steps:\\
+	1. Obtain the list of fil-trope pairs from the tvtropes database\\
+	2. From the list of film-trope pairs, count how many times each trope appears associated with a film.\\ This will give us a ranking of most used tropes\\
+	3. Obtain a list of most popular films.
+	In order to obtain top 100 films, we use IMDB.com ranking. IMDB is a very popular Internet Movie Database with 6.5 million titles, 10.4 million personalities and 83 million registered users. IMDB shows titles in local language, to obtain English titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. We have to look for the 
+	equivalences of movie names in IMDB and the names of tv tropes. Sometimes these names do not match, as in the 
+	case of the movie 1917 (2019) that on tv tropes is called NineteenSeventeen. In addition to this, those that fall into categories other than films on TVtropes have been leaked from the list, such as The King Lion, which would be in the category of animated films.
+	
+	
+	We will use popular films as example, with the idea that a most popular film has to appear more times in corpus. Same idea can be used to build the artificial corpus in future works.\\
+	4. Obtain for each film its most popular tropes associated.\\
+	5. Create accuracy check list creating combinations of films and film-top-trope in same way original word2vec package do (table \ref{tab:phrases-check-accuracy}) and we propose in table \ref{tab:proposed-films-tropes-phrases-check-accuracy}\\ 
+	
+	In case of word2vec package test files size questions-phrases.txt has 3223 examples and questions-words.txt has 19558 examples.\\
+	In case of question words check l
+	
+	
+	
 	\begin{table*}[ht]
-	\centering
-	\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
-		\hline
-		\textbf{Accuracy list group}& \textbf{Question words}  & \textbf{(\#ok/\#total)}& \textbf{Semantic} & \textbf{Syntactic}\\
-		\hline
-		\hline
-		capital-common-countries& 81.62 \% & (413 / 506) & 81.62 \% & -nan\\
-		\hline
-		capital-world& 61.29 \% & (890 / 1452) & 61.29 \% & -nan\\
-		\hline
-		currency& 27.99 \% & (75 / 268) & 27.99 \% & -nan\\
-		\hline
-		city-in-state& 48.12 \% & (756 / 1571)& 48.12 \% & -nan\\
-		\hline
-		family&77.45 \% & (237 / 306)& 77.45 \% &  -nan \\
-		\hline
-		gram1-adjective-to-adverb& 17.72 \% &  (134 / 756)& -nan & 17.72 \% \\
-		\hline
-	    gram2-opposite& 20.59 \% & (63 / 306)& -nan & 20.59 \% \\
-		\hline
-		gram3-comparative&62.54 \% & (788 / 1260)& -nan & 62.54 \% \\
-		\hline
-		gram4-superlative&41.70 \% &  (211 / 506)& -nan & 41.70 \% \\
-		\hline
-		gram5-present-participle& 38.00 \% & (377 / 992)& -nan &  38.00 \% \\
-		\hline
-		gram6-nationality-adjective&85.56 \% &  (1173 / 1371)& -nan & 85.56 \% \\
-		\hline
-		gram7-past-tense& 38.66 \% & (515 / 1332) & -nan & 38.66 \% \\
-		\hline
-		gram8-plural& 65.62 \% & (651 / 992) & -nan & 65.62 \% \\
-		\hline
-		gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
-		\hline
-		\hline
-		\textbf{Total}& \textbf{53.27 \% }&  & \textbf{57.79 \% }&  \textbf{51.00 \% }\\
-		\hline
-		
-	\end{tabular}
-	\caption{Word2vec package Text8 example accuracy results for words and phrases. Text from  http://mattmahoney.net/dc/text8.zip}
-	\label{tab:original-accuracy-results}
-\end{table*}	
-
-
-
-     \begin{table*}[ht]
-	   \centering
-	    \begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
-		\hline	      
-      film-1 film-1-top-trope film-2 film-2-top-trope\\
-      film-1 film-1-top-trope film-3 film-3-top-trope\\
-      film-1 film-1-top-trope film-4 film-4-top-trope\\
-      film-1 film-1-top-trope film-5 film-5-top-trope\\
-      \\
-      film-2 film-2-top-trope film-1 film-1-top-trope\\
-      film-2 film-2-top-trope film-3 film-3-top-trope\\
-      film-2 film-2-top-trope film-4 film-4-top-trope\\
-      film-2 film-2-top-trope film-5 film-5-top-trope\\
-      \\
-      film-3 film-3-top-trope film-1 film-1-top-trope\\
-      film-3 film-3-top-trope film-2 film-2-top-trope\\
-      film-3 film-3-top-trope film-4 film-4-top-trope\\
-      film-3 film-3-top-trope film-5 film-5-top-trope\\
-      \\
-      film-4 film-4-top-trope film-1 film-1-top-trope\\
-      film-4 film-4-top-trope film-2 film-2-top-trope\\
-      film-4 film-4-top-trope film-3 film-3-top-trope\\
-      film-4 film-4-top-trope film-5 film-5-top-trope\\
-      \\
-      film-5 film-5-top-trope film-1 film-1-top-trope\\
-      film-5 film-5-top-trope film-2 film-2-top-trope\\
-      film-5 film-5-top-trope film-3 film-3-top-trope\\
-      film-5 film-5-top-trope film-4 film-4-top-trope\\
-  \hline
-\end{tabular}
-\caption{Proposed films and tropes Word2vec phrases to check model accuracy}
-\label{tab:proposed-films-tropes-phrases-check-accuracy}
-\end{table*}     
-      
-      
-      
-\begin{table*}[ht]
-	\centering
-	\begin{tabular}{|p{0.65\linewidth}|p{0.35\linewidth}|}
-		\hline
-		Phrases examples & Words examples\\
-		\hline	  
-	    \hline
-: newspapers\\
-\hline
-Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun & he she his her\\
-Albuquerque Albuquerque\_Journal Boston Boston\_Globe & he she husband wife\\
-Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer & he she king queen\\
-Albuquerque Albuquerque\_Journal Cleveland Cleveland\_Plain\_Dealer & he she man woman\\
-\hline
-Baltimore Baltimore\_Sun Boston Boston\_Globe& his her husband wife\\
-Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer & his her king queen\\
-Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer & his her man woman\\
-Baltimore Baltimore\_Sun Charleston Charleston\_Gazette & his her nephew niece\\
-\hline
-Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer & husband wife king queen	\\
-Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer & husband wife man woman\\
-Boston Boston\_Globe Charleston Charleston\_Gazette & husband wife nephew niece\\
-Boston Boston\_Globe Chicago Chicago\_Tribune & husband wife policeman policewoman\\
-
-  \hline
-  	   	\end{tabular}
-\caption{Word2vec phrases to check model accuracy}
-\label{tab:phrases-check-accuracy}
-\end{table*}	
+		\centering
+		\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+			\hline
+			\textbf{Accuracy list group}& \textbf{Question words}  & \textbf{(\#ok/\#total)}& \textbf{Semantic} & \textbf{Syntactic}\\
+			\hline
+			\hline
+			capital-common-countries& 81.62 \% & (413 / 506) & 81.62 \% & -nan\\
+			\hline
+			capital-world& 61.29 \% & (890 / 1452) & 61.29 \% & -nan\\
+			\hline
+			currency& 27.99 \% & (75 / 268) & 27.99 \% & -nan\\
+			\hline
+			city-in-state& 48.12 \% & (756 / 1571)& 48.12 \% & -nan\\
+			\hline
+			family&77.45 \% & (237 / 306)& 77.45 \% &  -nan \\
+			\hline
+			gram1-adjective-to-adverb& 17.72 \% &  (134 / 756)& -nan & 17.72 \% \\
+			\hline
+			gram2-opposite& 20.59 \% & (63 / 306)& -nan & 20.59 \% \\
+			\hline
+			gram3-comparative&62.54 \% & (788 / 1260)& -nan & 62.54 \% \\
+			\hline
+			gram4-superlative&41.70 \% &  (211 / 506)& -nan & 41.70 \% \\
+			\hline
+			gram5-present-participle& 38.00 \% & (377 / 992)& -nan &  38.00 \% \\
+			\hline
+			gram6-nationality-adjective&85.56 \% &  (1173 / 1371)& -nan & 85.56 \% \\
+			\hline
+			gram7-past-tense& 38.66 \% & (515 / 1332) & -nan & 38.66 \% \\
+			\hline
+			gram8-plural& 65.62 \% & (651 / 992) & -nan & 65.62 \% \\
+			\hline
+			gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
+			\hline
+			\hline
+			\textbf{Total}& \textbf{53.27 \% }&  & \textbf{57.79 \% }&  \textbf{51.00 \% }\\
+			\hline
+			
+		\end{tabular}
+		\caption{Word2vec package Text8 example accuracy results for words and phrases. Text from  http://mattmahoney.net/dc/text8.zip}
+		\label{tab:original-accuracy-results}
+	\end{table*}	
 	
 	
-	   	\begin{table*}[ht]
-	   	\centering
-	   	\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
-	   		\hline
-	   		\textbf{Num Clusters}& \textbf{500} & \textbf{250} & \textbf{125} & \textbf{64} & \textbf{32} & \textbf{8}\\
-	   		\hline
-	   		\hline
-	   		Vocab Size& 7384 & 7384 & 7384 & 7384 & 7384 & 7384\\
-	   		\hline
-	   		Words in train file& 17387907 & 17387907 & 17387907 & 17387907 & 17387907 & 17387907\\
-	   		\hline
-	   		Time real&63m8.938s&70m38.958s&82m35.287s & 64m27.252s & 63m15.409s &  63m8.774s\\
-	   		\hline
-	   		Time user&183m18.900s&204m58.230s&239m54.910s&  187m14.450s & 183m50.430s& 183m40.190s\\
-	   		\hline
-	   		Time sys&3m19.330s&3m55.550s&4m57.510s& 3m36.940s& 3m30.490s & 3m25.750s\\
-	   		\hline
-	   		
-	   	\end{tabular}
-	   	\caption{k-means cluster generation for tropes vectors.MaxTrop=15, NgramSize=9, MinCount=1 Execution time for i7 5500u 2.40 Ghz 16GB RAM}
-	   	\label{tab:k-means-clusters}
-	   \end{table*}	
-	  
-	    
+	
+	\begin{table*}[ht]
+		\centering
+		\begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
+			\hline	      
+			film-1 film-1-top-trope film-2 film-2-top-trope\\
+			film-1 film-1-top-trope film-3 film-3-top-trope\\
+			film-1 film-1-top-trope film-4 film-4-top-trope\\
+			film-1 film-1-top-trope film-5 film-5-top-trope\\
+			\\
+			film-2 film-2-top-trope film-1 film-1-top-trope\\
+			film-2 film-2-top-trope film-3 film-3-top-trope\\
+			film-2 film-2-top-trope film-4 film-4-top-trope\\
+			film-2 film-2-top-trope film-5 film-5-top-trope\\
+			\\
+			film-3 film-3-top-trope film-1 film-1-top-trope\\
+			film-3 film-3-top-trope film-2 film-2-top-trope\\
+			film-3 film-3-top-trope film-4 film-4-top-trope\\
+			film-3 film-3-top-trope film-5 film-5-top-trope\\
+			\\
+			film-4 film-4-top-trope film-1 film-1-top-trope\\
+			film-4 film-4-top-trope film-2 film-2-top-trope\\
+			film-4 film-4-top-trope film-3 film-3-top-trope\\
+			film-4 film-4-top-trope film-5 film-5-top-trope\\
+			\\
+			film-5 film-5-top-trope film-1 film-1-top-trope\\
+			film-5 film-5-top-trope film-2 film-2-top-trope\\
+			film-5 film-5-top-trope film-3 film-3-top-trope\\
+			film-5 film-5-top-trope film-4 film-4-top-trope\\
+			\hline
+		\end{tabular}
+		\caption{Proposed films and tropes Word2vec phrases to check model accuracy}
+		\label{tab:proposed-films-tropes-phrases-check-accuracy}
+	\end{table*}     
+	
+	
+	
+	\begin{table*}[ht]
+		\centering
+		\begin{tabular}{|p{0.65\linewidth}|p{0.35\linewidth}|}
+			\hline
+			Phrases examples & Words examples\\
+			\hline	  
+			\hline
+			: newspapers\\
+			\hline
+			Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun & he she his her\\
+			Albuquerque Albuquerque\_Journal Boston Boston\_Globe & he she husband wife\\
+			Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer & he she king queen\\
+			Albuquerque Albuquerque\_Journal Cleveland Cleveland\_Plain\_Dealer & he she man woman\\
+			\hline
+			Baltimore Baltimore\_Sun Boston Boston\_Globe& his her husband wife\\
+			Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer & his her king queen\\
+			Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer & his her man woman\\
+			Baltimore Baltimore\_Sun Charleston Charleston\_Gazette & his her nephew niece\\
+			\hline
+			Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer & husband wife king queen	\\
+			Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer & husband wife man woman\\
+			Boston Boston\_Globe Charleston Charleston\_Gazette & husband wife nephew niece\\
+			Boston Boston\_Globe Chicago Chicago\_Tribune & husband wife policeman policewoman\\
+			
+			\hline
+		\end{tabular}
+		\caption{Word2vec phrases to check model accuracy}
+		\label{tab:phrases-check-accuracy}
+	\end{table*}	
+	
+	
+	\begin{table*}[ht]
+		\centering
+		\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+			\hline
+			\textbf{Num Clusters}& \textbf{500} & \textbf{250} & \textbf{125} & \textbf{64} & \textbf{32} & \textbf{8}\\
+			\hline
+			\hline
+			Vocab Size& 7384 & 7384 & 7384 & 7384 & 7384 & 7384\\
+			\hline
+			Words in train file& 17387907 & 17387907 & 17387907 & 17387907 & 17387907 & 17387907\\
+			\hline
+			Time real&63m8.938s&70m38.958s&82m35.287s & 64m27.252s & 63m15.409s &  63m8.774s\\
+			\hline
+			Time user&183m18.900s&204m58.230s&239m54.910s&  187m14.450s & 183m50.430s& 183m40.190s\\
+			\hline
+			Time sys&3m19.330s&3m55.550s&4m57.510s& 3m36.940s& 3m30.490s & 3m25.750s\\
+			\hline
+			
+		\end{tabular}
+		\caption{k-means cluster generation for tropes vectors.MaxTrop=15, NgramSize=9, MinCount=1 Execution time for i7 5500u 2.40 Ghz 16GB RAM}
+		\label{tab:k-means-clusters}
+	\end{table*}	
+	
+	
 	
 	\section{Results}
 	\label{sec:res}
