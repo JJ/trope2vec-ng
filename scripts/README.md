@@ -14,6 +14,11 @@
   The subset of tropes are in ranking order because was created in excel with and advanced filter selecting only sub set tropes from
   all tropes ranked list. The output is a file with a subset of tropes and the ranking taked from all tropes ranking.
 
+# filter-films-imdb-with-votes.pl
+  Script that take a copy from IMDB blockbuster films list with votes and filter name and votes 
+  usage
+  cat 1-to-844-films-imdb-with-votes.txt | perl -d ./filter-films-imdb-with-votes.pl > imdb-blockbuster-films-with-votes.txt
+
 # tv-tropes-word2vec.py
   Script to generate pairs of trope_name and 200_dim_associated_vector
 
