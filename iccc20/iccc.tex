@@ -221,8 +221,6 @@
 	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
 	% for next paper version
 	
-	
-
 	To obtain this artificial corpus, we place together entities
 	that are connected. In the example of tvtropes, we will
 	generate the artificial corpus generating phrases that put
@@ -267,12 +265,8 @@
 		\label{tab:corpusSize}
 	\end{table}
 	
-	
-	This filtering process generates a reduced set of tropes. Table \ref{tab:corpusSize} shows characteristics of different sets of films, tropes and generated corpus. Full set of tropes have 25405 different tropes. Figure \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 threshold will include more than 25000 tropes. 
-	
-	In case of subset of films with number of tropes between 15 and 2 tropes has only 6524 different tropes. 
+	This filtering process generates a reduced set of tropes. Table \ref{tab:corpusSize} shows characteristics of different sets of films, tropes and generated corpus. Full set of tropes have 25405 different tropes. Figure \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 threshold will include more than 25000 tropes. In case of subset of films with number of tropes between 15 and 2 tropes has only 6524 different tropes. 
 	It is important to check if our subset of tropes is relevant within the total set of tropes. To do so, we order the tropes by number of times it appears in a movie. In case of subset of tropes from films between 15 and 2 tropes, our subset covers the 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset. 
-	
 	
 	Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embedding vectors will be created. The embedding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
 	To obtain this artificial corpus, we place together entities that are connected. In the example of tvtropes, we create the artificial corpus generating phrases that put together tropes used in a film. In order to generate the corpus, we will select films that have MAX\_TROPES tropes. We take this initial limit since we will generate all the variations without repetitions of MAX\_TROPES elements taken in groups of NGRAM\_SIZE elements. This method can give us a corpus with hundreds of Mega Bytes to train the model using word2vec algorithm. \\
@@ -295,10 +289,6 @@
 		
 	\end{center}
 	
-	Below first lines of corpus generated file:\\
-	\texttt{    
-		hiredguns annoyingarrows naughtynuns attemptedrape nonindicativename badhabits characterdevelopment automatonhorses cigarfuselighting    cigarfuselighting hiredguns badhabits annoyingarrows nuntooholy characterdevelopment naughtynuns automatonhorses attemptedrape    onlyinitforthemoney attemptedrape cigarfuselighting badhabits annoyingarrows characterdevelopment automatonhorses }\\
-	
 	%       % This kind of thing does not belong in a paper 
 	%     Following line represent word2vec train parameters:\\
 	% \begin{verbatim}
@@ -314,39 +304,7 @@
 	% There's no need to say what to do; focus on the results and the
 	% methodology. Mechanical steps can be explained in the repository.
 	
-	
 	4. Build word2vec model. After that we will have a numerical vector for each trope. \\
-	
-	%	\begin{table}[t]
-	%	\centering
-	%		\hline
-	%		 & \textbf{Argument}\\
-	%		\hline
-	%		\hline
-	%		\textbf{min-count}& 1 \\
-	%		\hline
-	%		\textbf{cbow}& 1 \\
-	%		\textbf{Vector dimension}& 200 \\
-	%		\hline
-	%		\textbf{Window}& 8 \\
-	%		\hline
-	%		\textbf{Negative}& 25 \\
-	%		\hline
-	%		\textbf{hs}& 0 \\
-	%		\hline
-	%		\textbf{sample}& 1e-4 \\
-	%		\hline
-	%	    \textbf{threads}& 20\\
-	%  	\hline  
-	%  	\textbf{binary}& 1 \\
-	%  	\hline
-	%  	\textbf{iter}& 15\\
-	%  	\hline  	
-	%  	
-	%	\end{tabular}
-	%	\caption{arguments used in word2vec execution}	
-	%	\label{tab:word2vec-parameters}
-	% \end{table}	
 	
 	Once we have obtained the file with the corpus for training, using the word2vec package https://github.com/tmikolov/word2vec created by
 	\cite{mikolov2013} we run word2vec program to obtain trained model. This model will help us to obtain a embedding vector associated to each trope.
@@ -380,7 +338,6 @@
 		\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument. Execution time for i7 5500u 2.40 Ghz 16GB RAM}
 		\label{tab:variations-with-min-count-argument-15-9}
 	\end{table}	
-	
 	
 	5. Visualize tropes vector space in order to detect clusters and possible data organization. \\
 	In order to verify that the model built with word2vec fulfills its purpose, we need to perform different checks. On the one hand, 
