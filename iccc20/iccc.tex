@@ -55,16 +55,24 @@
 	
 	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
 
-    Word2vec has proven to be a very useful tool when obtaining a vector representation of concepts including their context. 
+    When we want to work with vector representations of words, word2vec is one of the most used algorithms since its appearance \cite{mikolov2013}.
+    The vector obtained for each word has the ability to save memory of the environment in which the word appears. This vector is called embedding vector.
+    Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of these frequently used corpus are Wikipedia or Google News dumps, usually greather than one GB of plain text. \\
     
-     However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus. Some examples of these frequently used corpus are Wikipedia or google news dumps.
+    But, it would be possible to apply word2vec to non natural language corpus? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from the website tvtropes.org Tv Tropes (tvtropes.org) is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques used in creative works such as movies, tv series, advertising,
+    videogames, sports, comics or books; latest iterations even include {\em real life} tropes. Tvtropes.org defines tropes as:
+    "a storytelling device or convention, a shortcut for describing
+    situations the storyteller can reasonably assume the audience will
+    recognize." Articles to describe tropes are written usually with a very
+    expressive and non-formal vocabulary. Each film, TV series or other
+    fiction element usually includes a description and a list of associated
+    tropes. Tropes pages usually contains a description followed by a list
+    of films or a narrative resource that uses this trope.
     
-    	
-	   % I don't know why this works starts and why. Please J, you know antecedents, please, help me to write that. 
 	
 	% Second, state the need for your work, as an opposition between what the scientific community currently has and what it wants.
 	
-	   % Same as previous point, I do not have information about the need of this work. J, please, if possible help me to write that. 
+	   
 	   
 	% Third, indicate what you have done in an effort to address the need (this is the task).
 	
@@ -74,48 +82,6 @@
 	% Finally, preview the remainder of the paper to mentally prepare readers for its structure, in the object of the document.
 	
 	
-	
-	% Motivation: we need to have a representation that is
-	% * That includes the context of the trope
-	% * relatively compact
-	% * capable of doing arithmetic
-	% * uniform for tropes and movies.
-	
-	
-	
-	
-	This work aims to find a knowledge representation and a new
-	methodology to apply machine learning techniques to entities without a
-	natural language context. % ← You go from objectives
-	% To what you will be doing →
-	To exemplify this new methodology, tropes and films from tvtropes.org
-	are used. That representation and methodology will let us, for
-	example, to discover which set of tropes will be affordable to create a
-	new block buster film or a new best seller book.
-	
-	% Before telling what you are going to be doing, you need to show the
-	% context and the motivation in one or two paragraphs - JJ
-	
-	% And here you say *how* you will be doing it. Still too soon. This
-	% should go to the methodology, not the introduction. You are going to
-	% create embedding  for tropes, and you say why. Later, in the
-	% methodology, you say how you will be obtaining those tropes - JJ
-	Tv Tropes (tvtropes.org) is a collaborative website created in 2004 to
-	share information about tips, narrative or cinematographic techniques
-	used in creative works such as movies, tv series, advertising,
-	videogames, sports, comics or books; latest iterations even include
-	{\em real life} tropes.
-	% This is a definition of tropes, which is context, not
-	% methodology. Move it up. Also use proper referencing, and cite other
-	% sources - JJ
-	Tvtropes.org defines tropes as:
-	"a storytelling device or convention, a shortcut for describing
-	situations the storyteller can reasonably assume the audience will
-	recognize." Articles to describe tropes are written usually with a very
-	expressive and non-formal vocabulary. Each film, TV series or other
-	fiction element usually includes a description and a list of associated
-	tropes. Tropes pages usually contains a description followed by a list
-	of films or a narrative resource that uses this trope.
 	
 	% This is what you want to do to achieve the objectives. It belongs in
 	% the introduction, but with a certain level of brevity. It's also
