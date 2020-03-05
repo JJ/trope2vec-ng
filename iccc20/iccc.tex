@@ -210,7 +210,10 @@
 		\item Download film information from tvtropes.org and their associated tropes
 		\item Select films with number of tropes less than a certain thresold
 		\item After this, we create phrases from permutations of the tropes associated with each movie
+		\item Build word2vec model. After that we will have a numerical vector for each trope.\\
+		\item Visualize tropes vector space in order to detect clusters and possible data organization. \item Create a Vector for each film as the sumatory of all tropes vectors. \\
 
+    \end{enumerate}
 
 	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
 	% We need a parameter that let us reinforce more real relationships between elements that are stronger. For example, in case of films,
@@ -221,18 +224,22 @@
 	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
 	% for next paper version
 	
-	To obtain this artificial corpus, we place together entities
-	that are connected. In the example of tvtropes, we will
-	generate the artificial corpus generating phrases that put
-	together film tropes. In order to generate the corpus, we will
-	select films that have a maximum of 15 tropes. We take this
-	initial limit since we will generate all the variations
-	without repetitions of 15 elements taken in groups of n
-	elements. his method can give us enough size corpus to train
-	the model using word2vec algorithm.
-	In order to generate the artificial corpus, we have followed this procedure. We have selected those films that have a maximum of MAX\_TROPES and eliminating those that have zero or 1 trope.   
 	
-	\end{enumerate}
+	
+	
+
+To obtain this artificial corpus, we place together entities
+that are connected. In the example of tvtropes, we will
+generate the artificial corpus generating phrases that put
+together film tropes. In order to generate the corpus, we will
+select films that have a maximum of 15 tropes. We take this
+initial limit since we will generate all the variations
+without repetitions of 15 elements taken in groups of n
+elements. his method can give us enough size corpus to train
+the model using word2vec algorithm.
+In order to generate the artificial corpus, we have followed this procedure. We have selected those films that have a maximum of MAX\_TROPES and eliminating those that have zero or 1 trope.   
+
+    \subsection{Creating artificial corpus}
 		
 	\begin{table}[t]
 		\centering
@@ -304,7 +311,9 @@
 	% There's no need to say what to do; focus on the results and the
 	% methodology. Mechanical steps can be explained in the repository.
 	
-	4. Build word2vec model. After that we will have a numerical vector for each trope.\\
+	\subsection{Building word2vec model}
+	
+	After that we will have a numerical vector for each trope.
 	
 	Once we have obtained the file with the corpus for training, using the word2vec package https://github.com/tmikolov/word2vec created by
 	\cite{mikolov2013} we run word2vec program to obtain trained model. This model will help us to obtain a embedding vector associated to each trope.
@@ -339,7 +348,9 @@
 		\label{tab:variations-with-min-count-argument-15-9}
 	\end{table}	
 	
-	5. Visualize tropes vector space in order to detect clusters and possible data organization. \\
+	\subsection{Visualize tropes vector}
+	
+	Visualize tropes vector space in order to detect clusters and possible data organization. \\
 	In order to verify that the model built with word2vec fulfills its purpose, we need to perform different checks. On the one hand, 
 	we must verify that the relations established between tropes of the model correspond to reality. 
 	Visualizing relationships between tropes in generated model can help us to verify the goodness of the model.
@@ -368,9 +379,11 @@
 		\label{tab:200dims-vectors-associated-to-tropes}
 	\end{table}	
 	
-	6. Create a Vector for each film as the sumatory of all tropes vectors. \\
+	\subsection{Modeling films with trope vectors}
+	Create a Vector for each film as the sumatory of all tropes vectors. \\
 	
-	7. How to check that the built model works?
+	\subsection{Check model accuracy}
+	How to check that the built model works?
 	
 	One way to check the quality of the embedding vectors model is to create a set of 
 	well-known phrases that relate four concepts \ref{tab:phrases-check-accuracy}. This method is used in word2vec package \cite{mikolov2013} as a method to verify 
@@ -400,20 +413,25 @@
 	
 	
 	In order to create this accuracy checklist for films and tropes we follow next steps:\\
-	1. Obtain the list of fil-trope pairs from the tvtropes database\\
-	2. From the list of film-trope pairs, count how many times each trope appears associated with a film.\\ This will give us a ranking of most used tropes\\
-	3. Obtain a list of most popular films.
+	
+	\begin{enumerate}
+
+	\item Obtain the list of fil-trope pairs from the tvtropes database\\
+	\item From the list of film-trope pairs, count how many times each trope appears associated with a film.\\ This will give us a ranking of most used tropes\\
+	\item Obtain a list of most popular films.
 	In order to obtain top 100 films, we use IMDB.com ranking. IMDB is a very popular Internet Movie Database with 6.5 million titles, 10.4 million personalities and 83 million registered users. IMDB shows titles in local language, to obtain English titles and USA ranking, we have created a new user and modified content settings to change options "title display country/region" to United States and "title display language" to English. We have to look for the 
 	equivalences of movie names in IMDB and the names of tv tropes. Sometimes these names do not match, as in the 
 	case of the movie 1917 (2019) that on tv tropes is called NineteenSeventeen. In addition to this, those that fall into categories other than films on TVtropes have been leaked from the list, such as The King Lion, which would be in the category of animated films.
 	
 	
 	We will use popular films as example, with the idea that a most popular film has to appear more times in corpus. Same idea can be used to build the artificial corpus in future works.\\
-	4. Obtain for each film its most popular tropes associated.\\
-	5. Create accuracy check list creating combinations of films and film-top-trope in same way original word2vec package do (table \ref{tab:phrases-check-accuracy}) and we propose in table \ref{tab:proposed-films-tropes-phrases-check-accuracy}\\ 
+	\item Obtain for each film its most popular tropes associated.\\
+	\item Create accuracy check list creating combinations of films and film-top-trope in same way original word2vec package do (table \ref{tab:phrases-check-accuracy}) and we propose in table \ref{tab:proposed-films-tropes-phrases-check-accuracy}\\ 
 	
 	In case of word2vec package test files size questions-phrases.txt has 3223 examples and questions-words.txt has 19558 examples.\\
 	In case of question words check l
+	
+    \end{enumerate}
 	
 	\begin{table*}[ht]
 		\centering
