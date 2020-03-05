@@ -59,7 +59,7 @@
     The vector obtained for each word has the ability to save memory of the environment in which the word appears. This vector is called embedding vector.
     Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of these frequently used corpus are Wikipedia or Google News dumps, usually greather than one GB of plain text. \\
     
-    But, it would be possible to apply word2vec to non natural language corpus? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from the website tvtropes.org Tv Tropes (tvtropes.org) is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques used in creative works such as movies, tv series, advertising,
+    But, it would be possible to apply word2vec to non natural language corpus? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques used in creative works such as movies, tv series, advertising,
     videogames, sports, comics or books; latest iterations even include {\em real life} tropes. Tvtropes.org defines tropes as:
     "a storytelling device or convention, a shortcut for describing
     situations the storyteller can reasonably assume the audience will
@@ -67,39 +67,11 @@
     expressive and non-formal vocabulary. Each film, TV series or other
     fiction element usually includes a description and a list of associated
     tropes. Tropes pages usually contains a description followed by a list
-    of films or a narrative resource that uses this trope.
+    of films or a narrative resource that uses this trope.\\
     
-	
 	% Second, state the need for your work, as an opposition between what the scientific community currently has and what it wants.
 	
-	   
-	   
-	% Third, indicate what you have done in an effort to address the need (this is the task).
-	
-	
-	
-	
-	% Finally, preview the remainder of the paper to mentally prepare readers for its structure, in the object of the document.
-	
-	
-	
-	% This is what you want to do to achieve the objectives. It belongs in
-	% the introduction, but with a certain level of brevity. It's also
-	% motivation for the paper - JJ
-	To represent tropes, we decided to use embedding vectors for each
-	trope. This representation should allow us to perform concept
-	arithmetic. This property will be very interesting since our goal is
-	to determine, for example, which group of tropes must have a
-	successful film. Applying arithmetic of concepts about tropes we
-	could, for example, find classic western movies, which have their main
-	narrative characteristics, but the western one is replaced by space
-	adventure trope. in order to obtain the set of embedding vectors
-	associated with the tropes we will use word2vec
-	\cite{mikolov2013}. Since the development of this technique in 2013
-	word2vec is one of the techniques for the generation of embedding
-	vectors from natural language (NLP) most used. However, word2vec has
-	not only been used to obtain embedding vectors of texts in natural
-	language. Other works like \cite{kazama2018} have shown that it is
+	Obtaining a vector representation of concepts is an old problem that can be solved in different ways. Some of these solutions use only word coding without considering the context.This type of representation has a more limited use. Other works like \cite{kazama2018} have shown that it is
 	possible to use word2vec to obtain vectors from non-NLP information
 	sources. Our approach is based on the use of the fundamental elements
 	of information (in our case the tropes) to generate an artificial
@@ -111,12 +83,26 @@
 	constructed, it should produce some embedding vectors with the
 	capacity to offer us a correct arithmetic of concepts. 
 	
-	% How we want to solve that problem: we think that an adaptation of word2vec should be possible
-	% This is what you say above - JJ
+	We want the word representation to have the following characteristics: 
 	
-	% One of the most important elements in NLP (Natural Language Processing) is the context where words appear inside a text. One of the most popular algorithms to associate numerical vectors to words is word2vec \cite{mikolov2013}. This algorithm use words that are before and after a target word in order to contextualize words. But, what happens if we don't have a text to start analysing words? What happens if we only have relationships between terms like this trope appear in this film? For this type of problem, we purpose a generalization in the use of word2vec algorithm that let to build a context for related terms. 
-	
-	% How we do it:
+	\begin{itemize}
+
+	\item That includes the context of the trope
+	\item relatively compact
+	\item capable of doing arithmetic
+	\item uniform for tropes and movies.
+		
+    \end{itemize}
+	   
+    % I need help to write this part   
+	   
+	% Third, indicate what you have done in an effort to address the need (this is the task).
+
+    In order to solve the problem, we have downloaded films data from word2vec. Then we have extracted a subset of films whose number of tropes is less than a certain thresold. From this subset of films and tropes, we have built an artificial corpus on which to apply the word2vec algorithm and generate embeddings. In order to evaluate that the subset of tropes is representative, we have verified that 92\% of the subset are among the most frequently used tropes. With the obtained vectors we have generated a classification to verify correspondence between embeddings and real films-tropes relationships. From the vectors that represent the tropes we have created a vector for the film. As a result, we have verified that the artificially generated corpus fulfills the desired objective. Obtained graphic representation shows that obtained clusters are correlated with real relationships observed between tropes and between tropes and films.
+ 
+ % How we want to solve that problem: we think that an adaptation of word2vec should be possible
+ % This is what you say above - JJ	
+		% How we do it:
 	% * Methodology for creating the context of every trope
 	% * Methodology for representing movies using trope vector
 	% * How we evaluate the goodness of the set of movies/tropes chosen.
@@ -127,6 +113,9 @@
 	% * Movie representation
 	% * Example of synthetic movie generation.
 	
+	
+	% Finally, preview the remainder of the paper to mentally prepare readers for its structure, in the object of the document.
+
 	The rest of the paper is organized as follows. Next we present the
 	state of the art in using embedding for problems other than language
 	processing, as well as an overview of the use of tropes for narrative
