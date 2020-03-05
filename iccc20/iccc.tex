@@ -311,7 +311,7 @@ In order to generate the artificial corpus, we have followed this procedure. We 
 	% There's no need to say what to do; focus on the results and the
 	% methodology. Mechanical steps can be explained in the repository.
 	
-	\subsection{Building word2vec model}
+	\subsection{Building embedding vectors model}
 	
 	After that we will have a numerical vector for each trope.
 	
@@ -336,15 +336,9 @@ In order to generate the artificial corpus, we have followed this procedure. We 
 			\hline
 			Words in train file& 17387907 & 17386591 & 17386514 \\
 			\hline
-			Time real&58m36.227s&57m25.768s&61m8.348s\\
-			\hline
-			Time user&170m48.400s&167m25.700s&177m48.830s\\
-			\hline
-			Time sys&2m45.900s&2m38.900s&3m10.870s\\
-			\hline
 			
 		\end{tabular}
-		\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument. Execution time for i7 5500u 2.40 Ghz 16GB RAM}
+		\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument}
 		\label{tab:variations-with-min-count-argument-15-9}
 	\end{table}	
 	
@@ -444,15 +438,9 @@ In order to generate the artificial corpus, we have followed this procedure. We 
 			\hline
 			Words in train file& 17387907 & 17387907 & 17387907 & 17387907 & 17387907 & 17387907\\
 			\hline
-			Time real&63m8.938s&70m38.958s&82m35.287s & 64m27.252s & 63m15.409s &  63m8.774s\\
-			\hline
-			Time user&183m18.900s&204m58.230s&239m54.910s&  187m14.450s & 183m50.430s& 183m40.190s\\
-			\hline
-			Time sys&3m19.330s&3m55.550s&4m57.510s& 3m36.940s& 3m30.490s & 3m25.750s\\
-			\hline
 			
 		\end{tabular}
-		\caption{k-means cluster generation for tropes vectors.MaxTrop=15, NgramSize=9, MinCount=1 Execution time for i7 5500u 2.40 Ghz 16GB RAM}
+		\caption{k-means cluster generation for tropes vectors.MaxTrop=15, NgramSize=9, MinCount=1}
 		\label{tab:k-means-clusters}
 	\end{table*}	
 	
