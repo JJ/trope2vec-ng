@@ -54,24 +54,22 @@
 	% Some help from: https://www.nature.com/scitable/topicpage/scientific-papers-13815490/
 	
 	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
+    With growing diversity in personal food preference and regional cuisine style, personalized information systems that can transform a recipe into any selected regional cuisine style that a user might prefer would help food companies and professional chefs create new recipes.
+    
+    
 
     When we want to work with vector representations of words, word2vec is one of the most used algorithms since its appearance \cite{mikolov2013}.
-    The vector obtained for each word has the ability to save memory of the environment in which the word appears. This vector is called embedding vector.
+    The vector obtained for each word has the ability to save memory of its environment. This vector is called embedding vector.
     Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of these frequently used corpus are Wikipedia or Google News dumps, usually greather than one GB of plain text. \\
     
-    But, it would be possible to apply word2vec to non natural language corpus? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques used in creative works such as movies, tv series, advertising,
-    videogames, sports, comics or books; latest iterations even include {\em real life} tropes. Tvtropes.org defines tropes as:
-    "a storytelling device or convention, a shortcut for describing
-    situations the storyteller can reasonably assume the audience will
-    recognize." Articles to describe tropes are written usually with a very
-    expressive and non-formal vocabulary. Each film, TV series or other
+    But, it would be possible to apply word2vec to non natural language corpus? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques used in creative works such as movies, tv series or books. Each film, TV series or other
     fiction element usually includes a description and a list of associated
     tropes. Tropes pages usually contains a description followed by a list
     of films or a narrative resource that uses this trope.\\
     
 	% Second, state the need for your work, as an opposition between what the scientific community currently has and what it wants.
 	
-	Obtaining a vector representation of concepts is an old problem that can be solved in different ways. Some of these solutions use only word coding without considering the context.This type of representation has a more limited use. Other works like \cite{kazama2018} have shown that it is
+	Obtaining a vector representation of concepts is an old problem that can be solved in different ways. Some of these solutions use only word coding without considering the context. This type of representation has a more limited use. Other works like \cite{kazama2018} have shown that it is
 	possible to use word2vec to obtain vectors from non-NLP information
 	sources. Our approach is based on the use of the fundamental elements
 	of information (in our case the tropes) to generate an artificial
@@ -442,6 +440,14 @@ In order to generate the artificial corpus, we have followed this procedure. We 
 	
 	\section{Results}
 	\label{sec:res}
+	
+		\begin{figure}
+		\centering
+		\includegraphics[width=1\linewidth]{../images/cluster-36-visualization-new-corpus-v3-1024-ironman3.png}
+		\caption{Accumulative distribution of tropes associated to films}
+		\label{fig:tropesdistributionasociatedtofilms}
+	\end{figure}
+	
 	
 	\section{Conclusions, discussion and future work}
 	 
