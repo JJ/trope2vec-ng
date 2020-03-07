@@ -19,7 +19,7 @@
 ## -rwxrwxr-x 1 enkire enkire     1273 Mar  6 15:41 get-accuracy-check-list.pl
    Usage: get-accuracy-check-list.pl <top-rank-films-with-tropes>
 
-   Create checking list with following format:
+  Create checking list with following format:
   <film1> <top_trope_film1> <film2> <top_trope_film2>
   <film1> <top_trope_film1> <film3> <top_trope_film3>
   <film1> <top_trope_film1> <film4> <top_trope_film4>
