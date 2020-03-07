@@ -207,7 +207,7 @@
 	\begin{enumerate}
 		\item For the first version we have generated the corpus through tropes permutations and adding film name in each phrase. In order to simplify the process of creating and verifying accuracy we have selected films with a maximun number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
 		
-        \item For the second method, we have created the corpus through the reinforcement of the relations between tropes and films as if it were a relational database. In order to compare both approaches we have selected same films for both methods.
+        \item For the second method, we have created the corpus through relationships reinforcement between tropes and films as if it were a relational database. In order to compare both approaches we have selected same films for both methods.
 	 \end{enumerate}
  
     \subsection{Construction of artificial corpus: trope permutation approach}
@@ -243,7 +243,7 @@
 		\centering
 		\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
 			\hline
-			\textbf{(MaxTrop, NgramSize)}& \textbf{(16,9)} & \textbf{(15, 9)} & \textbf{(12,7)}\\
+			\textbf{(Max\_Tropes, Ngram\_Size)}& \textbf{(16,9)} & \textbf{(15, 9)} & \textbf{(12,7)}\\
 			\hline
 			\hline
 			Tropes Subset Size&8125&7383& 5500\\
@@ -264,11 +264,11 @@
 		\label{tab:corpusSize}
 	\end{table}
 	
-	This filtering process generates a reduced set of tropes. Table \ref{tab:corpusSize} shows characteristics of different sets of films, tropes and generated corpus. Full set of tropes have 25405 different tropes. Figure \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 threshold will include more than 25000 tropes. In case of subset of films with number of tropes between 15 and 2 tropes has only 6524 different tropes. 
-	It is important to check if our subset of tropes is relevant within the total set of tropes. To do so, we order the tropes by number of times it appears in a movie. In case of subset of tropes from films between 15 and 2 tropes, our subset covers the 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset. 
+	After downloading films and tropes data from tvtropes.org (on date 13th December 2019) and processing the obtained information, we get 12360 movies and 26742 (25405 after remove repeated) tropes. The film with higher number of tropes has 1028 tropes and the film with minimum number of tropes has 0 tropes.
 	
-	Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embedding vectors will be created. The embedding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
-	To obtain this artificial corpus, we place together entities that are connected. In the example of tvtropes, we create the artificial corpus generating phrases that put together tropes used in a film. In order to generate the corpus, we will select films that have MAX\_TROPES tropes. We take this initial limit since we will generate all the variations without repetitions of MAX\_TROPES elements taken in groups of NGRAM\_SIZE elements. This method can give us a corpus with hundreds of Mega Bytes to train the model using word2vec algorithm. \\
+	\subsubsection{Select films}
+	From all these data we must filter repeated elements and get only those films that have between 15 and 2 tropes and their associated tropes. After selecting this group of films we get 2380 films and 7383 tropes.
+	Figure \ref{fig:tropesdistributionasociatedtofilms} shows the distribution of films by number of tropes and the cumulative total of tropes. Here we can see how for a value of 250 in the maximum number of tropes in a film 98.4\% of the tropes are covered. In order to check if our subset of tropes is relevant, we sort the tropes by frequency of occurrence. We verify that in our subset is 99.2\% of the most popular tropes, so we can consider it a representative subset. In order to obtain the most popular tropes we obtain all  film-trope pairs, a total of 599341 different pairs. 
 	
 	\begin{figure}
 		\centering
@@ -277,16 +277,10 @@
 		\label{fig:tropesdistributionasociatedtofilms}
 	\end{figure}
 	
-	The challenge now is how to create a corpus that will be useful to find relationships between tropes and films. Each film has a description and a list of tropes, and each trope have a description and a list of films that uses this trope. Initially our dataset obtained from tvtropes.org 13th December 2019 included 12360 films and 26742 different tropes (25405 after remove duplicates). The film with higher number of tropes has 1028 tropes and the film with minimum number of tropes has 0 tropes. Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embedding vectors will be created. The embedding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
+	\subsubsection{Create corpus by tropes permutation}
+	The next step consist of creating an artificial corpus through the permutation of set M values taken from N in N. M corresponds to film number of tropes  (MAX\_TROPES) and N with the size of the phrase or NGRAM-SIZE. table \ref{tab:corpusSize} shows different sizes of NGRAM\_SIZE and MAX\_TROPES and we decided to use the values of 15 and 9 since it offers us a corpus size that we consider may be suitable for training.
 	
-	The size of the corpus of variations without repetition of 15 tropes taken from 9 in 9 is 288 Mbytes. 9-size phrases have been created by making variations without repetition and ordering the result randomly \\
-	
-	\begin{center}
-		
-		${v}_{m,n} = m.(m-1).(m-2)...(m-n+1)$
-		${v}_{15,9} = 1816214400$
-		
-	\end{center}
+	\subsubsection{Build word2vec model}
 	
 	%       % This kind of thing does not belong in a paper 
 	%     Following line represent word2vec train parameters:\\
@@ -303,7 +297,57 @@
 	% There's no need to say what to do; focus on the results and the
 	% methodology. Mechanical steps can be explained in the repository.
 	
-	\subsection{Building embedding vectors model}
+	\subsubsection{Generate accuracy check list}
+	
+	\subsubsection{Check model accuracy}
+	
+	\subsubsection{Visualize tropes vector space}
+	
+	
+	
+	\subsection{Construction of artificial corpus: relationships reinforcement approach}
+	
+	\begin{enumerate}
+		\item Create corpus by relationships reinforcement
+		\item Build word2vec model. After that we will have a numerical vector for each trope
+		\item Check model accuracy using generated check list
+		\item Visualize tropes vector space in order to detect clusters and possible data organization.
+	\end{enumerate}
+	
+	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
+	% We need a parameter that let us reinforce more real relationships between elements that are stronger. For example, in case of films,
+	% we can use a value of film popularity to write more times in corpus information about a blockbuster film. We have to do the same with 
+	% es like tropes. More relevant tropes will be them who appear more times in films, so these tropes have to appear more times in 
+	% corpus. Ideal situation will be that artificial corpus emulate real conextions faithfully.\\
+	% Let's use imdb blockbuster films sort by votes. Votes will be the number to reinforce more in corpus films that have more votes.	 
+	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
+	% for next paper version
+	
+
+	
+	\subsubsection{Create corpus by relationships reinforcement}
+	
+	
+	\subsubsection{Build word2vec model}
+	
+	%       % This kind of thing does not belong in a paper 
+	%     Following line represent word2vec train parameters:\\
+	% \begin{verbatim}
+	% /word2vec 
+	% -train ngrams_15_taken_9.txt 
+	% -output ngrams_15_taken_9.bin 
+	% -cbow 1 -size 200 -window 8 
+	% -negative 25 -hs 0 
+	% -sample 1e-4 -threads 20 
+	% -binary 1 -iter 15
+	% \end{verbatim}
+	
+	% There's no need to say what to do; focus on the results and the
+	% methodology. Mechanical steps can be explained in the repository.
+	
+	\subsubsection{Check model accuracy}
+	
+	\subsubsection{Visualize tropes vector space}
 	
 	After that we will have a numerical vector for each trope.
 	
@@ -315,24 +359,7 @@
 	We have detected that the same trope can be written in different ways. The way to separate the words that appear in the name of the trope is to write
 	the first letter in uppercase. We have found that sometimes for the same trope the sequence of characters in upper and lower case is not the same. 
 	In order to prevent the same trope from being taken as a different word, we have made a filter to convert trope names to lowercase.
-	
-	
-	\begin{table}[t]
-		\centering
-		\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-			\hline
-			\textbf{(MaxTrop, NgramSize, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
-			\hline
-			\hline
-			Vocab Size& 7384 & 6197 & 6173 \\
-			\hline
-			Words in train file& 17387907 & 17386591 & 17386514 \\
-			\hline 
-			
-		\end{tabular}
-		\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument}
-		\label{tab:variations-with-min-count-argument-15-9}
-	\end{table}	
+		
 	
 	\subsection{Visualize tropes vector}
 	
@@ -348,9 +375,9 @@
 	however for values of MIN\_COUNT 3 or 5 the vectors obtained are reduced. 
 	\begin{table}[t]
 		\centering
-		\begin{tabular}{|p{0.20\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+		\begin{tabular}{|p{0.24\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|}
 			\hline
-			\textbf{(MaxTrop, NgramSize, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
+			\textbf{(Max\_Tropes, Ngram\_Size, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
 			\hline
 			\hline
 			Tropes with vector&7383  & 6196 & 6172 \\
@@ -359,10 +386,14 @@
 			\hline
 			Total tropes&7383&7383&7383\\
 			\hline
+		    Vocab Size& 7384 & 6197 & 6173 \\
+			\hline
+			Words in train file& 17387907 & 17386591 & 17386514 \\
+			\hline 
 			
 		\end{tabular}
-		\caption{200 dims vectors associated to tropes with different MIN\_COUNT values}
-		\label{tab:200dims-vectors-associated-to-tropes}
+		\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument}
+		\label{tab:variations-with-min-count-argument-15-9}
 	\end{table}	
 	
 	\subsection{Modeling films with trope vectors}
@@ -432,7 +463,7 @@
 			\hline
 			
 		\end{tabular}
-		\caption{k-means cluster generation for tropes vectors.MaxTrop=15, NgramSize=9, MinCount=1}
+		\caption{k-means cluster generation for tropes vectors.Max\_Tropes=15, Ngram\_Size=9, MinCount=1}
 		\label{tab:k-means-clusters}
 	\end{table*}	
 	
