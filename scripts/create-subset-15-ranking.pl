@@ -3,6 +3,8 @@
 
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
+# Create a list of trope and rankig value from a subset of tropes
+
 use strict;
 use warnings;
 
