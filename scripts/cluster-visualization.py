@@ -60,5 +60,5 @@ words_c1024_36 = ['ambiguouslybrown',
          'supersoldier']
 
 for i, word in enumerate(words_c1024_36):
-	pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
+	pyplot.annotate(word, xy=(result[i, 0], result[i, 1]), fontsize=16)
 pyplot.show()
