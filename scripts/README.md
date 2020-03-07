@@ -28,7 +28,6 @@
   <film2> <top_trope_film4> <film1> <top_trope_film4>
   <film3> <top_trope_film3> <film1> <top_trope_film1>
 
-
 ## -rwxrwxr-x 1 enkire enkire     3612 Mar  6 15:56 get-list-most-popular-tropes-by-film.pl
   Usage: get-list-most-popular-tropes-by-film.pl <json_file> <tropes_ranking_file> <top-rank-films>
   create a list with film name and its associated top trope from tvtropes.org
