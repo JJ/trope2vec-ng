@@ -444,6 +444,17 @@ In order to generate the artificial corpus, we have followed this procedure. We 
 	\label{sec:res}
 	
 	\section{Conclusions, discussion and future work}
+	 
+	From the obtained results we can conclude that the fact of creating an artificial corpus improves the accuracy of the embedding vectors generated in relation to a natural language  corpus. The fact of being able to build the custom corpus allows us to avoid rhetorical elements derived from the use of natural language. In this way we can put the focus on the relationships between the entities and always put together those words that are related. We avoid so words that do not have a strong relationship appear close. 
+	We have found two main difficulties when implementing this methodology:
+	\begin{itemize}
+	\item The first has been to find a metric that allows us to reinforce more important concepts. 
+	\item Second one, has been to obtain a metric that allows us to evaluate the results.
+    \end{itemize}
+	It will be necessary to find these metrics in each problem where you want to apply this methodology
+	
+	Future work should focus on finding new ways to measure the accuracy of the results. In many cases finding relationships between entities is trivial when it comes to natural language. Clear examples of this can be the capitals of countries or find the feminine of some term. However, trying to achieve the same in areas where we are not very familiar can be much more complicated. Finding metrics that allow us to evaluate the accuracy of the model without the need to have a very deep knowledge of the work area would be an interesting future line of work. Another question worthy of being analyzed in future works, consists in finding characteristics in the real system that serve to reinforce with greater intensity those stronger relationships. In the dataset used we have used the popularity of films and tropes as a means of reinforcing more intensely the relationships between films and popular tropes. Better markers will allow the models to more accurately represent the relationships between the entities of the real system.
+	
 	
 	% It is possible to create artificial corpus better than natural ones?
 	
