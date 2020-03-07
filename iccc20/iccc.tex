@@ -203,15 +203,29 @@
 	\section{Methodology}
 	\label{sec:met}
 	
-	In order to obtain a vector representation of concepts from an artificially generated corpus we have followed the following steps:
+	In order to evaluate the goodness of artificial corpus for embedding vectors generation, two different approaches have been analyzed:
+	\begin{enumerate}
+		\item For the first version we have generated the corpus through tropes permutations and adding film name in each phrase. In order to simplify the process of creating and verifying accuracy we have selected films with a maximun number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
+		
+        \item For the second method, we have created the corpus through the reinforcement of the relations between tropes and films as if it were a relational database. In order to compare both approaches we have selected same films for both methods.
+	 \end{enumerate}
+ 
+    \subsection{Construction of artificial corpus: trope permutation approach}
+    
+    This approach uses tropes permutation as a method of creating corpus phrases. Next to the selection of permuted tropes the name of the film is added in order to connect the film with its tropes. In this approach the relationship between film and its tropes is lighter, since film name will be next to nine other tropes. The relationship between the different tropes is also not reinforced by any criteria, we simply sort group of tropes randomly. Before deciding which maximum number of tropes per film and the size of phrase (ngram) is most appropriate, we have performed different tests. Table \ref{tab:corpusSize} shows different values for MAX\_TROPE and NGRAM\_SIZE. After different tests we have decided to take the values 15 and 9 respectively to create corpus. We take this
+    initial limit since we will generate all the variations
+    without repetitions of 15 elements taken in groups of 9
+    elements. This method can give us enough size corpus to train
+    the model using word2vec algorithm. This method consists of the following steps:
 	
 	\begin{enumerate}
-		\item Download film information from tvtropes.org and their associated tropes
+		\item Getting film data from tvtropes.org and their associated tropes
 		\item Select films with number of tropes less than a certain thresold
-		\item After this, we create phrases from permutations of the tropes associated with each movie
-		\item Build word2vec model. After that we will have a numerical vector for each trope.\\
-		\item Visualize tropes vector space in order to detect clusters and possible data organization. \item Create a Vector for each film as the sumatory of all tropes vectors. \\
-
+		\item Create phrases from permutations of the tropes associated with each movie and including film name in each phrase
+		\item Build word2vec model. After that we will have a numerical vector for each trope
+		\item Generate accuracy check list 
+		\item Check model accuracy using generated check list
+		\item Visualize tropes vector space in order to detect clusters and possible data organization.
     \end{enumerate}
 
 	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
@@ -222,23 +236,8 @@
 	% Let's use imdb blockbuster films sort by votes. Votes will be the number to reinforce more in corpus films that have more votes.	 
 	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
 	% for next paper version
-	
-	
-	
-	
 
-To obtain this artificial corpus, we place together entities
-that are connected. In the example of tvtropes, we will
-generate the artificial corpus generating phrases that put
-together film tropes. In order to generate the corpus, we will
-select films that have a maximum of 15 tropes. We take this
-initial limit since we will generate all the variations
-without repetitions of 15 elements taken in groups of n
-elements. his method can give us enough size corpus to train
-the model using word2vec algorithm.
-In order to generate the artificial corpus, we have followed this procedure. We have selected those films that have a maximum of MAX\_TROPES and eliminating those that have zero or 1 trope.   
-
-    \subsection{Creating artificial corpus}
+    \subsubsection{Getting film data}
 		
 	\begin{table}[t]
 		\centering
@@ -261,7 +260,7 @@ In order to generate the artificial corpus, we have followed this procedure. We 
 			\hline
 
 		\end{tabular}
-		\caption{Characteristics of different corpus sizes and word2vec models created by varying MAX\_TROPES and NGRAM\_SIZE (word2vec argument min-count = 5). Execution time for i7 5500u 2.40 Ghz 16GB RAM}
+		\caption{Characteristics of different corpus sizes and word2vec models created by varying MAX\_TROPES and NGRAM\_SIZE (word2vec argument min-count = 5, MIN\_TROPES = 2)}
 		\label{tab:corpusSize}
 	\end{table}
 	
