@@ -4,7 +4,7 @@
 from sklearn.decomposition import PCA
 from matplotlib import pyplot
 import gensim.models.keyedvectors as word2vec
-model = word2vec.KeyedVectors.load_word2vec_format('new_corpus_v3.bin', binary=True)
+model = word2vec.KeyedVectors.load_word2vec_format('new_corpus_v4.bin', binary=True)
 
 # define training data
 sentences = [['this', 'is', 'the', 'first', 'sentence', 'for', 'word2vec'],
@@ -59,6 +59,14 @@ words_c1024_36 = ['ambiguouslybrown',
          'superpowermeltdown',
          'supersoldier']
 
-for i, word in enumerate(words_c1024_36):
+words_c1024_323_db = ['abductedinplainsight',
+         'blackjackets',
+         'blatantlies',
+         'everybodysfine',
+         'sevenyearsintibet',
+         'thedevilandmissjones',
+         'villainousbreakdown']
+
+for i, word in enumerate(words_c1024_323_db):
 	pyplot.annotate(word, xy=(result[i, 0], result[i, 1]), fontsize=16)
 pyplot.show()

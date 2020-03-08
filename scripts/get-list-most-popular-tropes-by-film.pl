@@ -25,7 +25,7 @@ if ($num_args != 3) {
 my $DEBUG = 1;
 my $file_all_tropes = $ARGV[1];
 my $top_rank_films = $ARGV[2];
-my $max_tropes = 9999999999999;
+my $max_tropes = 15;
 my $min_tropes = 2;
 my $ngram_size = 9;
 my $add_film_name = 0;
@@ -122,13 +122,15 @@ foreach $key (keys %{$data}) { # foreach film name
         $tropes{$trope_name_lower_case}= "$value";
      }
      my $film_name_lc = lc $key;
-     if (exists($top_films{$film_name_lc})) {
-         print $fh "$key $top_rank_trope $max_frequency\n";
-     }
+     # if (exists($top_films{$film_name_lc})) {
+     # print $fh "$key $top_rank_trope $max_frequency\n";
+     print "$key $top_rank_trope $max_frequency\n";
+     #}
   } else {
      delete $data->{$key}; # remove film
   }
-  print $fh_films "$key $top_rank_trope $max_frequency\n"; # create all films file
+  # print $fh_films "$key $top_rank_trope $max_frequency\n"; # create all films file
+  # print "$key $top_rank_trope $max_frequency\n"; # create all films file
 }
 close $fh;
 close $fh_films;
