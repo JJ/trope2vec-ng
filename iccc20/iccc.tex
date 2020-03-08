@@ -56,21 +56,27 @@
 	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
 
     %How would they use it? - JJ
-    With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, also growing the interest in creating higher quality entertainment content.
-    Each of these content uses resources and techniques that are studied and used repeatedly and they are called tropes. Being able to characterize these tropes so that they can be used within a computer algorithm can be very interesting for those creators who perform this type of artistic work. A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
-    With this technique, vector obtained for each word has the ability to save information of its environment. This vector is called embedding vector.  % REFERENCE!!!! - JJ
-    Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of this frequently used corpus are Wikipedia or Google News dumps, usually greater than one GB of plain text. \\
-    % tHIS COMPARISON IS NOT YOURS (NOT TO MENTION IRRELEVANT). Please add a reference.
-    % If this is what you want to do, lay out an use case for this kind of things. - JJ
-    
-    But, it would be possible to apply word2vec to represent the relationships between tropes and films? With this work, we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tropes. Each film, TV series or other
-    fiction element usually includes a description and a list of associated tropes. Tropes pages usually contain a description followed by a list
-    of films or a narrative resource that uses this trope.\\pus written in natural language. Some examples of this frequently used corpus are Wikipedia or Google News dumps, usually greater than one GB of plain text. \\
+   With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, also growing the interest in creating higher quality entertainment content.
+   Each of these content uses resources and techniques that are studied and used repeatedly and they are called tropes. Being able to characterize these tropes so that they can be used within a computer algorithm can be very interesting for those creators who perform this type of artistic work. A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
+   With this technique, vector obtained for each word has the ability to save information of its environment. This vector is called embedding vector.  % REFERENCE!!!! - JJ
+   Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of this frequently used corpus are Wikipedia or Google News dumps, usually greater than 1GB of plain text. See \cite{google-word2vec} to obtain more examples. \\
+   % tHIS COMPARISON IS NOT YOURS (NOT TO MENTION IRRELEVANT). Please add a reference.
+   % If this is what you want to do, layout an use case for this kind of things. - JJ
+   
+   But, it would be possible to apply word2vec to represent the relationships between tropes and films? With this work, we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques
+   used in creative works such as movies, tv-series, advertising,
+   videogames, sports, comics or books; the latest iterations even include
+   {\em real life} tropes. Tvtropes.org defines tropes as:
+   "a storytelling device or convention, a shortcut for describing
+   situations the storyteller can reasonably assume the audience will
+   recognize." Articles to describe tropes are written usually with a very
+   expressive and non-formal vocabulary. 
+   Each film, TV series or other fiction elements usually include a description and a list of associated tropes. Tropes pages usually contain a description followed by a list
+   of films or a narrative resource that uses this trope.
     
 	% Second, state the need for your work, as an opposition between what the scientific community currently has and what it wants.
 	
-	Obtaining a vector representation of concepts is a frequently treated problem that can be solved with different approaches. Some of these solutions use only word coding without considering the context. This type of representation has a more limited use. Other works like \cite{kazama2018} have shown that it is
-	possible to use word2vec to obtain vectors from non-NLP information sources. Our approach is based on the use of the fundamental elements of information (in our case the tropes) to generate an artificial narrative or corpus that can give a similar meaning to the concepts that they would have in a text written by humans. This artificially created text should represent the relationships between entities in the same way that a human would relate them in a descriptive text about these entities. If the artificial corpus is correctly constructed, it should produce some embedding vectors with the capacity to offer us the right arithmetic of concepts. We want the word representation to have the following characteristics: 
+	On the other hand, other works like \cite{kazama2018} have shown that it is possible to use word2vec to obtain vectors from non-NLP information sources. In our case, we want to use word2vec to obtain vectors from non-NLP sources of information through two different methods and demonstrate that these artificially created texts can provide greater precision than text written by humans. If the artificial corpus is correctly constructed, it should produce some embedding vectors with the capacity to offer us the right arithmetic of concepts. We want the word representation to have the following characteristics: 
 	
 	\begin{itemize}
 
@@ -79,13 +85,11 @@
 	\item capable of doing arithmetic
 	\item uniform for tropes and movies.
 		
-    \end{itemize}
-	   
-    % I need help to write this part   
+    \end{itemize}  
 	   
 	% Third, indicate what you have done in an effort to address the need (this is the task).
 
-    In order to solve the problem, we have downloaded film data from word2vec.  %using... reference Rubén!!! - JJ
+    In order to solve the problem, we have downloaded film data from word2vec using Tropescraper \cite{doi:10.1111/exsy.12525} to easily dump tvtropes content.
     % This is methodology. This shouldn't be in the introduction - JJ
      Then we have extracted a subset of films whose number of tropes is less than a certain threshold. From this subset of films and tropes, we have built an artificial corpus on which to apply the word2vec algorithm and generate embeddings. To evaluate that the subset of tropes is representative, we have verified that 92\% of the subset are among the most frequently used tropes. With the obtained vectors we have generated a classification to verify the correspondence between embeddings and real films-tropes relationships. From the vectors that represent the tropes, we have created a vector for the film. As a result, we have verified that the artificially generated corpus fulfills the desired objective. The obtained graphic representation shows that obtained clusters are correlated with real relationships observed between tropes and between tropes and films.\\
  
@@ -193,22 +197,23 @@
 	\section{Methodology}
 	\label{sec:met}
 	
-	To evaluate the goodness of artificial corpus for embedding vectors generation, two different approaches have been analyzed:
+	
+	To demonstrate that artificially created texts based on films and tropes relationships, can provide greater precision to obtain vectors using wowrd2vec than text written by humans, two different approaches have been analyzed:
 	\begin{enumerate}
 	\item The First one consists of generating the corpus through tropes permutations and adding film names in each phrase. In order to simplify the process of creating and verifying the accuracy, we have selected films with a maximum number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
 	
 	\item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. To compare both approaches, we have selected the same films for both methods.
 	\end{enumerate}
 	
-	\subsection{Construction of the artificial corpus: trope permutation approach}
-	
+	\subsection{Construction of the artificial corpus: N-Grams Permutation Model}
+
 	This approach uses tropes permutation as a method of creating corpus phrases. Next to the selection of permuted tropes, the name of the film is added in order to connect the film with its tropes. In this approach, the relationship between film and their tropes is lighter, since the film's name will be next to nine other tropes. The relationship between the different tropes is also not reinforced by any criteria, we simply sort the group of tropes randomly. Before deciding which maximum number of tropes per film and the size of the phrase (ngram) is most appropriate, we have performed different tests. Table \ref{tab:corpusSize} shows different values for MAX\_TROPE and NGRAM\_SIZE. After different tests, we have decided to take the values 15 and 9 respectively to create the corpus. We take this
 	initial limit since we will generate all the variations
 	without repetitions of 15 elements taken in groups of 9
 	elements. This method can give us enough size corpus to train the model using word2vec algorithm. This method consists of the following steps:
 	
 	\begin{enumerate}
-	\item Getting film data from tvtropes.org and their associated tropes % using... - JJ
+	\item Getting film data from tvtropes.org and their associated tropes using Tropescraper. % using... - JJ
 	\item Select films with a number of tropes less than a certain threshold
 	\item Create phrases from permutations of the tropes associated with each movie and including film name in each phrase
 	\item Build word2vec model. After that, we will obtain an embedding vector for each film and trope
@@ -256,6 +261,8 @@
 After downloading films and tropes data from tvtropes.org (on date 13th December 2019) and processing the obtained information, we get 12360 movies and 26742 (25405 after removing repeated) tropes. The film with a higher number of tropes has 1028 tropes and the film with the minimum number of tropes has 0 tropes.
 
 \subsubsection{Select films and tropes}
+\label{sec:select-films}
+
 From all these data we must filter repeated elements and get only those films that have between 15 and 2 tropes and their associated tropes. After selecting this group of films we get 2380 films and 7383 tropes.
 Figure \ref{fig:tropesdistributionasociatedtofilms} shows the distribution of films by the number of tropes and the cumulative total of tropes. Here we can see how for a value of 250 in the maximum number of tropes in a film 98.4\% of the tropes are covered. In order to check if our subset of tropes is relevant, we sort the tropes by frequency of occurrence. We verify that in our subset is 99.2\% of the most popular tropes, so we can consider it a representative subset. In order to obtain the most popular tropes, we obtain all film-trope pairs, a total of 599341 different pairs. Counting the number of times that each trope appears in the film-trope pairs list, we will obtain the use frequency of each trope.
 
@@ -278,8 +285,12 @@ The word2vec algorithm is applied to the generated corpus. For this, we use the 
 	% methodology. Mechanical steps can be explained in the repository.
 	
  \subsubsection{Generate accuracy check list}
-Creating the accuracy checklist is one of the most creative parts of the methodology. To obtain it we have first observed the checklists contained in the package \cite{git-hub-word2vec}. Table \ref{tab:phrases-check-accuracy} shows some lines of this accuracy checklist. 
-In selected examples, we can verify that univocal pairs are associated. For example in line    Boston Boston\_Globe Chicago Chicago\_Tribune, we can check that 
+Creating the accuracy checklist is one of the most creative parts of the methodology. To obtain it we have first observed the checklists contained in the package \cite{git-hub-word2vec}. In selected examples, we can verify that univocal pairs are associated. For example in 
+\begin{verbatim}
+Boston Boston_Globe 
+Chicago Chicago_Tribune
+\end{verbatim}
+we can check that 
 Boston\_Globe is one of the main newspapers in Boston city, in the same way that Chicago\_Tribune is one of the main newspapers in Chicago city. Our checklist must also contain univocal relationships. To do this, we select from each film its most popular trope. So we will have, that the relationship will be:
 
 \begin{verbatim}
@@ -295,32 +306,6 @@ In this relationship, there is only one top trope for each movie and it would be
 	
  This second technique of creating the relationships between films and tropes, making the name of the trope unique for each film, will be used in the second method of corpus creation. Finally, we take a group of movies randomly and associate their top trope. Next, we take the first pair (movie, top-trope) and the other selected pairs and we repeat this process with all the films and their associated top tropes. We will use the same accuracy checklist for the two proposed corpus creation methods.   
 
-\begin{table*}[ht]
-\centering
-\begin{tabular}{|p{0.65\linewidth}|p{0.35\linewidth}|}
-\hline
-\textbf{Phrases examples} & \textbf{Words examples}\\
-\hline      
-Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun & he she his her\\
-Albuquerque Albuquerque\_Journal Boston Boston\_Globe & he she husband wife\\
-Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer & he she king queen\\
-Albuquerque Albuquerque\_Journal Cleveland Cleveland\_Plain\_Dealer & he she man woman\\
-\hline
-Baltimore Baltimore\_Sun Boston Boston\_Globe& his her husband wife\\
-Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer & his her king queen\\
-Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer & his her man woman\\
-Baltimore Baltimore\_Sun Charleston Charleston\_Gazette & his her nephew niece\\
-\hline
-Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer & husband wife king queen    \\
-Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer & husband wife man woman\\
-Boston Boston\_Globe Charleston Charleston\_Gazette & husband wife nephew niece\\
-Boston Boston\_Globe Chicago Chicago\_Tribune & husband wife policeman policewoman\\
-
-\hline
-\end{tabular}
-\caption{Word2vec phrases to check model accuracy}
-\label{tab:phrases-check-accuracy}
-\end{table*}
 
 \subsubsection{Check model accuracy}
 In order to check the quality of generated embedding vectors, we use the checklist created in the previous step and the program compute-accuracy from \cite{git-hub-word2vec}. This program returns the number of tuples that have generated the expected value through the model. In our case, how many times the correct top trope has been found given a movie, a top trope, and a second movie.
@@ -329,7 +314,7 @@ In order to check the quality of generated embedding vectors, we use the checkli
 In order to visualize the tropes vector space, we have analyzed the different generated clusters using a modified version of the demo-classes.sh script from \cite{git-hub-word2vec}. 
 We have independently visualized some of these groups in a two-dimensional space using the cluster-visualization.py script that makes use of the gensim, matplotlib libraries and the Principal Component Analysis algorithm from sklearn python library. We have also verified by taking some clusters that the elements included in a grouping are strongly connected on the tvtropes.org website.
 
-\subsection{Construction of the artificial corpus: relationships reinforcement approach}
+\subsection{Construction of the artificial corpus: Database Like Reinforcement Model}
 For corpus construction based on reinforcing terms relationship approach method, we follow the same methodology as the previous method but modifying step 3.
 	
 	
@@ -390,7 +375,7 @@ In this way, we get that every time two terms appear together in corpus they are
 	   \begin{figure}
 	\centering
 	\includegraphics[width=1\linewidth]{../images/trope-film-n-to-n.png}
-	\caption{N to N fim-trope relationship}
+	\caption{N to N film-trope relationship}
 	\label{fig:film-trope-relationship}
 	\end{figure}
 	
@@ -444,6 +429,82 @@ In this way, we get that every time two terms appear together in corpus they are
 	
 	\section{Results}
 	\label{sec:res}
+	
+    To compare two models results we have used the same subset of films and tropes described in the section \textbf{Select films and tropes}. 
+    table \ref{tab:two-models-accuracy-results} shows the accuracy results for the two models. Note that the precision for the DB model is greater than for the NG model.
+	
+
+\begin{table*}[ht]
+\centering
+\begin{tabular}{|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|}
+\hline
+\textbf{Accuracy list group}& \textbf{Question words}  & \textbf{(\#ok/\#total)}& \textbf{Semantic} & \textbf{Syntactic}\\
+\hline
+\hline
+NG 1000 & 65.60\% & (656 / 1000) & 65.60\% & -nan\\
+\hline
+NG 3000 & 65.20\% & (1956 / 3000) & 65.20 \% & -nan\\
+\hline
+\textbf{Total}& \textbf{65.4\% }&  & \textbf{65.4\% }&  \textbf{-nan }\\
+\hline
+\hline
+DB 1000 & 98.40\% & (984 / 1000) &98.40\% \% & -nan\\
+\hline
+DB 3000 & 98.57\% & (2957 / 3000) & 98.57\% \% & -nan\\
+\hline
+\textbf{Total}& \textbf{98.49 \% }&  & \textbf{98.49\% }&  \textbf{-nan}\\
+\hline
+
+\end{tabular}
+\caption{Two Models Accuracy Results - NG (Ngrams permutation model), DB (Database Like Reinforcement model)}
+\label{tab:two-models-accuracy-results}
+\end{table*}
+
+
+
+\begin{table*}[ht]
+\centering
+\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+\hline
+\textbf{Accuracy list group}& \textbf{Question words}  & \textbf{(\#ok/\#total)}& \textbf{Semantic} & \textbf{Syntactic}\\
+\hline
+\hline
+capital-common-countries& 81.62 \% & (413 / 506) & 81.62 \% & -nan\\
+\hline
+capital-world& 61.29 \% & (890 / 1452) & 61.29 \% & -nan\\
+\hline
+currency& 27.99 \% & (75 / 268) & 27.99 \% & -nan\\
+\hline
+city-in-state& 48.12 \% & (756 / 1571)& 48.12 \% & -nan\\
+\hline
+family&77.45 \% & (237 / 306)& 77.45 \% &  -nan \\
+\hline
+gram1-adjective-to-adverb& 17.72 \% &  (134 / 756)& -nan & 17.72 \% \\
+\hline
+gram2-opposite& 20.59 \% & (63 / 306)& -nan & 20.59 \% \\
+\hline
+gram3-comparative&62.54 \% & (788 / 1260)& -nan & 62.54 \% \\
+\hline
+gram4-superlative&41.70 \% &  (211 / 506)& -nan & 41.70 \% \\
+\hline
+gram5-present-participle& 38.00 \% & (377 / 992)& -nan &  38.00 \% \\
+\hline
+gram6-nationality-adjective&85.56 \% &  (1173 / 1371)& -nan & 85.56 \% \\
+\hline
+gram7-past-tense& 38.66 \% & (515 / 1332) & -nan & 38.66 \% \\
+\hline
+gram8-plural& 65.62 \% & (651 / 992) & -nan & 65.62 \% \\
+\hline
+gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
+\hline
+\hline
+\textbf{Total}& \textbf{53.27 \% }&  & \textbf{57.79 \% }&  \textbf{51.00 \% }\\
+\hline
+
+\end{tabular}
+\caption{Word2vec package Text8 example accuracy results for words and phrases. Text from  http://mattmahoney.net/dc/text8.zip}
+\label{tab:original-accuracy-results}
+\end{table*}
 	
 	\begin{figure}
 	\centering
