@@ -33,7 +33,7 @@
 			% they appear. In this paper we will try to extend this concept to
 			% other {\em unordered} contexts. We will try to define this context
 			% for movie (and TV) tropes.
-			In this paper we present a generalized approach to extend the use of word2vec for non-traditional NLP (Natural Language Processing). In order to exemplify the idea, we use tvtropes dataset (trope names and film names only) to create a text corpus in order to give contextual information to any piece of data.
+			In this paper we present a generalized approach to extend the use of word2vec for non-traditional NLP (Natural Language Processing). In order to exemplify the idea, we use tvtropes dataset (trope names and film names only) to create a text corpus in order to give contextual information to any piece of data. % Any piece of data of what? Why do you need a generalized approach? What kind of research question you want to get answ3ered?
 		\end{quote}
 	\end{abstract}
 	
@@ -53,12 +53,18 @@
 	
 	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
 
-    With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, also growing the interest in creating higher quality entertainment content.
-    Each of these content uses resources and techniques that are studied and used repeatedly and they are called tropes. Being able to characterize these tropes so that they can be used within an computer algorithm can be very interesting for those creators who perform this type of artistic work. A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
-    With this technique, vector obtained for each word has the ability to save memory of its environment. This vector is called embedding vector.
+    With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, the interest in creating higher quality entertainment content is also growing.
+    Each of these contents use resources and techniques that are studied and used repeatedly and they are called tropes. % You need to define tropes, and add a reference. Tropes are much more (and less) than simply "resources and techniques".  
+    Being able to characterize these tropes so that they can be used within an computer algorithm can be very interesting for those creators who perform this type of artistic work. %How would they use it? - JJ
+    A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
+    With this technique, the vector obtained for each word has the ability to save memory of its environment. % It does not "save" "memory" it's defined by the context it's in - JJ
+    This vector is called embedding vector. % REFERENCE!!!! - JJ
     Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of these frequently used corpus are Wikipedia or Google News dumps, usually greather than one GB of plain text. \\
+    % tHIS COMPARISON IS NOT YOURS (NOT TO MENTION IRRELEVANT). Please add a reference.
+    % If this is what you want to do, lay out an use case for this kind of things. - JJ
     
-    But, it would be possible to apply word2vec to represent represent the relationships between tropes and films? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tropes. Each film, TV series or other
+    But, it would be possible to apply word2vec to represent represent the relationships between tropes and films? % PLEASE CORRECT GRAMMAR.
+    With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tropes. Each film, TV series or other
     fiction element usually includes a description and a list of associated
     tropes. Tropes pages usually contains a description followed by a list
     of films or a narrative resource that uses this trope.\\
