@@ -1,3 +1,5 @@
+% This file is iccc.tex.  It contains the formatting instructions for and acts as a template for submissions to ICCC.  It borrows liberally from the AAAI and IJCAI formats and instructions.  It uses the files iccc.sty, iccc.bst and iccc.bib, the first two of which also borrow liberally from the same sources.
+
 \documentclass[letterpaper]{article}
 \usepackage{iccc}
 
@@ -33,7 +35,7 @@
 			% they appear. In this paper we will try to extend this concept to
 			% other {\em unordered} contexts. We will try to define this context
 			% for movie (and TV) tropes.
-			In this paper we present a generalized approach to extend the use of word2vec for non-traditional NLP (Natural Language Processing). In order to exemplify the idea, we use tvtropes dataset (trope names and film names only) to create a text corpus in order to give contextual information to any piece of data. % Any piece of data of what? Why do you need a generalized approach? What kind of research question you want to get answ3ered?
+			In this paper we present a generalized approach to extend the use of word2vec for non-traditional NLP (Natural Language Processing). In order to exemplify the idea, we use tvtropes dataset (trope names and film names only) to create a text corpus in order to give contextual information to any piece of data.
 		\end{quote}
 	\end{abstract}
 	
@@ -53,35 +55,19 @@
 	
 	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
 
-    With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, the interest in creating higher quality entertainment content is also growing.
-    Each of these contents use resources and techniques that are studied and used repeatedly and they are called tropes. % You need to define tropes, and add a reference. Tropes are much more (and less) than simply "resources and techniques".  
-    Being able to characterize these tropes so that they can be used within an computer algorithm can be very interesting for those creators who perform this type of artistic work. %How would they use it? - JJ
-    A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
-    With this technique, the vector obtained for each word has the ability to save memory of its environment. % It does not "save" "memory" it's defined by the context it's in - JJ
-    This vector is called embedding vector. % REFERENCE!!!! - JJ
-    Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of these frequently used corpus are Wikipedia or Google News dumps, usually greather than one GB of plain text. \\
-    % tHIS COMPARISON IS NOT YOURS (NOT TO MENTION IRRELEVANT). Please add a reference.
-    % If this is what you want to do, lay out an use case for this kind of things. - JJ
+    With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, also growing the interest in creating higher quality entertainment content.
+    Each of these content uses resources and techniques that are studied and used repeatedly and they are called tropes. Being able to characterize these tropes so that they can be used within a computer algorithm can be very interesting for those creators who perform this type of artistic work. A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
+    With this technique, vector obtained for each word has the ability to save information of its environment. This vector is called embedding vector.
+    Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of this frequently used corpus are Wikipedia or Google News dumps, usually greater than one GB of plain text. \\
     
-    But, it would be possible to apply word2vec to represent represent the relationships between tropes and films? % PLEASE CORRECT GRAMMAR.
-    With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tropes. Each film, TV series or other
-    fiction element usually includes a description and a list of associated
-    tropes. Tropes pages usually contains a description followed by a list
-    of films or a narrative resource that uses this trope.\\
+    But, it would be possible to apply word2vec to represent the relationships between tropes and films? With this work, we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tropes. Each film, TV series or other
+    fiction element usually includes a description and a list of associated tropes. Tropes pages usually contain a description followed by a list
+    of films or a narrative resource that uses this trope.\\pus written in natural language. Some examples of this frequently used corpus are Wikipedia or Google News dumps, usually greater than one GB of plain text. \\
     
 	% Second, state the need for your work, as an opposition between what the scientific community currently has and what it wants.
 	
 	Obtaining a vector representation of concepts is a frequently treated problem that can be solved with different approaches. Some of these solutions use only word coding without considering the context. This type of representation has a more limited use. Other works like \cite{kazama2018} have shown that it is
-	possible to use word2vec to obtain vectors from non-NLP information
-	sources. Our approach is based on the use of the fundamental elements
-	of information (in our case the tropes) to generate an artificial
-	narrative or corpus that can give a similar meaning to the concepts
-	that they would have in a text written by humans. This artificially
-	created text should represent the relationships between entities in
-	the same way that a human would relate them in a descriptive text
-	about these entities. If the artificial corpus is correctly
-	constructed, it should produce some embedding vectors with the
-	capacity to offer us a correct arithmetic of concepts. We want the word representation to have the following characteristics: 
+	possible to use word2vec to obtain vectors from non-NLP information sources. Our approach is based on the use of the fundamental elements of information (in our case the tropes) to generate an artificial narrative or corpus that can give a similar meaning to the concepts that they would have in a text written by humans. This artificially created text should represent the relationships between entities in the same way that a human would relate them in a descriptive text about these entities. If the artificial corpus is correctly constructed, it should produce some embedding vectors with the capacity to offer us the right arithmetic of concepts. We want the word representation to have the following characteristics: 
 	
 	\begin{itemize}
 
@@ -96,10 +82,7 @@
 	   
 	% Third, indicate what you have done in an effort to address the need (this is the task).
 
-    In order to solve the problem, we have downloaded films data from word2vec. %using... reference Rubén!!! - JJ
-
-    % This is methodology. This shouldn't be in the introduction - JJ
-    Then we have extracted a subset of films whose number of tropes is less than a certain thresold. From this subset of films and tropes, we have built an artificial corpus on which to apply the word2vec algorithm and generate embeddings. To evaluate that the subset of tropes is representative, we have verified that 92\% of the subset are among the most frequently used tropes. With the obtained vectors we have generated a classification to verify correspondence between embeddings and real films-tropes relationships. From the vectors that represent the tropes we have created a vector for the film. As a result, we have verified that the artificially generated corpus fulfills the desired objective. Obtained graphic representation shows that obtained clusters are correlated with real relationships observed between tropes and between tropes and films.\\
+    In order to solve the problem, we have downloaded film data from word2vec. Then we have extracted a subset of films whose number of tropes is less than a certain threshold. From this subset of films and tropes, we have built an artificial corpus on which to apply the word2vec algorithm and generate embeddings. To evaluate that the subset of tropes is representative, we have verified that 92\% of the subset are among the most frequently used tropes. With the obtained vectors we have generated a classification to verify the correspondence between embeddings and real films-tropes relationships. From the vectors that represent the tropes, we have created a vector for the film. As a result, we have verified that the artificially generated corpus fulfills the desired objective. The obtained graphic representation shows that obtained clusters are correlated with real relationships observed between tropes and between tropes and films.\\
  
  % How we want to solve that problem: we think that an adaptation of word2vec should be possible
  % This is what you say above - JJ	
@@ -205,30 +188,29 @@
 	\section{Methodology}
 	\label{sec:met}
 	
-	In order to evaluate the goodness of artificial corpus for embedding vectors generation, two different approaches have been analyzed:
+	To evaluate the goodness of artificial corpus for embedding vectors generation, two different approaches have been analyzed:
 	\begin{enumerate}
-		\item First one consists of to generatd the corpus through tropes permutations and adding film name in each phrase. In order to simplify the process of creating and verifying accuracy we have selected films with a maximun number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
-		
-        \item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. In order to compare both approaches we have selected same films for both methods.
-	 \end{enumerate}
- 
-    \subsection{Construction of artificial corpus: trope permutation approach}
-    
-    This approach uses tropes permutation as a method of creating corpus phrases. Next to the selection of permuted tropes the name of the film is added in order to connect the film with their tropes. In this approach the relationship between film and their tropes is lighter, since film name will be next to nine other tropes. The relationship between the different tropes is also not reinforced by any criteria, we simply sort group of tropes randomly. Before deciding which maximum number of tropes per film and the size of phrase (ngram) is most appropriate, we have performed different tests. Table \ref{tab:corpusSize} shows different values for MAX\_TROPE and NGRAM\_SIZE. After different tests we have decided to take the values 15 and 9 respectively to create corpus. We take this
-    initial limit since we will generate all the variations
-    without repetitions of 15 elements taken in groups of 9
-    elements. This method can give us enough size corpus to train
-    the model using word2vec algorithm. This method consists of the following steps:
+	\item The First one consists of generating the corpus through tropes permutations and adding film names in each phrase. In order to simplify the process of creating and verifying the accuracy, we have selected films with a maximum number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
+	
+	\item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. To compare both approaches, we have selected the same films for both methods.
+	\end{enumerate}
+	
+	\subsection{Construction of the artificial corpus: trope permutation approach}
+	
+	This approach uses tropes permutation as a method of creating corpus phrases. Next to the selection of permuted tropes, the name of the film is added in order to connect the film with its tropes. In this approach, the relationship between film and their tropes is lighter, since the film's name will be next to nine other tropes. The relationship between the different tropes is also not reinforced by any criteria, we simply sort the group of tropes randomly. Before deciding which maximum number of tropes per film and the size of the phrase (ngram) is most appropriate, we have performed different tests. Table \ref{tab:corpusSize} shows different values for MAX\_TROPE and NGRAM\_SIZE. After different tests, we have decided to take the values 15 and 9 respectively to create the corpus. We take this
+	initial limit since we will generate all the variations
+	without repetitions of 15 elements taken in groups of 9
+	elements. This method can give us enough size corpus to train the model using word2vec algorithm. This method consists of the following steps:
 	
 	\begin{enumerate}
-		\item Getting film data from tvtropes.org and their associated tropes % using... - JJ
-		\item Select films with number of tropes less than a certain thresold
-		\item Create phrases from permutations of the tropes associated with each movie and including film name in each phrase
-		\item Build word2vec model. After that we will obtain an embedding vector for each film and trope
-		\item Generate accuracy check list % What?  JJ
-		\item Check model accuracy using generated check list
-		\item Visualize tropes vector space in order to detect clusters and possible data organization.
-    \end{enumerate}
+	\item Getting film data from tvtropes.org and their associated tropes
+	\item Select films with a number of tropes less than a certain threshold
+	\item Create phrases from permutations of the tropes associated with each movie and including film name in each phrase
+	\item Build word2vec model. After that, we will obtain an embedding vector for each film and trope
+	\item Generate accuracy checklist 
+	\item Check model accuracy using generated checklist
+	\item Visualize tropes vector space to detect clusters and possible data organization.
+	\end{enumerate}
 
 	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
 	% We need a parameter that let us reinforce more real relationships between elements that are stronger. For example, in case of films,
@@ -239,7 +221,7 @@
 	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
 	% for next paper version
 
-    \subsubsection{Getting film and tropes data}
+    \subsubsection{Getting film data}
 		
 	\begin{table}[t]
 		\centering
@@ -262,127 +244,88 @@
 			\hline
 
 		\end{tabular}
-		\caption{Characteristics of different corpus sizes and word2vec models created by varying MAX\_TROPES and NGRAM\_SIZE (word2vec argument min-count = 5, MIN\_TROPES = 2)} % Why do you need to do this - JJ
+		\caption{Characteristics of different corpus sizes and word2vec models created by varying MAX\_TROPES and NGRAM\_SIZE (word2vec argument min-count = 5, MIN\_TROPES = 2)}
 		\label{tab:corpusSize}
 	\end{table}
 	
-	After downloading films and tropes data from tvtropes.org (on date 13th December 2019) and processing the obtained information, we get 12360 movies and 26742 (25405 after remove repeated) tropes. The film with higher number of tropes has 1028 tropes and the film with minimum number of tropes has 0 tropes.
-	
-	\subsubsection{Select films and tropes}
-	From all these data we must filter repeated elements and get only those films that have between 15 and 2 tropes and their associated tropes. After selecting this group of films we get 2380 films and 7383 tropes.
-	Figure \ref{fig:tropesdistributionasociatedtofilms} shows the distribution of films by number of tropes and the cumulative total of tropes. Here we can see how for a value of 250 in the maximum number of tropes in a film 98.4\% of the tropes are covered. In order to check if our subset of tropes is relevant, we sort the tropes by frequency of occurrence. We verify that in our subset is 99.2\% of the most popular tropes, so we can consider it a representative subset. In order to obtain the most popular tropes we obtain all  film-trope pairs, a total of 599341 different pairs. Counting number of times that each trope appears in film-trope pairs list, we will obtain use frequency of each trope. 
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=1\linewidth]{../images/tropes_distribution_chart.png}
-		\caption{Accumulative distribution of tropes associated to films}
-		\label{fig:tropesdistributionasociatedtofilms}
-	\end{figure}
-	
-	\subsubsection{Create corpus by tropes permutation}
-	Next step consist of creating an artificial corpus through the permutation of sets of $M$ values taken in sets of $N$. $M$ corresponds to film number of tropes  (MAX\_TROPES) and N with the size of the phrase or NGRAM-SIZE. table \ref{tab:corpusSize} shows different sizes of NGRAM\_SIZE and MAX\_TROPES. We decided to use the values of 15 and 9 respectively since it offers us a corpus size that we consider may be suitable for training. Within each sentence, we include the name of the film by way of creating the relationship between both, films and their tropes. 
-	For movies with less than 9 tropes we simply include all of them along with the name of the movie. Finally each sentence is randomly sorted.
-	
-	\subsubsection{Build word2vec model}
-	
-	The word2vec algorithm is applied to the generated corpus. For
-        this we use the package \cite{git-hub-word2vec} developed by
-        the creators of the article \cite{mikolov2013}. In model
-        creation process we use bag-of-words algorithm, a 200
-        dimensions vector of size, a window of size 5 and a min-count
-        of 1 (words that are repeated less than once are eliminated)
-        as main parameters. % All choices need to be justified - JJ
+After downloading films and tropes data from tvtropes.org (on date 13th December 2019) and processing the obtained information, we get 12360 movies and 26742 (25405 after removing repeated) tropes. The film with a higher number of tropes has 1028 tropes and the film with the minimum number of tropes has 0 tropes.
+
+\subsubsection{Select films and tropes}
+From all these data we must filter repeated elements and get only those films that have between 15 and 2 tropes and their associated tropes. After selecting this group of films we get 2380 films and 7383 tropes.
+Figure \ref{fig:tropesdistributionasociatedtofilms} shows the distribution of films by the number of tropes and the cumulative total of tropes. Here we can see how for a value of 250 in the maximum number of tropes in a film 98.4\% of the tropes are covered. In order to check if our subset of tropes is relevant, we sort the tropes by frequency of occurrence. We verify that in our subset is 99.2\% of the most popular tropes, so we can consider it a representative subset. In order to obtain the most popular tropes, we obtain all film-trope pairs, a total of 599341 different pairs. Counting the number of times that each trope appears in the film-trope pairs list, we will obtain the use frequency of each trope.
+
+    \begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{../images/tropes_distribution_chart.png}
+\caption{Accumulative distribution of tropes associated to films}
+\label{fig:tropesdistributionasociatedtofilms}
+\end{figure}
+
+\subsubsection{Create corpus by tropes permutation}
+The next step consist of creating an artificial corpus through the permutation of sets of M values taken from N in N. M corresponds to the film number of tropes  (MAX\_TROPES) and N with the size of the phrase or NGRAM-SIZE. table \ref{tab:corpusSize} shows different sizes of NGRAM\_SIZE and MAX\_TROPES. We decided to use the values of 15 and 9 respectively since it offers us a corpus size that we consider may be suitable for training. Within each sentence, we include the name of the film by way of creating the relationship between both, films and their tropes. 
+For movies with less than 9 tropes, we simply include all of them along with the name of the movie. Finally, each sentence is randomly sorted.
+
+\subsubsection{Build word2vec model}
+
+The word2vec algorithm is applied to the generated corpus. For this, we use the package \cite{git-hub-word2vec} developed by the creators of the article \cite{mikolov2013}. In the model creation process, we use the bag-of-words algorithm, a 200 dimensions vector of size, a window of size 5 and a min-count of 1 (words that are repeated less than once are eliminated) as main parameters.
 	
 	% There's no need to say what to do; focus on the results and the
 	% methodology. Mechanical steps can be explained in the repository.
 	
-	\subsubsection{Generate accuracy check list}
-	Creating the accuracy checklist is one of the most creative parts of the methodology. To obtain it we have first observed the checklists contained in the package \cite{git-hub-word2vec}. Table \ref{tab:phrases-check-accuracy} shows some lines of this accuracy checklist. 
-	In selected examples, we can verify that univocal pairs are associated. For example in line	Boston Boston\_Globe Chicago Chicago\_Tribune, we can check that 
-	Boston\_Globe is one of the main newspapers of Boston city, in the same way that Chicago\_Tribune is one of the main newspapers in Chicago city. Our checklist must also contain univocal relationships. To do this, we select from each film its most popular trope. So we will have, that the relationship will be:
-	
-	\begin{verbatim}
-	<film1> <top-trope1> 
-	<film2> <top-trope2>
-	\end{verbatim}
-	
-	In this relationship there is only one top trope for each movie and it would be possible to univocally make reference to it from the movie. In our case it is possible that this top trope is repeated for different films but it will always be the same. Something similar can happen with a very popular newspaper that is based in different cities and it has not a name adapted for each city. Another option may be to create a trope name adapted to the film, as with certain newspapers that adapt their name to the city, as would be the case with The New York Sun or Baltimore Sun. 
-	\begin{verbatim}
-	<film1> <top-trope1-film1> 
-	<film2> <top-trope2-film2>
-	\end{verbatim}
-	
-	This second technique of creating the relationships between films and tropes, making the name of the trope unique for each film, will be used in the second method of corpus creation. Finally, we take a group of movies randomly and associate their top trope. Next, we take first pair (movie, top-trope) and the other selected pairs and we repeat this process with all the films and their associated top tropes. We will use the same accuracy checklist for the two proposed corpus creation methods.   
+ \subsubsection{Generate accuracy check list}
+Creating the accuracy checklist is one of the most creative parts of the methodology. To obtain it we have first observed the checklists contained in the package \cite{git-hub-word2vec}. Table \ref{tab:phrases-check-accuracy} shows some lines of this accuracy checklist. 
+In selected examples, we can verify that univocal pairs are associated. For example in line    Boston Boston\_Globe Chicago Chicago\_Tribune, we can check that 
+Boston\_Globe is one of the main newspapers in Boston city, in the same way that Chicago\_Tribune is one of the main newspapers in Chicago city. Our checklist must also contain univocal relationships. To do this, we select from each film its most popular trope. So we will have, that the relationship will be:
 
-        % Don't include tables from other papers or those that are off
-        % topic - JJ
-	\begin{table*}[ht]
-		\centering
-		\begin{tabular}{|p{0.65\linewidth}|p{0.35\linewidth}|}
-			\hline
-			\textbf{Phrases examples} & \textbf{Words examples}\\
-			\hline	  
-			Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun & he she his her\\
-			Albuquerque Albuquerque\_Journal Boston Boston\_Globe & he she husband wife\\
-			Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer & he she king queen\\
-			Albuquerque Albuquerque\_Journal Cleveland Cleveland\_Plain\_Dealer & he she man woman\\
-			\hline
-			Baltimore Baltimore\_Sun Boston Boston\_Globe& his her husband wife\\
-			Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer & his her king queen\\
-			Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer & his her man woman\\
-			Baltimore Baltimore\_Sun Charleston Charleston\_Gazette & his her nephew niece\\
-			\hline
-			Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer & husband wife king queen	\\
-			Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer & husband wife man woman\\
-			Boston Boston\_Globe Charleston Charleston\_Gazette & husband wife nephew niece\\
-			Boston Boston\_Globe Chicago Chicago\_Tribune & husband wife policeman policewoman\\
-			
-			\hline
-		\end{tabular}
-		\caption{Word2vec phrases to check model accuracy} % Use your own. - JJ
-		\label{tab:phrases-check-accuracy}
-	\end{table*}
+\begin{verbatim}
+<film1> <top-trope1> 
+<film2> <top-trope2>
+\end{verbatim}
 
-        % It's going to be almost impossible for you to find a
-        % checklist that's equivalent to this one. Unless you take
-        % "Hamlet" and eliminate "medieval" and add "space" and you
-        % get "Star Wars". But that's a (very) long shot. - JJ
-        
-	\subsubsection{Check model accuracy}
-	In order to check the quality of generated embedding vectors,
-        we use the checklist created in the previous step and the
-        program compute-accuracy from \cite{git-hub-word2vec}. This
-        program returns the number of tuples that have generated the
-        expected value through the model. In our case, how many times
-        the correct top trope has been found given a movie, a top
-        trope and a second movie. % you say how you created it, you
-                                % don't say what. I don't think you're
-                                % understanding correctly how to
-                                % create the vector that refers to the
-                                % movie, which should be created by
-                                % adding its vectors. Also, I don't
-                                % see the whole "accuracy" thing or
-                                % why you use subsubsections in a
-                                % conference paper (with 6 pages to
-                                % boot) - JJ
-
-        % Wait, that's all? No table? No checklist? You go to another
-        % subsubsection that has nothing to do? - JJ
-        
-	\subsubsection{Visualize tropes vector space} 
-	In order to visualize tropes vector space we have analyzed the different generated clusters using a modified version of the demo-classes.sh script from \cite{git-hub-word2vec}. 
-	We have independently visualized some of these groups in a
-        two-dimensional space using the cluster-visualization.py
-        script that makes use of the gensim, matplotlib libraries an
-        the Principal Component Analysis algorithm from sklearn python
-        library. We have also verified by taking some clusters that
-        the elements included in a grouping are strongly connected on
-        the tvtropes.org website. % And what are the results? - JJ
+In this relationship, there is only one top trope for each movie and it would be possible to univocally refer to it from the movie. In our case, it is possible that this top trope is repeated for different films but it will always be the same. Something similar can happen with a very popular newspaper that is based in different cities and it has not a name adapted for each city. Another option may be to create a trope name adapted to the film, as with certain newspapers that adapt their name to the city, as would be the case with The New York Sun or Baltimore Sun. 
+\begin{verbatim}
+<film1> <top-trope1-film1> 
+<film2> <top-trope2-film2>
+\end{verbatim}
 	
-	\subsection{Construction of artificial corpus: relationships
-          reinforcement approach}
-        % Wait, what? Totally confused by now - JJ
-	For corpus construction based on relationship reinforcement approach method, we follow the same methodology as the previous method but modifying step 3.
+ This second technique of creating the relationships between films and tropes, making the name of the trope unique for each film, will be used in the second method of corpus creation. Finally, we take a group of movies randomly and associate their top trope. Next, we take the first pair (movie, top-trope) and the other selected pairs and we repeat this process with all the films and their associated top tropes. We will use the same accuracy checklist for the two proposed corpus creation methods.   
+
+\begin{table*}[ht]
+\centering
+\begin{tabular}{|p{0.65\linewidth}|p{0.35\linewidth}|}
+\hline
+\textbf{Phrases examples} & \textbf{Words examples}\\
+\hline      
+Albuquerque Albuquerque\_Journal Baltimore Baltimore\_Sun & he she his her\\
+Albuquerque Albuquerque\_Journal Boston Boston\_Globe & he she husband wife\\
+Albuquerque Albuquerque\_Journal Cincinnati Cincinnati\_Enquirer & he she king queen\\
+Albuquerque Albuquerque\_Journal Cleveland Cleveland\_Plain\_Dealer & he she man woman\\
+\hline
+Baltimore Baltimore\_Sun Boston Boston\_Globe& his her husband wife\\
+Baltimore Baltimore\_Sun Cincinnati Cincinnati\_Enquirer & his her king queen\\
+Baltimore Baltimore\_Sun Cleveland Cleveland\_Plain\_Dealer & his her man woman\\
+Baltimore Baltimore\_Sun Charleston Charleston\_Gazette & his her nephew niece\\
+\hline
+Boston Boston\_Globe Cincinnati Cincinnati\_Enquirer & husband wife king queen    \\
+Boston Boston\_Globe Cleveland Cleveland\_Plain\_Dealer & husband wife man woman\\
+Boston Boston\_Globe Charleston Charleston\_Gazette & husband wife nephew niece\\
+Boston Boston\_Globe Chicago Chicago\_Tribune & husband wife policeman policewoman\\
+
+\hline
+\end{tabular}
+\caption{Word2vec phrases to check model accuracy}
+\label{tab:phrases-check-accuracy}
+\end{table*}
+
+\subsubsection{Check model accuracy}
+In order to check the quality of generated embedding vectors, we use the checklist created in the previous step and the program compute-accuracy from \cite{git-hub-word2vec}. This program returns the number of tuples that have generated the expected value through the model. In our case, how many times the correct top trope has been found given a movie, a top trope, and a second movie.
+
+\subsubsection{Visualize tropes vector space}
+In order to visualize the tropes vector space, we have analyzed the different generated clusters using a modified version of the demo-classes.sh script from \cite{git-hub-word2vec}. 
+We have independently visualized some of these groups in a two-dimensional space using the cluster-visualization.py script that makes use of the gensim, matplotlib libraries and the Principal Component Analysis algorithm from sklearn python library. We have also verified by taking some clusters that the elements included in a grouping are strongly connected on the tvtropes.org website.
+
+\subsection{Construction of the artificial corpus: relationships reinforcement approach}
+For corpus construction based on reinforcing terms relationship approach method, we follow the same methodology as the previous method but modifying step 3.
 	
 	
 	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
@@ -394,143 +337,137 @@
 	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
 	% for next paper version
 	
-	\subsubsection{Create corpus by relationships reinforcement}
-	
-	Here the idea is to treat relationships between entities in a similar way databases do. Figure \ref{fig:film-trope-relationship} shows the relationship between
-	 film and tropes as a relation of n to n. To implement this scheme in a database we would need a table for films, another for tropes and another for the relationships 
-	 between films and tropes. In our case, instead of creating rows in a table, we will write sentences in the corpus. We will therefore need a phrase that indicates that such
-	 name is a movie title.
-	 
-	 	\begin{verbatim}
-	 	film <film1>
-	 	film <film2>
-	 	film <film3>
-	 	...
-	 	\end{verbatim}
-	 	
-	 We will also need to represent the equivalent to the trope table. For this we will write sentences of the form:
-		\begin{verbatim}
-	trope <trope1>
-	trope <trope2>
-	trope <trope3>
-	...
-	\end{verbatim}
+   \subsubsection{Create corpus by relationships reinforcement}
 
-         % I STOP HERE. Totally lost. Don't know what you're doing,
-         % why you're doing it, how this has got anything to do with
-         % the introduction... JJ
-	In the case of the relationship film-trope we can consider that the union has different attributes. For example, we can consider, that the film-trope union has unique associated information.  In fact, this is the case in reality. The description of the trope within a movie refers to particular issues of the movie and is different from the description of the same trope for another movie. For this reason we have created a new trope name, joining trope name and then film name:
-		\begin{verbatim}
-		trope1_film1
-		trope2_film2
-		trope3_film3
-		...		
-	    \end{verbatim}
-	    
-	Therefore, from this relationship we would have the following groups of phrases.
-	\begin{enumerate}
-		\item Phrase to associate trope-name and trope + film-name
-		\item Phrase to indicate that trope + film-name is a trope
-		\item Phrase to associate film and trope + film-name 
-	\end{enumerate}     
+Here the idea is to treat relationships between entities in a similar way databases do. Figure \ref{fig:film-trope-relationship} shows the relationship between film and tropes as a relation of n to n. To implement this scheme in a database we would need a table for films, another for tropes and another for the relationships between films and tropes. In our case, instead of creating rows in a table, we will write sentences in the corpus. We will, therefore, need a phrase that indicates that such
+name is a movie title.
+
+\begin{verbatim}
+film <film1>
+film <film2>
+film <film3>
+...
+\end{verbatim}
+
+We will also need to represent the equivalent to the trope table. For this we will write sentences of the form:
+\begin{verbatim}
+trope <trope1>
+trope <trope2>
+trope <trope3>
+...
+\end{verbatim}
+
+In the case of the relationship film-trope, we can consider that the union has different attributes. For example, we can consider, that the film-trope union has unique associated information.  In fact, this is the case in reality. The description of the trope within a movie refers to particular issues of the movie and is different from the description of the same trope for another movie. For this reason, we have created a new trope name, joining trope name and then film name:
+\begin{verbatim}
+trope1_film1
+trope2_film2
+trope3_film3
+...        
+\end{verbatim}
+
+Therefore, from this relationship, we would have the following groups of phrases.
+\begin{enumerate}
+\item Phrase to associate trope-name and trope + film-name
+\item Phrase to indicate that trope + film-name is a trope
+\item Phrase to associate film and trope + film-name 
+\end{enumerate}     
+
+\begin{verbatim}
+1) trope1 trope1_film1
+2) trope trope1_film1
+3) film1 trope1_film1
+...        
+\end{verbatim}
+
+In the case of phrase 3 we do not add the word film or trope since we would be adding a sense of film or trope erroneously to one of the two elements of the phrase.
+In this way, we get that every time two terms appear together in corpus they are strongly connected by a real relationship on tvtropes. Finally, we must give more importance to those links to more relevant tropes. This can be achieved in different ways. In our case, we have taken as a reference the number of times a trope is used in a film to establish a ranking. Our algorithm takes the number of times the trope is used to write more repetitions of the phrase within the corpus. We have applied a corrective factor that divides the number of occurrences of the trope in order to make the corpus smaller.
 	
-		\begin{verbatim}
-	1) trope1 trope1_film1
-	2) trope trope1_film1
-	3) film1 trope1_film1
-	...		
-	\end{verbatim}
-	
-	In the case of phrase 3 we do not add the word film or trope since we would be adding sense of film or trope erroneously to one of the two elements of the phrase.
-	In this way we get that every time two terms appear together in corpus they are strongly connected by a real relationship on tvtropes. Finally, we must give more importance to those links of more relevant tropes. This can be achieved in different ways. In our case we have taken as a reference the number of times a trope is used in a film to establish a ranking. Our algorithm takes the number of times the trope is used to write more repetitions of the phrase within the corpus. We have applied a corrective factor that divides the number of occurrences of the trope in order to make the corpus smaller.
-	
-		\begin{figure}
-		\centering
-		\includegraphics[width=1\linewidth]{../images/trope-film-n-to-n.png}
-		\caption{N to N fim-trope relationship}
-		\label{fig:film-trope-relationship}
+	   \begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../images/trope-film-n-to-n.png}
+	\caption{N to N fim-trope relationship}
+	\label{fig:film-trope-relationship}
 	\end{figure}
 	
 	
-
+	
 	\begin{table}[t]
-		\centering
-		\begin{tabular}{|p{0.24\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|}
-			\hline
-			\textbf{(Max\_Tropes, Ngram\_Size, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
-			\hline
-			\hline
-			Tropes with vector&7383  & 6196 & 6172 \\
-			\hline
-			Tropes without vector& 0 & 1187 & 1211 \\
-			\hline
-			Total tropes&7383&7383&7383\\
-			\hline
-		    Vocab Size& 7384 & 6197 & 6173 \\
-			\hline
-			Words in train file& 17387907 & 17386591 & 17386514 \\
-			\hline 
-			
-		\end{tabular}
-		\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument}
-		\label{tab:variations-with-min-count-argument-15-9}
-	\end{table}	
+	\centering
+	\begin{tabular}{|p{0.24\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|}
+	\hline
+	\textbf{(Max\_Tropes, Ngram\_Size, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
+	\hline
+	\hline
+	Tropes with vector&7383  & 6196 & 6172 \\
+	\hline
+	Tropes without vector& 0 & 1187 & 1211 \\
+	\hline
+	Total tropes&7383&7383&7383\\
+	\hline
+	Vocab Size& 7384 & 6197 & 6173 \\
+	\hline
+	Words in train file& 17387907 & 17386591 & 17386514 \\
+	\hline 
 	
-
+	\end{tabular}
+	\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument}
+	\label{tab:variations-with-min-count-argument-15-9}
+	\end{table}    
 	
-
+	
+	
+	
 	
 	\begin{table*}[ht]
-		\centering
-		\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
-			\hline
-			\textbf{Num Clusters}& \textbf{500} & \textbf{250} & \textbf{125} & \textbf{64} & \textbf{32} & \textbf{8}\\
-			\hline
-			\hline
-			Vocab Size& 7384 & 7384 & 7384 & 7384 & 7384 & 7384\\
-			\hline
-			Words in train file& 17387907 & 17387907 & 17387907 & 17387907 & 17387907 & 17387907\\
-			\hline
-			
-		\end{tabular}
-		\caption{k-means cluster generation for tropes vectors.Max\_Tropes=15, Ngram\_Size=9, MinCount=1}
-		\label{tab:k-means-clusters}
-	\end{table*}	
+	\centering
+	\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+	\hline
+	\textbf{Num Clusters}& \textbf{500} & \textbf{250} & \textbf{125} & \textbf{64} & \textbf{32} & \textbf{8}\\
+	\hline
+	\hline
+	Vocab Size& 7384 & 7384 & 7384 & 7384 & 7384 & 7384\\
+	\hline
+	Words in train file& 17387907 & 17387907 & 17387907 & 17387907 & 17387907 & 17387907\\
+	\hline
+	
+	\end{tabular}
+	\caption{k-means cluster generation for tropes vectors.Max\_Tropes=15, Ngram\_Size=9, MinCount=1}
+	\label{tab:k-means-clusters}
+	\end{table*}    
 	
 	
 	
 	\section{Results}
 	\label{sec:res}
 	
-		\begin{figure}
-		\centering
-		\includegraphics[width=1\linewidth]{../images/cluster-36-visualization-new-corpus-v3-1024-ironman3-font-16-zoom-in.png}
-		\caption{Cluster visualization zoom in}
-		\label{fig:cluster-visualization-zoom-in}
+	\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../images/cluster-36-visualization-new-corpus-v3-1024-ironman3-font-16-zoom-in.png}
+	\caption{Cluster visualization zoom in}
+	\label{fig:cluster-visualization-zoom-in}
 	\end{figure}
 	
 	
 	\begin{figure}
-		\centering
-		\includegraphics[width=1\linewidth]{../images/cluster-36-visualization-new-corpus-v3-1024-ironman3-zoom-out.png}
-		\caption{Cluster visualization zoom out}
-		\label{fig:cluster-visualization-zoom-out}
+	\centering
+	\includegraphics[width=1\linewidth]{../images/cluster-36-visualization-new-corpus-v3-1024-ironman3-zoom-out.png}
+	\caption{Cluster visualization zoom out}
+	\label{fig:cluster-visualization-zoom-out}
 	\end{figure}
 	
 	
 	
 	\section{Conclusions, discussion and future work}
-	 
-	From the obtained results we can conclude that the fact of creating an artificial corpus improves the accuracy of the embedding vectors generated in relation to a natural language  corpus. The fact of being able to build the custom corpus allows us to avoid rhetorical elements derived from the use of natural language. In this way we can put the focus on the relationships between the entities and always put together those words that are connected. We avoid so words that do not have a strong relationship appear close. 
+	
+	From the obtained results we can conclude that the fact of creating an artificial corpus improves the accuracy of the embedding vectors generated in relation to a natural language corpus. The fact of being able to build the custom corpus allows us to avoid rhetorical elements derived from the use of natural language. In this way, we can put the focus on the relationships between the entities and always put together those words that are connected. We avoid so words that do not have a strong relationship appear close. 
 	We have found two main difficulties when implementing this methodology:
 	\begin{itemize}
-	\item First one, has been to find a metric that allows us to reinforce more important concepts. 
-	\item Second one, has been to obtain a metric that allows us to evaluate the results.
-    \end{itemize}
+	\item The First one, has been to find a metric that allows us to reinforce more important concepts. 
+	\item The Second one has been to obtain a metric that allows us to evaluate the results.
+	\end{itemize}
 	It will be necessary to find these metrics in each problem where you want to apply this methodology
 	
-	Future work should focus on finding new ways to measure the accuracy of the results. In many cases finding relationships between entities is trivial when it comes to natural language. Clear examples of this can be countries and their capitals or to find the feminine of some term. However, trying to achieve the same in areas where we are not very familiar can be much more complicated. Finding metrics that allow us to evaluate model accuracy without need deep knowledge of the work area, would be an interesting future line of work. Another question worthy of being analyzed in future works, consists in finding characteristics in the real system that serve to reinforce with greater intensity those stronger relationships. In our dataset, popularity of films and tropes has been used for reinforcing more intensely the relationships between films and popular tropes. Better markers will allow the models to more accurately represent the relationships between the entities of the real system.
-	
+	Future work should focus on finding new ways to measure the accuracy of the results. In many cases finding relationships between entities is trivial when it comes to natural language. Clear examples of this can be countries and their capitals or to find the feminine of some term. However, trying to achieve the same in areas where we are not very familiar can be much more complicated. Finding metrics that allow us to evaluate model accuracy without needing deep knowledge of the work area, would be an interesting future line of work. Another question worthy of being analyzed in future works consists in finding characteristics in the real system that serve to reinforce with greater intensity those stronger relationships. In our dataset, the popularity of films and tropes has been used for reinforcing more intensely the relationships between films and popular tropes. Better markers will allow the models to more accurately represent the relationships between the entities of the real system.
 	
 	% It is possible to create artificial corpus better than natural ones?
 	
