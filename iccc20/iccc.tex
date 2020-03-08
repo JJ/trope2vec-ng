@@ -55,22 +55,19 @@
 	
 	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
 
-    % With growing diversity in personal food preference and regional cuisine style, personalized information systems that can transform a recipe into any selected regional cuisine style that a user might prefer would help food companies and professional chefs create new recipes.
-    
-    
- 
-    When we want to work with vector representations of words, word2vec is one of the most used algorithms since its appearance \cite{mikolov2013}.
-    The vector obtained for each word has the ability to save memory of its environment. This vector is called embedding vector.
+    With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, also growing the interest in creating higher quality entertainment content.
+    Each of these content uses resources and techniques that are studied and used repeatedly and they are called trope. Being able to characterize these tropes so that they can be used within an computer algorithm can be very interesting for those creators who perform this type of artistic work. A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
+    With this technique, vector obtained for each word has the ability to save memory of its environment. This vector is called embedding vector.
     Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, in order to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of these frequently used corpus are Wikipedia or Google News dumps, usually greather than one GB of plain text. \\
     
-    But, it would be possible to apply word2vec to non natural language corpus? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques used in creative works such as movies, tv series or books. Each film, TV series or other
+    But, it would be possible to apply word2vec to represent each trope and its relationship with an entertainment content? With this work we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tropes. Each film, TV series or other
     fiction element usually includes a description and a list of associated
     tropes. Tropes pages usually contains a description followed by a list
     of films or a narrative resource that uses this trope.\\
     
 	% Second, state the need for your work, as an opposition between what the scientific community currently has and what it wants.
 	
-	Obtaining a vector representation of concepts is an old problem that can be solved in different ways. Some of these solutions use only word coding without considering the context. This type of representation has a more limited use. Other works like \cite{kazama2018} have shown that it is
+	Obtaining a vector representation of concepts is a frequently treated problem that can be solved with different approaches. Some of these solutions use only word coding without considering the context. This type of representation has a more limited use. Other works like \cite{kazama2018} have shown that it is
 	possible to use word2vec to obtain vectors from non-NLP information
 	sources. Our approach is based on the use of the fundamental elements
 	of information (in our case the tropes) to generate an artificial
@@ -80,9 +77,7 @@
 	the same way that a human would relate them in a descriptive text
 	about these entities. If the artificial corpus is correctly
 	constructed, it should produce some embedding vectors with the
-	capacity to offer us a correct arithmetic of concepts. 
-	
-	We want the word representation to have the following characteristics: 
+	capacity to offer us a correct arithmetic of concepts. We want the word representation to have the following characteristics: 
 	
 	\begin{itemize}
 
@@ -205,9 +200,9 @@
 	
 	In order to evaluate the goodness of artificial corpus for embedding vectors generation, two different approaches have been analyzed:
 	\begin{enumerate}
-		\item For the first version we have generated the corpus through tropes permutations and adding film name in each phrase. In order to simplify the process of creating and verifying accuracy we have selected films with a maximun number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
+		\item First one consists of to generatd the corpus through tropes permutations and adding film name in each phrase. In order to simplify the process of creating and verifying accuracy we have selected films with a maximun number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
 		
-        \item For the second method, we have created the corpus through relationships reinforcement between tropes and films as if it were a relational database. In order to compare both approaches we have selected same films for both methods.
+        \item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. In order to compare both approaches we have selected same films for both methods.
 	 \end{enumerate}
  
     \subsection{Construction of artificial corpus: trope permutation approach}
