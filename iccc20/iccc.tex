@@ -55,10 +55,13 @@
 	
 	% First, provide some context to orient those readers who are less familiar with your topic and to establish the importance of your work.
 
+    %How would they use it? - JJ
     With growing diversity and quantity of entertainment content such as movies, video games, tv series or books, also growing the interest in creating higher quality entertainment content.
     Each of these content uses resources and techniques that are studied and used repeatedly and they are called tropes. Being able to characterize these tropes so that they can be used within a computer algorithm can be very interesting for those creators who perform this type of artistic work. A frequent technique to organize information to use with computer algorithms is to provide each piece of information with an associated multidimensional vector. One of the most used techniques in recent years for vector representations of words is word2vec \cite{mikolov2013}.
-    With this technique, vector obtained for each word has the ability to save information of its environment. This vector is called embedding vector.
+    With this technique, vector obtained for each word has the ability to save information of its environment. This vector is called embedding vector.  % REFERENCE!!!! - JJ
     Another interesting feature of embeddings vectors is that it is possible to perform concept arithmetic. For example, it would be possible to subtract and add vectors so that we obtain another vector resulting from the operation: Paris - France + Italy = Rome. However, to apply this algorithm, it is necessary to have a sufficiently large corpus written in natural language. Some examples of this frequently used corpus are Wikipedia or Google News dumps, usually greater than one GB of plain text. \\
+    % tHIS COMPARISON IS NOT YOURS (NOT TO MENTION IRRELEVANT). Please add a reference.
+    % If this is what you want to do, lay out an use case for this kind of things. - JJ
     
     But, it would be possible to apply word2vec to represent the relationships between tropes and films? With this work, we want to demonstrate that it is possible to obtain embeddings vectors using word2vec of an artificially created corpus. To demonstrate this idea we will use data from films and tropes obtained from tvtropes.org website. Tv Tropes is a collaborative website created in 2004 to share information about tropes. Each film, TV series or other
     fiction element usually includes a description and a list of associated tropes. Tropes pages usually contain a description followed by a list
@@ -82,20 +85,22 @@
 	   
 	% Third, indicate what you have done in an effort to address the need (this is the task).
 
-    In order to solve the problem, we have downloaded film data from word2vec. Then we have extracted a subset of films whose number of tropes is less than a certain threshold. From this subset of films and tropes, we have built an artificial corpus on which to apply the word2vec algorithm and generate embeddings. To evaluate that the subset of tropes is representative, we have verified that 92\% of the subset are among the most frequently used tropes. With the obtained vectors we have generated a classification to verify the correspondence between embeddings and real films-tropes relationships. From the vectors that represent the tropes, we have created a vector for the film. As a result, we have verified that the artificially generated corpus fulfills the desired objective. The obtained graphic representation shows that obtained clusters are correlated with real relationships observed between tropes and between tropes and films.\\
+    In order to solve the problem, we have downloaded film data from word2vec.  %using... reference Rubén!!! - JJ
+    % This is methodology. This shouldn't be in the introduction - JJ
+     Then we have extracted a subset of films whose number of tropes is less than a certain threshold. From this subset of films and tropes, we have built an artificial corpus on which to apply the word2vec algorithm and generate embeddings. To evaluate that the subset of tropes is representative, we have verified that 92\% of the subset are among the most frequently used tropes. With the obtained vectors we have generated a classification to verify the correspondence between embeddings and real films-tropes relationships. From the vectors that represent the tropes, we have created a vector for the film. As a result, we have verified that the artificially generated corpus fulfills the desired objective. The obtained graphic representation shows that obtained clusters are correlated with real relationships observed between tropes and between tropes and films.\\
  
- % How we want to solve that problem: we think that an adaptation of word2vec should be possible
- % This is what you say above - JJ	
-		% How we do it:
-	% * Methodology for creating the context of every trope
-	% * Methodology for representing movies using trope vector
-	% * How we evaluate the goodness of the set of movies/tropes chosen.
-	
-	% Our results
-	% * Clustering
-	% * Graph representation
-	% * Movie representation
-	% * Example of synthetic movie generation.
+% How we want to solve that problem: we think that an adaptation of word2vec should be possible
+% This is what you say above - JJ	
+% How we do it:
+% * Methodology for creating the context of every trope
+% * Methodology for representing movies using trope vector
+% * How we evaluate the goodness of the set of movies/tropes chosen.
+
+% Our results
+% * Clustering
+% * Graph representation
+% * Movie representation
+% * Example of synthetic movie generation.
 	
 	
 	% Finally, preview the remainder of the paper to mentally prepare readers for its structure, in the object of the document.
@@ -203,11 +208,11 @@
 	elements. This method can give us enough size corpus to train the model using word2vec algorithm. This method consists of the following steps:
 	
 	\begin{enumerate}
-	\item Getting film data from tvtropes.org and their associated tropes
+	\item Getting film data from tvtropes.org and their associated tropes % using... - JJ
 	\item Select films with a number of tropes less than a certain threshold
 	\item Create phrases from permutations of the tropes associated with each movie and including film name in each phrase
 	\item Build word2vec model. After that, we will obtain an embedding vector for each film and trope
-	\item Generate accuracy checklist 
+	\item Generate accuracy checklist  % What?  JJ
 	\item Check model accuracy using generated checklist
 	\item Visualize tropes vector space to detect clusters and possible data organization.
 	\end{enumerate}
