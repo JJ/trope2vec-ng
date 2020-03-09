@@ -405,34 +405,45 @@ In this way, we get that every time two terms appear together in corpus they are
 	\end{table}    
 	
 	
-	
-	
-	
-	\begin{table*}[ht]
+	\begin{table}[t]
 	\centering
-	\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+	\begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
 	\hline
-	\textbf{Num Clusters}& \textbf{500} & \textbf{250} & \textbf{125} & \textbf{64} & \textbf{32} & \textbf{8}\\
+	\textbf{DB} & \textbf{NG}\\
 	\hline
 	\hline
-	Vocab Size& 7384 & 7384 & 7384 & 7384 & 7384 & 7384\\
-	\hline
-	Words in train file& 17387907 & 17387907 & 17387907 & 17387907 & 17387907 & 17387907\\
-	\hline
-	
-	\end{tabular}
-	\caption{k-means cluster generation for tropes vectors.Max\_Tropes=15, Ngram\_Size=9, MinCount=1}
-	\label{tab:k-means-clusters}
-	\end{table*}    
-	
+	abductedinplainsight 323 & borderpatrol 827\\
+	blackjackets 323 & cameo 827\\
+	blatantlies 323 & duelingmovies 827\\
+	everybodysfine 323 & ghostsofmississippi 827\\
+	sevenyearsintibet 323 & historicalheroupgrade 827\\
+	thedevilandmissjones 323 & loopholeabuse 827 \\
+	villainousbreakdown 323 & scalingthesummit 827 \\
+	 & sevenyearsintibet 827\\
+	 & takebackyourgift 827\\
+	 & theshangrila 827\\
+	 & trainingthepeacefulvillagers 827\\
+	 & wealldiesomeday 827\\
+\hline 
+
+\end{tabular}
+\caption{Cluster example}
+\label{tab:cluster-example}
+\end{table}    
 	
 	
 	\section{Results}
 	\label{sec:res}
 	
-    To compare two models results we have used the same subset of films and tropes described in the section \textbf{Select films and tropes}. 
-    table \ref{tab:two-models-accuracy-results} shows the accuracy results for the two models. Note that the precision for the DB model is greater than for the NG model.
+	% Accuracy
 	
+    To compare two models results we have used the same subset of films and tropes described in the section \textbf{Select films and tropes}. 
+    Table \ref{tab:two-models-accuracy-results} shows the accuracy results for the two models. Note that the precision for the DB model is greater than for the NG model. 
+    If we also take into account the table \ref{tab:original-accuracy-results} that shows precision results based on the dataset Text8 (http://mattmahoney.net/dc/text8.zip) we observe that both models exceed the results obtained in corpus written in natural language, the results of the DB model being significantly better.
+	
+	% Model size
+	
+	Regarding the size of the corpus, it should be noted that the DB Model has a size of only 16MB while the NG model has a size of 292 MB. This difference in size also affects the creation times of the embedding vectors model and the construction of the different clusters. There are also significant differences in the size of the binary files of the embedding vectors, being the size of the 24MB DB model and only 7MB the NG model file.
 
 \begin{table*}[ht]
 \centering
@@ -456,7 +467,7 @@ DB 3000 & 98.57\% & (2957 / 3000) & 98.57\% \% & -nan\\
 \hline
 
 \end{tabular}
-\caption{Two Models Accuracy Results - NG (Ngrams permutation model), DB (Database Like Reinforcement model)}
+\caption{Two Models Accuracy Results - NG (N-Grams Permutation Model), DB (Database Like Reinforcement model)}
 \label{tab:two-models-accuracy-results}
 \end{table*}
 
@@ -508,16 +519,31 @@ gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{../images/cluster-36-visualization-new-corpus-v3-1024-ironman3-font-16-zoom-in.png}
-	\caption{Cluster visualization zoom in}
+	\includegraphics[width=1\linewidth]{../images/cluster-db-1024-c323-zoom-in.png}
+	\caption{Cluster DB 1024 C 323 visualization detail}
 	\label{fig:cluster-visualization-zoom-in}
 	\end{figure}
 	
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{../images/cluster-36-visualization-new-corpus-v3-1024-ironman3-zoom-out.png}
-	\caption{Cluster visualization zoom out}
+	\includegraphics[width=1\linewidth]{../images/cluster-db-1024-c323-zoom-out.png}
+	\caption{Cluster DB 1024 C 323 visualization}
+	\label{fig:cluster-visualization-zoom-out}
+	\end{figure}
+	
+		\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../images/cluster-ng-1024-c827-zoom-in.png}
+	\caption{Cluster DB 1024 C 827 visualization detail}
+	\label{fig:cluster-visualization-zoom-in}
+	\end{figure}
+	
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{../images/cluster-ng-1024-c827-zoom-out.png}
+	\caption{Cluster NG 1024 C 827 visualization}
 	\label{fig:cluster-visualization-zoom-out}
 	\end{figure}
 	

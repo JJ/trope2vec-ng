@@ -67,6 +67,19 @@ words_c1024_323_db = ['abductedinplainsight',
          'thedevilandmissjones',
          'villainousbreakdown']
 
-for i, word in enumerate(words_c1024_323_db):
+words_c1024_827_ng = ['borderpatrol',
+         'cameo',
+         'duelingmovies',
+         'ghostsofmississippi',
+         'historicalheroupgrade',
+         'loopholeabuse',
+         'scalingthesummit',
+         'sevenyearsintibet',
+         'takebackyourgift',
+         'theshangrila',
+         'trainingthepeacefulvillagers',
+         'wealldiesomeday']
+
+for i, word in enumerate(words_c1024_827_ng):
 	pyplot.annotate(word, xy=(result[i, 0], result[i, 1]), fontsize=16)
 pyplot.show()
