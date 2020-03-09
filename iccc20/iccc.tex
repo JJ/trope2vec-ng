@@ -35,7 +35,7 @@
 			% they appear. In this paper we will try to extend this concept to
 			% other {\em unordered} contexts. We will try to define this context
 			% for movie (and TV) tropes.
-			In this article, we present a generalized approach to extend the use of word2vec for non-traditional Natural Language Processing. To exemplify the idea, we use the tvtropes data set to create a text corpus in order to provide contextual information to any data. Two different approaches have been made: the first called N-Grams Permutation Model and the second Database Like Reinforcement Model. We have compared both approaches with a model based on text written by humans and we have verified that in the best case the model based on artificial corpus improves on the one created by humans by 45.2\%.
+			In this article, we present a generalized approach to extend the use of word2vec for non-traditional Natural Language Processing. To exemplify the idea, we use the tvtropes data set to create a text corpus in order to provide contextual information to any data. Two different approaches have been made: the first called N-Grams Permutation Model and the second Database Like Reinforcement Model. We have compared both approaches with a model based on text written by humans and we have verified that in the best case the model based on artificial corpus improves accuracy on the one created by humans by 45.2\%.
 		\end{quote}
 	\end{abstract}
 	
@@ -279,7 +279,7 @@ For movies with less than 9 tropes, we simply include all of them along with the
 
 \subsubsection{Build word2vec model}
 
-The word2vec algorithm is applied to the generated corpus. For this, we use the package \cite{git-hub-word2vec} developed by the creators of the article \cite{mikolov2013}. In the model creation process, we use the bag-of-words algorithm, a 200 dimensions vector of size, a window of size 5 and a min-count of 1 (words that are repeated less than once are eliminated) as main parameters.
+The word2vec algorithm is applied to the generated corpus. For this, we use the package \cite{git-hub-word2vec} developed by the creators of the article \cite{mikolov2013}. In the model creation process, we use the bag-of-words algorithm, a 200 dimensions vector of size, a window of size 5 and a min-count of 1 (words that are repeated less than once are eliminated) as main parameters. The table \ref{tab:variations-with-min-count-argument-15-9} shows how the MIN COUNT parameter affects the Vocab Size. In our case, since the corpus is created artificially, we do not want to eliminate the less frequent words and we have used to stop the creation of all models with the MIN COUNT value = 1.
 	
 	% There's no need to say what to do; focus on the results and the
 	% methodology. Mechanical steps can be explained in the repository.
