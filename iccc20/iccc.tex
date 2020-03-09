@@ -35,7 +35,7 @@
 			% they appear. In this paper we will try to extend this concept to
 			% other {\em unordered} contexts. We will try to define this context
 			% for movie (and TV) tropes.
-			In this paper we present a generalized approach to extend the use of word2vec for non-traditional NLP (Natural Language Processing). In order to exemplify the idea, we use tvtropes dataset (trope names and film names only) to create a text corpus in order to give contextual information to any piece of data.
+			In this article, we present a generalized approach to extend the use of word2vec for non-traditional NLP (natural language processing). To exemplify the idea, we use the tvtropes data set (only troop names and movie names) to create a text corpus in order to provide contextual information to any data. Two different approaches have been made when creating the text corpus: the first called N-Grams Permutation Model and the second Database Like Reinforcement Model. We have compared both approaches with a model based on text written by humans and we have verified that in the best case the artificial model improves on the one created by humans by 45.2\2%.
 		\end{quote}
 	\end{abstract}
 	
@@ -205,7 +205,7 @@
 	\item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. To compare both approaches, we have selected the same films for both methods.
 	\end{enumerate}
 	
-	\subsection{Construction of the artificial corpus: N-Grams Permutation Model}
+	\subsection{Approach 1. Construction of the artificial corpus: N-Grams Permutation Model}
 
 	This approach uses tropes permutation as a method of creating corpus phrases. Next to the selection of permuted tropes, the name of the film is added in order to connect the film with its tropes. In this approach, the relationship between film and their tropes is lighter, since the film's name will be next to nine other tropes. The relationship between the different tropes is also not reinforced by any criteria, we simply sort the group of tropes randomly. Before deciding which maximum number of tropes per film and the size of the phrase (ngram) is most appropriate, we have performed different tests. Table \ref{tab:corpusSize} shows different values for MAX\_TROPE and NGRAM\_SIZE. After different tests, we have decided to take the values 15 and 9 respectively to create the corpus. We take this
 	initial limit since we will generate all the variations
@@ -314,7 +314,7 @@ In order to check the quality of generated embedding vectors, we use the checkli
 In order to visualize the tropes vector space, we have analyzed the different generated clusters using a modified version of the demo-classes.sh script from \cite{git-hub-word2vec}. 
 We have independently visualized some of these groups in a two-dimensional space using the cluster-visualization.py script that makes use of the gensim, matplotlib libraries and the Principal Component Analysis algorithm from sklearn python library. We have also verified by taking some clusters that the elements included in a grouping are strongly connected on the tvtropes.org website.
 
-\subsection{Construction of the artificial corpus: Database Like Reinforcement Model}
+\subsection{Approach 2. Construction of the artificial corpus: Database Like Reinforcement Model}
 For corpus construction based on reinforcing terms relationship approach method, we follow the same methodology as the previous method but modifying step 3.
 	
 	
