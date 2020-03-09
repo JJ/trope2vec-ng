@@ -35,7 +35,7 @@
 			% they appear. In this paper we will try to extend this concept to
 			% other {\em unordered} contexts. We will try to define this context
 			% for movie (and TV) tropes.
-			In this article, we present a generalized approach to extend the use of word2vec for non-traditional NLP (natural language processing). To exemplify the idea, we use the tvtropes data set (only troop names and movie names) to create a text corpus in order to provide contextual information to any data. Two different approaches have been made when creating the text corpus: the first called N-Grams Permutation Model and the second Database Like Reinforcement Model. We have compared both approaches with a model based on text written by humans and we have verified that in the best case the artificial model improves on the one created by humans by 45.2\2%.
+			In this article, we present a generalized approach to extend the use of word2vec for non-traditional Natural Language Processing. To exemplify the idea, we use the tvtropes data set to create a text corpus in order to provide contextual information to any data. Two different approaches have been made: the first called N-Grams Permutation Model and the second Database Like Reinforcement Model. We have compared both approaches with a model based on text written by humans and we have verified that in the best case the model based on artificial corpus improves on the one created by humans by 45.2\%.
 		\end{quote}
 	\end{abstract}
 	
@@ -205,9 +205,9 @@
 	\item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. To compare both approaches, we have selected the same films for both methods.
 	\end{enumerate}
 	
-	\subsection{Approach 1. Construction of the artificial corpus: N-Grams Permutation Model}
+	\subsection{Approach 1: N-Grams Permutation Model}
 
-	This approach uses tropes permutation as a method of creating corpus phrases. Next to the selection of permuted tropes, the name of the film is added in order to connect the film with its tropes. In this approach, the relationship between film and their tropes is lighter, since the film's name will be next to nine other tropes. The relationship between the different tropes is also not reinforced by any criteria, we simply sort the group of tropes randomly. Before deciding which maximum number of tropes per film and the size of the phrase (ngram) is most appropriate, we have performed different tests. Table \ref{tab:corpusSize} shows different values for MAX\_TROPE and NGRAM\_SIZE. After different tests, we have decided to take the values 15 and 9 respectively to create the corpus. We take this
+	This approach (NG Model) uses tropes permutation as a method of creating corpus phrases. Next to the selection of permuted tropes, the name of the film is added in order to connect the film with its tropes. In this approach, the relationship between film and their tropes is lighter, since the film's name will be next to nine other tropes. The relationship between the different tropes is also not reinforced by any criteria, we simply sort the group of tropes randomly. Before deciding which maximum number of tropes per film and the size of the phrase (ngram) is most appropriate, we have performed different tests. Table \ref{tab:corpusSize} shows different values for MAX\_TROPE and NGRAM\_SIZE. After different tests, we have decided to take the values 15 and 9 respectively to create the corpus. We take this
 	initial limit since we will generate all the variations
 	without repetitions of 15 elements taken in groups of 9
 	elements. This method can give us enough size corpus to train the model using word2vec algorithm. This method consists of the following steps:
@@ -314,8 +314,8 @@ In order to check the quality of generated embedding vectors, we use the checkli
 In order to visualize the tropes vector space, we have analyzed the different generated clusters using a modified version of the demo-classes.sh script from \cite{git-hub-word2vec}. 
 We have independently visualized some of these groups in a two-dimensional space using the cluster-visualization.py script that makes use of the gensim, matplotlib libraries and the Principal Component Analysis algorithm from sklearn python library. We have also verified by taking some clusters that the elements included in a grouping are strongly connected on the tvtropes.org website.
 
-\subsection{Approach 2. Construction of the artificial corpus: Database Like Reinforcement Model}
-For corpus construction based on reinforcing terms relationship approach method, we follow the same methodology as the previous method but modifying step 3.
+\subsection{Approach 2: Database Like Reinforcement Model}
+For corpus construction based on reinforcing terms relationship approach method (DB Model), we follow the same methodology as the previous method but modifying step 3.
 	
 	
 	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
@@ -409,21 +409,21 @@ In this way, we get that every time two terms appear together in corpus they are
 	\centering
 	\begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
 	\hline
-	\textbf{DB} & \textbf{NG}\\
+	\textbf{DB Model, cluster \#323} & \textbf{NG Model cluster \#827}\\
 	\hline
 	\hline
-	abductedinplainsight 323 & borderpatrol 827\\
-	blackjackets 323 & cameo 827\\
-	blatantlies 323 & duelingmovies 827\\
-	everybodysfine 323 & ghostsofmississippi 827\\
-	sevenyearsintibet 323 & historicalheroupgrade 827\\
-	thedevilandmissjones 323 & loopholeabuse 827 \\
-	villainousbreakdown 323 & scalingthesummit 827 \\
-	 & sevenyearsintibet 827\\
-	 & takebackyourgift 827\\
-	 & theshangrila 827\\
-	 & trainingthepeacefulvillagers 827\\
-	 & wealldiesomeday 827\\
+	abductedinplainsight  & borderpatrol \\
+	blackjackets  & cameo \\
+	blatantlies  & duelingmovies \\
+	everybodysfine  & ghostsofmississippi \\
+	sevenyearsintibet  & historicalheroupgrade \\
+	thedevilandmissjones  & loopholeabuse  \\
+	villainousbreakdown  & scalingthesummit  \\
+	 & sevenyearsintibet \\
+	 & takebackyourgift \\
+	 & theshangrila \\
+	 & trainingthepeacefulvillagers \\
+	 & wealldiesomeday \\
 \hline 
 
 \end{tabular}
@@ -438,13 +438,21 @@ In this way, we get that every time two terms appear together in corpus they are
 	% Accuracy
 	
     To compare two models results we have used the same subset of films and tropes described in the section \textbf{Select films and tropes}. 
-    Table \ref{tab:two-models-accuracy-results} shows the accuracy results for the two models. Note that the precision for the DB model is greater than for the NG model. 
-    If we also take into account the table \ref{tab:original-accuracy-results} that shows precision results based on the dataset Text8 (http://mattmahoney.net/dc/text8.zip) we observe that both models exceed the results obtained in corpus written in natural language, the results of the DB model being significantly better.
+    Table \ref{tab:two-models-accuracy-results} shows the accuracy results for the two models. Note that the precision for the DB model is 39.09\% better than for the NG model. 
+    If we also take into account the table \ref{tab:original-accuracy-results} that shows precision results based on the dataset Text8 (http://mattmahoney.net/dc/text8.zip) we observe that both models exceed the results obtained in corpus written in natural language, the results of the DB model is 45.2\% better.
 	
 	% Model size
 	
-	Regarding the size of the corpus, it should be noted that the DB Model has a size of only 16MB while the NG model has a size of 292 MB. This difference in size also affects the creation times of the embedding vectors model and the construction of the different clusters. There are also significant differences in the size of the binary files of the embedding vectors, being the size of the 24MB DB model and only 7MB the NG model file.
+	Regarding the size of the corpus, it should be noted that the DB Model has a size of only 16MB while the NG model has a size of 292 MB. This difference in size also affects the creation times of the embedding vector and the construction of the different clusters. However, in the case of the size of the binary files of the embedding vectors the opposite happens in terms of sizes, being 24MB the size of the DB model and only 7MB the NG model file. The first thing we have done has been to visualize the vectors in a 2-dimensional space. 
 
+    % Clusters
+    
+    Another way to verify the quality of the embedding vectors is to check the quality of the clusters obtained. This method introduces the complexity of needing an expert who knows the nature of the data to perform the verifications of the clusters. We show the results obtained using the k-means algorithm of \cite{git-word2vec} package for 1024 classes.   In our case, we have analyzed several of the clusters obtained and these are the results. First, we have visualized the vectors in a 2-dimensional space. Figures \ref{fig:cluster-db-323-visualization-zoom-out} and \ref{fig:cluster-ng-827-visualization-zoom-out} show an overview of the space while showing the location of the labels corresponding to cluster Model DB 323 and Model NG 827 respectively. Figures \ref{fig:cluster-db-323-visualization-zoom-in}, and \ref{fig:cluster-ng-827-visualization-zoom-in}. show a detail of some of the labels of cluster 323 of Model DB and cluster 827 of model NG.
+     
+    
+     
+     
+     
 \begin{table*}[ht]
 \centering
 \begin{tabular}{|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|}
@@ -517,34 +525,34 @@ gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
 \label{tab:original-accuracy-results}
 \end{table*}
 	
-	\begin{figure}
+	\begin{figure*}
 	\centering
 	\includegraphics[width=1\linewidth]{../images/cluster-db-1024-c323-zoom-in.png}
-	\caption{Cluster DB 1024 C 323 visualization detail}
-	\label{fig:cluster-visualization-zoom-in}
-	\end{figure}
+	\caption{Visualization of Cluster \#323 of DB Model with 1024 clusters (zoom in)}
+	\label{fig:cluster-db-323-visualization-zoom-in}
+	\end{figure*}
 	
 	
 	\begin{figure}
 	\centering
 	\includegraphics[width=1\linewidth]{../images/cluster-db-1024-c323-zoom-out.png}
-	\caption{Cluster DB 1024 C 323 visualization}
-	\label{fig:cluster-visualization-zoom-out}
+	\caption{Visualization of Cluster \#323 of DB Model with 1024 clusters.}
+	\label{fig:cluster-db-323-visualization-zoom-out}
 	\end{figure}
 	
-		\begin{figure}
+		\begin{figure*}
 	\centering
 	\includegraphics[width=1\linewidth]{../images/cluster-ng-1024-c827-zoom-in.png}
-	\caption{Cluster DB 1024 C 827 visualization detail}
-	\label{fig:cluster-visualization-zoom-in}
-	\end{figure}
+	\caption{Visualization of Cluster \#827 of NG Model with 1024 clusters (zoom in)}
+	\label{fig:cluster-ng-827-visualization-zoom-in}
+	\end{figure*}
 	
 	
 	\begin{figure}
 	\centering
 	\includegraphics[width=1\linewidth]{../images/cluster-ng-1024-c827-zoom-out.png}
-	\caption{Cluster NG 1024 C 827 visualization}
-	\label{fig:cluster-visualization-zoom-out}
+	\caption{Visualization of Cluster \#827 of NG Model with 1024 clusters.}
+	\label{fig:cluster-ng-827-visualization-zoom-out}
 	\end{figure}
 	
 	
@@ -566,7 +574,7 @@ gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
 	% find other ways to build accuracy checklists 
 	% Popular films will appear more times in corpus. This idea can be used to build the artificial corpus in future works.
 	% Check if embedding vectors clusters can be used to obtain better accuracy check lists 
-	\section{Acknowledgments}
+	% \section{Acknowledgments}
 	
 	\bibliographystyle{iccc}
 	\bibliography{iccc}
