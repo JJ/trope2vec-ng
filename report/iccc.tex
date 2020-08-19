@@ -6,7 +6,7 @@
 \usepackage{helvet}
 \usepackage{courier}
 \pdfinfo{
-	/Title (Anything2vec: generalizing word2vec via the use of meaningful contexts)
+	/Title (Anything2vec: generalizing word2vec-like embedding for movie tropes via the use of meaningful contexts)
 	/Subject (Proceedings of ICCC)
 	/Author (ICCC)}
 % The file iccc.sty is the style file for ICCC proceedings.
@@ -200,7 +200,7 @@
 	\begin{enumerate}
 	\item The First one consists of generating the corpus through tropes permutations and adding film names in each phrase. In order to simplify the process of creating and verifying the accuracy, we have selected films with a maximum number of tropes per film. Table \ref{tab:corpusSize} shows how the maximum number of tropes affects the size of the corpus.
 	
-	\item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. To compare both approaches, we have selected the same films for both methods.
+%	\item The second method consists of creating the corpus through relationships reinforcement between tropes and films as if it were a relational database. To compare both approaches, we have selected the same films for both methods.
 	\end{enumerate}
 	
 	\subsection{Approach 1: N-Grams Permutation Model}
@@ -282,300 +282,30 @@ The word2vec algorithm is applied to the generated corpus. For this, we use the 
 	% There's no need to say what to do; focus on the results and the
 	% methodology. Mechanical steps can be explained in the repository.
 	
- \subsubsection{Generate accuracy check list}
-Creating the accuracy checklist is one of the most creative parts of the methodology. To obtain it we have first observed the checklists contained in the package \cite{git-hub-word2vec}. In selected examples, we can verify that univocal pairs are associated. For example in 
-\begin{verbatim}
-Boston Boston_Globe 
-Chicago Chicago_Tribune
-\end{verbatim}
-we can check that 
-Boston\_Globe is one of the main newspapers in Boston city, in the same way that Chicago\_Tribune is one of the main newspapers in Chicago city. Our checklist must also contain univocal relationships. To do this, we select from each film its most popular trope. So we will have, that the relationship will be:
-
-\begin{verbatim}
-<film1> <top-trope1> 
-<film2> <top-trope2>
-\end{verbatim}
-
-In this relationship, there is only one top trope for each movie and it would be possible to univocally refer to it from the movie. In our case, it is possible that this top trope is repeated for different films but it will always be the same. Something similar can happen with a very popular newspaper that is based in different cities and it has not a name adapted for each city. Another option may be to create a trope name adapted to the film, as with certain newspapers that adapt their name to the city, as would be the case with The New York Sun or Baltimore Sun. 
-\begin{verbatim}
-<film1> <top-trope1-film1> 
-<film2> <top-trope2-film2>
-\end{verbatim}
-	
- This second technique of creating the relationships between films and tropes, making the name of the trope unique for each film, will be used in the second method of corpus creation. Finally, we take a group of movies randomly and associate their top trope. Next, we take the first pair (movie, top-trope) and the other selected pairs and we repeat this process with all the films and their associated top tropes. We will use the same accuracy checklist for the two proposed corpus creation methods.   
-
-
-\subsubsection{Check model accuracy}
-In order to check the quality of generated embedding vectors, we use the checklist created in the previous step and the program compute-accuracy from \cite{git-hub-word2vec}. This program returns the number of tuples that have generated the expected value through the model. In our case, how many times the correct top trope has been found given a movie, a top trope, and a second movie.
 
 \subsubsection{Visualize tropes vector space}
 In order to visualize the tropes vector space, we have analyzed the different generated clusters using a modified version of the demo-classes.sh script from \cite{git-hub-word2vec}. 
 We have independently visualized some of these groups in a two-dimensional space using the cluster-visualization.py script that makes use of the gensim, matplotlib libraries and the Principal Component Analysis algorithm from sklearn python library. We have also verified by taking some clusters that the elements included in a grouping are strongly connected on the tvtropes.org website.
 
-\subsection{Approach 2: Database Like Reinforcement Model}
-For corpus construction based on reinforcing terms relationship approach method (DB Model), we follow the same methodology as the previous method but modifying step 3.
-	
-	
-	% Main idea here is that the artificial corpus will represent the true as much as possible. ¿how we can achieve that?
-	% We need a parameter that let us reinforce more real relationships between elements that are stronger. For example, in case of films,
-	% we can use a value of film popularity to write more times in corpus information about a blockbuster film. We have to do the same with 
-	% es like tropes. More relevant tropes will be them who appear more times in films, so these tropes have to appear more times in 
-	% corpus. Ideal situation will be that artificial corpus emulate real conextions faithfully.\\
-	% Let's use imdb blockbuster films sort by votes. Votes will be the number to reinforce more in corpus films that have more votes.	 
-	% we can apply an incremental approach to do that, creating verification check lists to see if certain part of the corpus fits reality. 
-	% for next paper version
-	
-   \subsubsection{Create corpus by relationships reinforcement}
+% a big TBD -----------------------------------------------------------------------------
 
-Here the idea is to treat relationships between entities in a similar way databases do. Figure \ref{fig:film-trope-relationship} shows the relationship between film and tropes as a relation of n to n. To implement this scheme in a database we would need a table for films, another for tropes and another for the relationships between films and tropes. In our case, instead of creating rows in a table, we will write sentences in the corpus. We will, therefore, need a phrase that indicates that such
-name is a movie title.
-
-\begin{verbatim}
-film <film1>
-film <film2>
-film <film3>
-...
-\end{verbatim}
-
-We will also need to represent the equivalent to the trope table. For this we will write sentences of the form:
-\begin{verbatim}
-trope <trope1>
-trope <trope2>
-trope <trope3>
-...
-\end{verbatim}
-
-In the case of the relationship film-trope, we can consider that the union has different attributes. For example, we can consider, that the film-trope union has unique associated information.  In fact, this is the case in reality. The description of the trope within a movie refers to particular issues of the movie and is different from the description of the same trope for another movie. For this reason, we have created a new trope name, joining trope name and then film name:
-\begin{verbatim}
-trope1_film1
-trope2_film2
-trope3_film3
-...        
-\end{verbatim}
-
-Therefore, from this relationship, we would have the following groups of phrases.
-\begin{enumerate}
-\item Phrase to associate trope-name and trope + film-name
-\item Phrase to indicate that trope + film-name is a trope
-\item Phrase to associate film and trope + film-name 
-\end{enumerate}     
-
-\begin{verbatim}
-1) trope1 trope1_film1
-2) trope trope1_film1
-3) film1 trope1_film1
-...        
-\end{verbatim}
-
-In the case of phrase 3 we do not add the word film or trope since we would be adding a sense of film or trope erroneously to one of the two elements of the phrase.
-In this way, we get that every time two terms appear together in corpus they are strongly connected by a real relationship on tvtropes. Finally, we must give more importance to those links to more relevant tropes. This can be achieved in different ways. In our case, we have taken as a reference the number of times a trope is used in a film to establish a ranking. Our algorithm takes the number of times the trope is used to write more repetitions of the phrase within the corpus. We have applied a corrective factor that divides the number of occurrences of the trope in order to make the corpus smaller.
-	
-	   \begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{../images/trope-film-n-to-n.png}
-	\caption{N to N film-trope relationship}
-	\label{fig:film-trope-relationship}
-	\end{figure}
-	
-	
-	
-	\begin{table}[t]
-	\centering
-	\begin{tabular}{|p{0.24\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|}
-	\hline
-	\textbf{(Max\_Tropes, Ngram\_Size, Min Count)}& \textbf{(15, 9, 1)} & \textbf{(15,9, 3)} & \textbf{(15, 9, 5)}\\
-	\hline
-	\hline
-	Tropes with vector&7383  & 6196 & 6172 \\
-	\hline
-	Tropes without vector& 0 & 1187 & 1211 \\
-	\hline
-	Total tropes&7383&7383&7383\\
-	\hline
-	Vocab Size& 7384 & 6197 & 6173 \\
-	\hline
-	Words in train file& 17387907 & 17386591 & 17386514 \\
-	\hline 
-	
-	\end{tabular}
-	\caption{Characteristics of different word2vec models created by varying the MIN\_COUNT argument}
-	\label{tab:variations-with-min-count-argument-15-9}
-	\end{table}    
-	
-	
-	\begin{table}[t]
-	\centering
-	\begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
-	\hline
-	\textbf{DB Model, cluster \#323} & \textbf{NG Model cluster \#827}\\
-	\hline
-	\hline
-	abductedinplainsight  & borderpatrol \\
-	blackjackets  & cameo \\
-	blatantlies  & duelingmovies \\
-	everybodysfine  & ghostsofmississippi \\
-	sevenyearsintibet  & historicalheroupgrade \\
-	thedevilandmissjones  & loopholeabuse  \\
-	villainousbreakdown  & scalingthesummit  \\
-	 & sevenyearsintibet \\
-	 & takebackyourgift \\
-	 & theshangrila \\
-	 & trainingthepeacefulvillagers \\
-	 & wealldiesomeday \\
-\hline 
-
-\end{tabular}
-\caption{Cluster example}
-\label{tab:cluster-example}
-\end{table}    
-	
-	
-	\section{Results}
+\section{Results}
 	\label{sec:res}
 	
 	% Accuracy
 	
-    To compare two models results we have used the same subset of films and tropes described in the section \textbf{Select films and tropes}. 
-    Table \ref{tab:two-models-accuracy-results} shows the accuracy results for the two models. Note that the precision for the DB model is 39.09\% better than for the NG model. 
-    If we also take into account the table \ref{tab:original-accuracy-results} that shows precision results based on the dataset Text8 (http://mattmahoney.net/dc/text8.zip) we observe that both models exceed the results obtained in corpus written in natural language, the results of the DB model is 45.2\% better.
-	
-	% Model size
-	
-	Regarding the size of the corpus, it should be noted that the DB Model has a size of only 16MB while the NG model has a size of 292 MB. This difference in size also affects the creation times of the embedding vector and the construction of the different clusters. However, in the case of the size of the binary files of the embedding vectors the opposite happens in terms of sizes, being 24MB the size of the DB model and only 7MB the NG model file. The first thing we have done has been to visualize the vectors in a 2-dimensional space. 
 
-    % Clusters
-    
+        % Clusters
+
+        % This might make sense, but I'm not totally sure...
+        
     Another way to verify the quality of the embedding vectors is to check the quality of the clusters obtained. This method introduces the complexity of needing an expert who knows the nature of the data to perform the verifications of the clusters. We show the results obtained using the k-means algorithm of \cite{git-hub-word2vec} package for 1024 classes.   In our case, we have analyzed several of the clusters obtained and these are the results. First, we have visualized the vectors in a 2-dimensional space. Figures \ref{fig:cluster-db-323-visualization-zoom-out} and \ref{fig:cluster-ng-827-visualization-zoom-out} show an overview of the space while showing the location of the labels corresponding to cluster Model DB 323 and Model NG 827 respectively. Figures \ref{fig:cluster-db-323-visualization-zoom-in}, and \ref{fig:cluster-ng-827-visualization-zoom-in}. show a detail of some of the labels of cluster 323 of Model DB and cluster 827 of model NG. Table \ref{tab:cluster-example} shows the elements of two selected clusters: cluster number 323 for Model DB and cluster number 827 for Model NG. After analyzing the elements of the selected clusters we have verified that the elements of the DB 323 cluster have in common their most frequent trope "Blatant Lies". Of the 7 elements belonging to cluster \#323 of the DB Model, 5 of them are movies ("The Devil and Miss Jones", "Everybodys Fine", "Seven Years In Tibet", "Black jackets" and "Abducted in plain sight") and two others are tropes ("Blatant Lies" and "Villainous Breakdown"). The two movies in cluster have "Blatant Lies" as one of their main tropes, however, the trope "Villainous Breakdown" does not appear in any of them. From this first cluster, we can extract that all the elements are strongly interconnected except the "Villainous Breakdown" trope with which we have not found the relationship. In the case of cluster 827 of the NG Model, we have observed that: The "Ghosts Of Mississippi" movie only contains the "Cameo" and "Historical hero upgrade" tropes and film "Seven Years in Tibet", continent tropes "Dueling Movies", "Historical Hero Upgrade", "Scaling the summit" and "Training the peaceful villagers". For this second cluster, we can see that the elements are bound with less force. This makes sense since the way of building the corpus is very different. In the DB Model, relations between entities are strongly reinforced by putting emphasis on the top trope. However, the NG model relationships are somewhat lighter and thus is reflected in the resulting clusters.
-    
-    
-    
-     
-     
-     
-\begin{table*}[ht]
-\centering
-\begin{tabular}{|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|}
-\hline
-\textbf{Accuracy list group}& \textbf{Question words}  & \textbf{(\#ok/\#total)}& \textbf{Semantic} & \textbf{Syntactic}\\
-\hline
-\hline
-NG 1000 & 65.60\% & (656 / 1000) & 65.60\% & -nan\\
-\hline
-NG 3000 & 65.20\% & (1956 / 3000) & 65.20 \% & -nan\\
-\hline
-\textbf{Total}& \textbf{65.4\% }&  & \textbf{65.4\% }&  \textbf{-nan }\\
-\hline
-\hline
-DB 1000 & 98.40\% & (984 / 1000) &98.40\% \% & -nan\\
-\hline
-DB 3000 & 98.57\% & (2957 / 3000) & 98.57\% \% & -nan\\
-\hline
-\textbf{Total}& \textbf{98.49 \% }&  & \textbf{98.49\% }&  \textbf{-nan}\\
-\hline
-
-\end{tabular}
-\caption{Two Models Accuracy Results - NG (N-Grams Permutation Model), DB (Database Like Reinforcement model)}
-\label{tab:two-models-accuracy-results}
-\end{table*}
 
 
+\section{Conclusions, discussion and future work}
 
-\begin{table*}[ht]
-\centering
-\begin{tabular}{|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
-\hline
-\textbf{Accuracy list group}& \textbf{Question words}  & \textbf{(\#ok/\#total)}& \textbf{Semantic} & \textbf{Syntactic}\\
-\hline
-\hline
-capital-common-countries& 81.62 \% & (413 / 506) & 81.62 \% & -nan\\
-\hline
-capital-world& 61.29 \% & (890 / 1452) & 61.29 \% & -nan\\
-\hline
-currency& 27.99 \% & (75 / 268) & 27.99 \% & -nan\\
-\hline
-city-in-state& 48.12 \% & (756 / 1571)& 48.12 \% & -nan\\
-\hline
-family&77.45 \% & (237 / 306)& 77.45 \% &  -nan \\
-\hline
-gram1-adjective-to-adverb& 17.72 \% &  (134 / 756)& -nan & 17.72 \% \\
-\hline
-gram2-opposite& 20.59 \% & (63 / 306)& -nan & 20.59 \% \\
-\hline
-gram3-comparative&62.54 \% & (788 / 1260)& -nan & 62.54 \% \\
-\hline
-gram4-superlative&41.70 \% &  (211 / 506)& -nan & 41.70 \% \\
-\hline
-gram5-present-participle& 38.00 \% & (377 / 992)& -nan &  38.00 \% \\
-\hline
-gram6-nationality-adjective&85.56 \% &  (1173 / 1371)& -nan & 85.56 \% \\
-\hline
-gram7-past-tense& 38.66 \% & (515 / 1332) & -nan & 38.66 \% \\
-\hline
-gram8-plural& 65.62 \% & (651 / 992) & -nan & 65.62 \% \\
-\hline
-gram9-plural-verbs&38.77 \% & (252 / 650)& -nan & 38.77 \% \\
-\hline
-\hline
-\textbf{Total}& \textbf{53.27 \% }&  & \textbf{57.79 \% }&  \textbf{51.00 \% }\\
-\hline
 
-\end{tabular}
-\caption{Word2vec package Text8 example accuracy results for words and phrases. Text from  http://mattmahoney.net/dc/text8.zip}
-\label{tab:original-accuracy-results}
-\end{table*}
-	
-	\begin{figure*}
-	\centering
-	\includegraphics[width=1\linewidth]{../images/cluster-db-1024-c323-zoom-in.png}
-	\caption{Visualization of Cluster \#323 of DB Model with 1024 clusters (zoom in)}
-	\label{fig:cluster-db-323-visualization-zoom-in}
-	\end{figure*}
-	
-	
-	\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{../images/cluster-db-1024-c323-zoom-out.png}
-	\caption{Visualization of Cluster \#323 of DB Model with 1024 clusters.}
-	\label{fig:cluster-db-323-visualization-zoom-out}
-	\end{figure}
-	
-		\begin{figure*}
-	\centering
-	\includegraphics[width=1\linewidth]{../images/cluster-ng-1024-c827-zoom-in.png}
-	\caption{Visualization of Cluster \#827 of NG Model with 1024 clusters (zoom in)}
-	\label{fig:cluster-ng-827-visualization-zoom-in}
-	\end{figure*}
-	
-	
-	\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{../images/cluster-ng-1024-c827-zoom-out.png}
-	\caption{Visualization of Cluster \#827 of NG Model with 1024 clusters.}
-	\label{fig:cluster-ng-827-visualization-zoom-out}
-	\end{figure}
-	
-	
-	
-	\section{Conclusions, discussion and future work}
-	
-	From the obtained results we can conclude that the fact of creating an artificial corpus improves the accuracy of the embedding vectors generated in relation to a natural language corpus. In our results this improvement reaches up to 45.2\%. The fact of being able to build the custom corpus allows us to avoid rhetorical elements derived from the use of natural language. In this way, we can put the focus on the relationships between the entities and always put together those words that are connected. We avoid so words that do not have a strong relationship appear close. 
-	We have found two main difficulties when implementing this methodology:
-	\begin{itemize}
-	\item The First one, has been to find a metric that allows us to reinforce more important concepts. 
-	\item The Second one has been to obtain a metric that allows us to evaluate the results.
-	\end{itemize}
-	It will be necessary to find these metrics in each problem where you want to apply this methodology
-	
-	Future work should focus on finding new ways to measure the accuracy of the results. In many cases finding relationships between entities is trivial when it comes to natural language. Clear examples of this can be countries and their capitals or to find the feminine of some term. However, trying to achieve the same in areas where we are not very familiar can be much more complicated. Finding metrics that allow us to evaluate model accuracy without needing deep knowledge of the work area, would be an interesting future line of work. Another question worthy of being analyzed in future works consists in finding characteristics in the real system that serve to reinforce with greater intensity those stronger relationships. In our dataset, the popularity of films and tropes has been used for reinforcing more intensely the relationships between films and popular tropes. Better markers will allow the models to more accurately represent the relationships between the entities of the real system.
-	
-	% It is possible to create artificial corpus better than natural ones?
-	
-	% find other ways to build accuracy checklists 
-	% Popular films will appear more times in corpus. This idea can be used to build the artificial corpus in future works.
-	% Check if embedding vectors clusters can be used to obtain better accuracy check lists 
-	% \section{Acknowledgments}
-	
-	\bibliographystyle{iccc}
-	\bibliography{iccc}
-	
+\bibliographystyle{iccc}
+\bibliography{iccc}
+
 \end{document}
